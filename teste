@@ -1,1 +1,2494 @@
---[[ v1.0.0 https://wearedevs.net/obfuscator ]] return(function(...)local I={"\122\114\077\084\066\114\122\082\090\105\108\073\072\114\122\083\072\114\122\065\090\087\061\061","\089\068\073\055\049\087\061\061";"\066\106\122\055\098\110\122\055\089\075\108\118\089\113\117\073";"\085\114\052\106\110\122\073\117\098\109\073\053\054\069\108\053\115\112\061\061";"\048\081\080\088\066\083\115\055\066\081\057\088\049\073\049\048\089\047\061\061";"\066\113\122\084\098\051\049\073";"\108\105\043\099\054\068\108\081\049\083\072\104\048\115\122\117","\048\112\061\061","\066\051\108\082\085\110\100\068";"\072\114\077\086\098\114\115\061","\048\086\112\073\049\101\067\080\048\112\061\061";"\075\109\043\052\049\110\088\061","\069\112\118\053\056\067\074\078";"\087\083\054\104\054\115\055\047\120\073\115\088\071\077\049\082\089\065\105\061";"\075\109\043\084\049\075\108\118\072\114\077\086\098\114\115\061";"";"\078\087\061\061";"\087\109\108\065\089\113\109\057","\098\114\043\118\049\081\054\055\066\113\073\111\049\047\061\061";"\049\051\054\109\089\112\061\061","\075\109\043\068\089\047\061\061";"\071\073\073\081\066\113\118\084\049\102\054\117\066\075\054\083\066\068\065\061","\098\110\077\055\085\070\061\061","\122\119\112\071\082\106\087\061";"\087\115\088\061","\049\113\117\104\098\051\090\061";"\049\077\087\109\115\055\073\121\071\110\077\113\098\102\108\067";"\089\068\053\113\120\081\112\106\122\051\115\051\057\115\054\050","\089\106\043\111\089\106\077\055","\102\081\053\076\098\075\108\083\072\114\117\052\049\113\080\089\049\065\055\061","\049\106\077\084\049\087\061\061","\098\051\057\061","\098\074\105\061";"\049\075\121\082\098\051\090\061","\049\106\109\118\072\114\054\067","\120\081\108\055\066\105\072\073\072\070\061\061","\075\109\043\080\098\113\108\073\071\070\061\061";"\066\114\054\118\098\114\047\061","\085\113\108\075\066\068\072\110\102\110\084\074\120\114\087\069";"\122\075\077\076\085\113\072\109\108\102\053\053\120\106\084\049","\098\074\090\061";"\069\065\097\070\082\085\057\061";"\066\113\077\111\049\114\043\084";"\072\114\043\111\072\110\109\086\049\075\090\061","\072\110\100\047\089\110\054\103";"\098\114\122\111","\102\051\122\103\072\081\121\102\057\113\065\100\122\055\049\082\108\047\061\061","\072\106\109\081\110\114\065\069\102\106\073\111\102\106\100\090\087\073\087\061","\089\106\118\118\066\112\061\061";"\072\114\043\069\072\081\121\080\098\113\066\061";"\120\115\072\082\122\122\072\076\049\051\065\061";"\116\047\117\051\053\098\051\084\052\108\076\114\085\121\077\069\102\070\067\105\082\099\112\055\089\085\101\074\070\073\079\090\106\109\108\112\088\088\073\071\102\090\071\074\051\113\088\083\070\099\120\085\079\072\106\047\082\107\119\105\082\048\069\084\098\074\050\097\050\055\089\109\111\114\081\090\122\054\052\084\069\051\121\111\117\107\088\117\122\112\080\084\117\116\119\082\057\074\079\115\080\049\053\082\065\119\048\121\072\072\088\103\102\089\056\116\051\083\102\106\066\054\106\072\043\088\090\080\054\074\119\088\103\115\097\056\097\056\066\104\066\104\107\098\043\081\100\104\104\076\108\076\070\079\071\047\084\073\081\079\085\077\102\102\098\101\051\108\072\076\083\049\065\069\101\107\107\077\057\049\110\052\121\054\056\071\052\110\112\120\072\078"}for E,b in ipairs({{88780+-88779;643060-643008},{412379+-412378;-333563+333606},{755469-755425;288609-288557}})do while b[-673494-(-673495)]<b[-37500-(-37502)]do I[b[-412756+412757]],I[b[971550-971548]],b[-893123-(-893124)],b[940416-940414]=I[b[393675+-393673]],I[b[463467-463466]],b[99227+-99226]+(-600366-(-600367)),b[-596279+596281]-(-613149+613150)end end local function E(E)return I[E-(-136721+150360)]end do local E=table.concat local b={o=518242-518196,["\049"]=-60437-(-60462),t=-999538-(-999596),Q=705973+-705966;V=-142678+142712;Y=91712+-91688,N=-31458+31517,u=523772-523723;c=817199-817189,w=-301720+301780;W=714892+-714876,j=-74011+74065;x=-561359+561377;B=-835414-(-835442);K=927368-927345,Z=-128558+128566;G=195788-195758;m=42485+-42432;q=85276-85238;L=679528-679486,H=490155-490126;["\050"]=-83042-(-83053),["\047"]=-231196-(-231244);I=-880631-(-880668),["\057"]=-129221+129233,T=783629-783584,i=710423+-710419;R=-35469+35519,g=946573+-946530,["\048"]=-387766-(-387780);S=-67371-(-67406),["\043"]=633348+-633287;["\051"]=-842647+842702,v=58701-58668,D=-766716+766755,s=826840+-826820;f=-568673+568692;p=-237449+237481;["\055"]=-311431+311483;y=-372658-(-372667),A=313133+-313097;n=186785+-186763,F=-976273+976273;b=403212+-403185,r=723292+-723286;a=-206525+206556,X=59476-59420;d=465074-465017,e=292943+-292941,O=-716210+716272,h=318778+-318731;z=193422-193401;["\053"]=-94719+94720;["\054"]=-427990-(-428003),M=-504815-(-504820);["\052"]=365554-365510;E=690679-690628;["\056"]=-807565+807628;J=-157268-(-157271),k=-244407-(-244422);l=-392431+392448;P=148639-148598;U=-473314-(-473340);C=-959365+959405}local u=string.char local R=I local O=type local N=table.insert local i=math.floor local w=string.len local k=string.sub for I=-615470-(-615471),#R,-508592-(-508593)do local f=R[I]if O(f)=="\115\116\114\105\110\103"then local O=w(f)local h={}local T=86833+-86832 local W=312527-312527 local y=167934+-167934 while T<=O do local I=k(f,T,T)local E=b[I]if E then W=W+E*(825865-825801)^((875370+-875367)-y)y=y+(140768-140767)if y==-141151+141155 then y=636862+-636862 local I=i(W/(738092-672556))local E=i((W%(826654+-761118))/(-381090+381346))local b=W%(735052+-734796)N(h,u(I,E,b))W=-20173+20173 end elseif I=="\061"then N(h,u(i(W/(66813-1277))))if T>=O or k(f,T+(-172852+172853),T+(-920293-(-920294)))~="\061"then N(h,u(i((W%(346430+-280894))/(902768-902512))))end break end T=T+(595820+-595819)end R[I]=E(h)end end end return(function(I,u,R,O,N,i,w,f,p,e,T,h,b,y,d,k,X,K,Y,n,W)b,d,Y,h,T,W,f,X,n,e,p,k,K,y=function(b,R,O,N)local Q,C,V,U,Z,o,l,B,z,w,m,P,e,D,H,s,F,M,j,x,f,T,g,t,S,c,v,y,W,A,J,r,G,q while b do if b<10331681-(-334613)then if b<-891411+5724102 then if b<-587270+2444611 then if b<-227637-(-1018898)then if b<517137-(-215568)then if b<-667165+1236881 then if b<-145360+168037 then f=R T=h()W=E(-227216+240907)b=true k[T]=b y=h()w=I[W]W=E(-518433-(-532098))b=w[W]W=h()k[W]=b b=K(-726064+9712640,{})k[y]=b b=false v=E(-984642-(-998310))e=h()k[e]=b Q=d(12177159-(-574042),{e})A=I[v]v=A(Q)w=v b=v and 213452+5077046 or 10191728-(-451788)else b=k[O[-347080-(-347081)]]T=W g=112551+-112296 Q=8639+-8639 v=b(Q,g)f[T]=v b=328410+9458703 T=nil end else w=E(-1002267-(-1015938))b=I[w]f=E(207883-194220)w=I[f]f=E(-116431+130094)I[f]=b f=E(147840-134169)I[f]=w f=k[O[-309714-(-309715)]]T=f()b=15268034-(-664444)end else if b<432711+321362 then z=b o=-744858+744859 G=M[o]o=false x=G==o b=x and 7173769-(-835890)or 11678964-(-203315)S=x else y=X(y)T=X(T)T=nil q=nil g=X(g)A=nil v=X(v)m=nil e=X(e)v=E(644405-630752)V=X(V)s=nil m=-267911-(-267912)P=X(P)W=X(W)W=nil r=nil A=E(-562597+576250)s={}e=I[A]Q=nil A=E(-752081-(-765737))g=E(926753+-913062)y=e[A]e=h()k[e]=y A=I[v]v=E(-213427+227100)y=A[v]Q=E(-50358+63998)v=I[Q]Q=E(-791698-(-805386))V=h()A=v[Q]Q=I[g]g=E(-478+14157)b=-420302+2745071 v=Q[g]g=h()Q=-229840+229840 k[g]=Q q={}r=h()Q=896477-896475 k[V]=Q Q={}k[r]=s s=-674907-(-674907)P=-190103+190359 j=P P=-220343+220344 U=P P=38668-38668 C=U<P P=m-U end end else if b<769915+659099 then if b<916250+249364 then f=E(-1002874-(-1016538))b=I[f]T=k[O[-233744+233752]]W=-913924+913924 f=b(T,W)b=160346+13511351 else b=-97024+3168323 k[O[-937639+937644]]=w f=nil end else if b<-810724+2332920 then S=k[T]b=S and 488985-(-248604)or 13350713-(-295256)w=S else U=E(510942-497279)J=E(-113182-(-126862))b=I[J]j=I[U]J=b(j)b=E(388098-374427)I[b]=J b=-852790+12296917 end end end else if b<3798560-170192 then if b<127056+2293225 then if b<2276956-112006 then if b<1743577-(-221523)then T=k[O[-90646+90648]]b=-181044+5086748 W=k[O[692368-692365]]f=T==W w=f else q=not r V=V+s Q=V<=g Q=q and Q q=V>=g q=r and q Q=q or Q q=937032+12523572 b=Q and q Q=3029897-241729 b=b or Q end else l=not C P=P+U m=P<=j m=l and m l=P>=j l=C and l m=l or m l=248007+16030173 b=m and l m=-415665+4676065 b=b or m end else if b<3738875-854150 then b=16555004-98801 v=nil A=nil y=nil else b=k[O[388551-388544]]b=b and 640686-(-511970)or 139776+13531921 end end else if b<210915+4036632 then if b<3865579-142506 then s=-714512-(-714577)g=h()J=E(383392-369712)k[g]=w V=-835135+835138 q=E(-534927-(-548595))b=k[v]m=K(1450+13405276,{})w=b(V,s)b=-6486+6486 V=h()k[V]=w s=b b=820276-820276 w=I[q]r=b q={w(m)}w=-89194+89196 b={u(q)}q=b b=q[w]w=E(-883333+897007)m=b b=I[w]P=k[W]F=I[J]J=F(m)F=E(-428669-(-442310))t=P(J,F)P={t()}w=b(u(P))P=h()k[P]=w t=k[V]w=-547120-(-547121)F=t b=14081911-948419 t=473257-473256 J=t t=-836514+836514 j=J<t t=w-J else z=k[T]S=z b=z and 9951993-(-314618)or 15384463-(-890655)end else if b<3478493-(-877646)then b=11959243-536162 P=#q j=-694002+694002 m=P==j else b=k[O[-778990-(-778991)]]W=b f=R[247776-247775]T=R[385678-385676]b=W[T]b=b and 16232241-927257 or-16736+13976376 end end end end else if b<545117+7438327 then if b<6585776-830265 then if b<5522409-59259 then if b<5093084-(-192016)then if b<5817317-901367 then b=w and 956054+10927496 or 2998846-(-72453)else e=-221174+221176 T=k[O[-892180+892181]]y=-760273-(-760274)W=T(y,e)T=406332+-406331 f=W==T b=f and-360257+5265961 or 510663+1401251 w=f end else b=-704722+11348238 A=k[e]w=A end else if b<193876+5333925 then b=true b=b and-133665+11339427 or 11315258-772021 else j=-696357-(-696357)P=#q m=P==j b=m and 8987731-286653 or 11553379-130298 end end else if b<8827359-963154 then if b<5362062-(-672442)then F=k[T]b=F and 13407395-(-446616)or 400270+6417004 t=F else k[T]=t b=k[T]b=b and 8843889-873959 or 9727982-(-1020509)end else if b<676663+7251955 then w={}b=I[E(-389480-(-403124))]else b=366886+389237 end end end else if b<9007553-(-1043915)then if b<-891841+9863225 then if b<7813711-(-896263)then if b<8105626-(-435246)then o=-70779+70781 G=M[o]b=-18597+11900876 o=k[D]x=G==o S=x else m={}C=E(-636848+650533)P=h()j=Y(13765585-(-521827),{P,g,V,e})M=E(107743+-94098)e=X(e)v=nil k[P]=m s=nil l={}Q=nil m=h()e=E(-982584+996233)H=E(633720+-620053)A=nil s=E(398502+-384820)k[m]=j j={}U=h()y=nil x=nil k[U]=j j=I[C]q=nil D=k[U]c={[H]=D,[M]=x}C=j(l,c)W=C j=d(4321354-(-144293),{U;P,r,g;V,m})H=203784+34533339243208 y=I[e]V=X(V)m=X(m)P=X(P)v=E(619414-605753)m=21905809244751-(-599433)g=X(g)M=E(-177635-(-191278))w={}T=j A=I[v]r=X(r)r=3191948041324-448158 U=X(U)q=E(102475+-88803)V=T(s,r)c=E(-1030793+1044447)g=W[V]U=E(563600-549938)x=7465518833504-741836 r=T(q,m)s=W[r]m=E(-903217+916897)q=I[m]j=I[U]l=T(c,H)U=W[l]P=j[U]j={P()}H=E(-999642+1013295)b=I[E(282761+-269092)]l=27998425117989-(-32200)m=q(u(j))U=E(357038+-343391)j=T(U,l)U=E(282779+-269099)P=W[j]j=I[U]c=I[H]D=T(M,x)H=W[D]l=c[H]D=-651585+1000651585 H=-439025+439026 c={l(H,D)}U=j(u(c))q=P..U r=m..q V=s..r Q=g..V g=true W=nil T=nil V=E(-563389-(-577055))V=A[V]v={V(A,Q,g)}e=y(u(v))y=e()end else U=h()C=E(-924800-(-938453))k[U]=t w=I[C]Z=171854-171854 l=66896-66796 C=E(988614-974941)b=w[C]D=144613-144612 B=-867901+877901 C=605349+-605348 w=b(C,l)c=-277761+278016 C=h()k[C]=w b=k[v]l=-521506-(-521506)w=b(l,c)c=847352+-847351 M=577744-577742 l=h()k[l]=w b=k[v]H=k[C]w=b(c,H)c=h()k[c]=w w=k[v]H=w(D,M)w=-589154-(-589155)M=E(-410578+424268)b=H==w x=E(-896527-(-910207))w=E(756883+-743242)H=h()k[H]=b z=I[x]b=E(-1016261+1029911)G=k[v]o={G(Z,B)}x=z(u(o))z=E(130799-117109)S=x..z b=m[b]D=M..S b=b(m,w,D)D=h()M=E(935648-921980)k[D]=b S=p(781152+4150737,{v,U;V;W;T;P;H;D,C;c;l,g})w=I[M]M={w(S)}b={u(M)}M=b b=k[H]b=b and 1672340-215863 or 3282947-(-921199)end else if b<-392698+9999813 then f=E(7470-(-6213))w=E(-967706+981370)b=I[w]w=b(f)w={}b=I[E(689224-675564)]else v=not A W=W+e T=W<=y T=v and T v=W>=y v=A and v T=v or T v=-627130+1084401 b=T and v T=-207368+14493516 b=b or T end end else if b<579192+9962915 then if b<568326+9927048 then x=-975759+975760 z=M[x]S=z b=-661908+16937026 else W=-254319-(-254320)T=k[O[507501+-507498]]f=T~=W b=f and-996721+17630140 or 866023+11790405 end else if b<371281+10241860 then b=d(11566108-(-715792),{y})F={b()}w={u(F)}b=I[E(1018973+-1005316)]else A=w v=E(988364+-974711)w=I[v]Q=E(-386368-(-400008))v=E(-40243+53916)b=w[v]v=h()k[v]=b w=I[Q]r=E(486352-472712)Q=E(-489270+502929)b=w[Q]V=b s=I[r]Q=b g=s b=s and 13802205-(-855379)or-45174+12247397 end end end end end else if b<13919320-559949 then if b<-864847+13077169 then if b<-743722+12444817 then if b<-8607+11271060 then if b<-250518+11115474 then if b<9813446-(-1025074)then b=true b=783695+9759542 else b=276604+12856888 D=X(D)M=nil U=X(U)c=X(c)l=X(l)H=X(H)C=X(C)end else b=16649553-518667 end else if b<12427120-1001043 then P=30092+-30091 j=#q m=y(P,j)P=A(q,m)j=k[r]l=814488+-814487 C=P-l b=6015189-363795 m=nil U=v(C)j[P]=U P=nil else b=-667766+16798652 end end else if b<-71521+11954911 then if b<198178+11684408 then b=z w=S b=172045+13473924 else b=3984335-281056 V=E(973649+-959974)g=I[V]w=g end else if b<11939653-(-173796)then w=E(-893807+907481)b=I[w]y=E(-449144+462824)f=k[O[612296-612292]]W=I[y]g=n(217937+12790842,{})Q=E(242668-229000)v=I[Q]Q={v(g)}v=290810+-290808 A={u(Q)}e=A[v]y=W(e)W=E(672172-658531)T=f(y,W)f={T()}w=b(u(f))f=w T=k[O[523702+-523697]]w=T b=T and-530875+13858755 or-533767+1791989 else w=g b=V b=g and-297612+4000891 or 12627467-744120 end end end else if b<-74018+12782796 then if b<11430396-(-910586)then if b<13052172-733870 then if b<112552+12102399 then j=E(-354622+368293)b=I[j]j=E(1055971-1042308)I[j]=b b=10750698-(-693429)else b=15769741-(-162737)end else W=E(-951113+964753)b=I[E(-530608+544295)]T=I[W]W=E(617380-603692)f=T[W]W=k[O[-464041+464042]]T={f(W)}w={u(T)}end else if b<-299462+12874632 then W=130739+-130518 T=k[O[-945905-(-945907)]]f=T*W T=34636536586296-(-417479)w=f+T f=-635278+35184372724110 b=w%f k[O[844474+-844472]]=b f=k[O[298690+-298687]]T=23597+-23596 b=-867087+13523515 w=f~=T else W=-45160+45305 T=k[O[198997-198994]]f=T*W T=-755342-(-755599)w=f%T b=-8062+10541636 k[O[436856+-436853]]=w end end else if b<866668+12206518 then if b<13084541-92399 then b=true w={}k[O[820296+-820295]]=b b=I[E(312597+-298911)]else w=810976+8571933 W=9873895-(-489695)T=E(528263+-514582)f=T^W b=w-f f=b w=E(455925-442270)b=w/f w={b}b=I[E(598347-584669)]end else if b<13790132-582030 then U=not j t=t+J w=t<=F w=U and w U=t>=F U=j and U w=U or w U=9488248-759482 b=w and U w=365338+5423868 b=b or w else W=k[O[-681576-(-681582)]]T=W==f b=644656+613566 w=T end end end end else if b<14417025-(-207692)then if b<992053+12885097 then if b<13078614-(-575936)then if b<12605561-(-882162)then if b<12754107-(-674002)then w=10540189-(-199571)W=6244959-649525 T=E(-391890-(-405538))f=T^W b=w-f f=b w=E(-615451-(-629140))b=w/f w={b}b=I[E(268702+-255032)]else Q=V J=E(-386357+400048)F=I[J]J=E(135923-122239)t=F[J]F=t(f,Q)t=k[O[-971765+971771]]J=t()P=F+J J=922053-922052 m=P+A P=234491+-234235 q=m%P A=q P=W[T]F=A+J b=1359443-(-644313)t=y[F]m=P..t Q=nil W[T]=m end else b=9908445-(-954721)k[T]=w end else if b<123236+13709774 then W=k[O[-335812-(-335821)]]y=W b={}f=b T=578663-578662 W=889358+-889357 e=W W=891139+-891139 A=e<W W=T-e b=-540798+10327911 else F=s==r b=-589998+7407272 t=F end end else if b<14602987-316728 then if b<15238235-1044109 then V=-222542-(-222543)b={}v=-100654-(-100909)s=V k[O[-511058+511060]]=b Q=E(-159764-(-173455))w=k[O[-495486-(-495489)]]y=w b=1898792-(-104964)e=35184372141495-52663 w=T%e k[O[-841280+841284]]=w A=T%v v=-789871-(-789873)e=A+v k[O[-684146+684151]]=e v=I[Q]Q=E(807580-793904)A=v[Q]v=A(f)A=E(-458912-(-472558))W[T]=A g=v A=604973-604838 Q=-424195+424196 V=603490-603490 r=s<V V=Q-s else b=k[O[796827+-796817]]T=k[O[124300-124289]]f[b]=T b=k[O[-1023568+1023580]]T={b(f)}w={u(T)}b=I[E(-79307+92965)]end else if b<13604492-(-692117)then f=k[O[295640-295639]]w=#f f=235670-235670 b=w==f b=b and 12597664-76413 or 12903171-573434 else b=I[E(121565+-107888)]w={}end end end else if b<-79302+16334592 then if b<-4361+15686570 then if b<15238625-186206 then if b<-449852+15181280 then q=E(-1033564+1047204)r=I[q]b=11842491-(-359732)q=E(749664+-735989)s=r[q]g=s else j=-841505+841511 b=k[v]J=-837680-(-837681)F=b(J,j)b=E(684180+-670509)j=E(1024676+-1011005)I[b]=F J=I[j]j=723842+-723840 b=J>j b=b and 1109978-(-677422)or-963199+13176865 end else b=514755+15941448 end else if b<16537409-604821 then b=true b=b and 733073+-58051 or-656147+8575830 else b=true b=b and 14081034-(-708506)or 14637863-336370 end end else if b<-307255+16655307 then if b<521108+15754458 then k[T]=S Z=-884703-(-884704)o=k[c]G=o+Z x=M[G]z=s+x x=-523120-(-523376)b=z%x s=b b=11249504-386338 G=k[l]x=r+G G=-904631+904887 z=x%G r=z else m=P l=m b=3175696-850927 q[m]=l m=nil end else if b<16137277-(-365253)then w={T}b=I[E(-375316-(-388968))]else s=355242-355229 T=k[O[-607910+607913]]W=712389-712357 f=T%W y=k[O[818676+-818672]]g=858899+-858897 v=k[O[-217355+217357]]m=k[O[875364-875361]]q=m-f m=-916825+916857 r=q/m V=s-r Q=g^V A=v/Q e=y(A)y=4293964555-(-1002741)Q=-188813-(-188814)W=e%y e=819033+-819031 y=e^f T=W/y f=nil y=k[O[899981-899977]]v=T%Q Q=4295007082-39786 A=v*Q b=11416251-(-913486)e=y(A)y=k[O[511238+-511234]]A=y(T)W=e+A v=-831642-(-897178)e=-270478+336014 y=W%e T=nil A=W-y g=-776144-(-776400)e=A/v v=-301191-(-301447)A=y%v Q=y-A v=Q/g g=610034+-609778 Q=e%g y=nil V=e-Q s=-627219+627475 g=V/s W=nil e=nil V={A;v,Q,g}k[O[-109022-(-109023)]]=V Q=nil A=nil g=nil v=nil end end end end end end end b=#N return u(w)end,function(I,E)local u=W(E)local R=function(R,O,N)return b(I,{R;O;N},E,u)end return R end,function(I,E)local u=W(E)local R=function(R,O,N,i)return b(I,{R;O,N,i},E,u)end return R end,function()T=T+(866324-866323)f[T]=551742-551741 return T end,-991957+991957,function(I)for E=-194392-(-194393),#I,106296+-106295 do f[I[E]]=f[I[E]]+(564044-564043)end if R then local b=R(true)local u=N(b)u[E(388252-374585)],u[E(989271+-975620)],u[E(-410243-(-423885))]=I,y,function()return-91091-932707 end return b else return O({},{[E(-466026-(-479677))]=y;[E(-660194-(-673861))]=I;[E(702816-689174)]=function()return-832783-191015 end})end end,{},function(I)f[I]=f[I]-(594683-594682)if 502530+-502530==f[I]then f[I],k[I]=nil,nil end end,function(I,E)local u=W(E)local R=function()return b(I,{},E,u)end return R end,function(I,E)local u=W(E)local R=function(...)return b(I,{...},E,u)end return R end,function(I,E)local u=W(E)local R=function(R,O,N,i,w)return b(I,{R;O;N;i;w},E,u)end return R end,{},function(I,E)local u=W(E)local R=function(R)return b(I,{R},E,u)end return R end,function(I)local E,b=-671473-(-671474),I[-455925+455926]while b do f[b],E=f[b]-(-313030+313031),(-300244-(-300245))+E if f[b]==-600908-(-600908)then f[b],k[b]=nil,nil end b=I[E]end end return(e(-377753-(-389023),{}))(u(w))end)(getfenv and getfenv()or _ENV,unpack or table[E(-916821+930496)],newproxy,setmetatable,getmetatable,select,{...})end)(...)
+--!strict
+-- =========================================================================
+-- NIGHT HUB - DUNGEON QUEST SPAMMER & VOID-STALKER FARM
+-- COM FLY MANUAL, FARM INTELIGENTE, PROFILE, CONFIGS E AUTO SELL
+-- =========================================================================
+
+-- Serviços
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+local CoreGui = game:GetService("CoreGui")
+local ReplicatedStorage = game:GetService("ReplicatedStorage")
+
+-- =========================================================================
+-- DETECÇÃO DE SCRIPT DUPLICADO
+-- =========================================================================
+local NIGHTHUB_ID = "NightHub_v2_" .. game.PlaceId
+
+if _G[NIGHTHUB_ID] and _G[NIGHTHUB_ID].Active then
+    pcall(function()
+        if _G[NIGHTHUB_ID].Cleanup then
+            _G[NIGHTHUB_ID].Cleanup()
+        end
+    end)
+    task.wait(0.3)
+end
+
+_G[NIGHTHUB_ID] = { Active = true, Cleanup = nil }
+
+-- Cores (Premium Dark Theme)
+local Cores = {
+    Fundo = Color3.fromRGB(18, 18, 24),
+    Header = Color3.fromRGB(30, 30, 40),
+    TabsBg = Color3.fromRGB(22, 22, 30),
+    TabAtiva = Color3.fromRGB(99, 102, 241),
+    TabInativa = Color3.fromRGB(38, 38, 50),
+    Card = Color3.fromRGB(28, 28, 38),
+    TextoPrimario = Color3.fromRGB(240, 240, 245),
+    TextoSecundario = Color3.fromRGB(140, 145, 160),
+    Destaque = Color3.fromRGB(99, 102, 241),
+    SwitchOn = Color3.fromRGB(99, 102, 241),
+    SwitchOff = Color3.fromRGB(55, 55, 65),
+    StartGreen = Color3.fromRGB(34, 197, 94),
+    BindAzul = Color3.fromRGB(99, 102, 241),
+    -- Cores de raridade para a aba Sell
+    Legendary = Color3.fromRGB(251, 191, 36),
+    Epic = Color3.fromRGB(168, 85, 247),
+    Rare = Color3.fromRGB(59, 130, 246),
+    Uncommon = Color3.fromRGB(34, 197, 94),
+    Ultimate = Color3.fromRGB(236, 72, 153),
+    Common = Color3.fromRGB(107, 114, 128),
+    SellRed = Color3.fromRGB(239, 68, 68),
+    -- Extras premium
+    Glow = Color3.fromRGB(99, 102, 241),
+    Border = Color3.fromRGB(45, 45, 60),
+    Hover = Color3.fromRGB(35, 35, 48),
+}
+
+local NightHub = {
+    SpammerAtivo = false,
+    FarmAtivo = false,
+    FlyAtivo = false,
+    OrbitMode = false,
+    NoVFXAtivo = false,
+    VelocidadeExtra = true,
+    SpeedMultiplier = 2.0,
+    OriginalWalkSpeed = 16,
+    DungeonStartCount = 0,
+    OcultarNome = false,
+    NomePersonalizado = "",
+    -- Configs do Void-Stalker Farm
+    FlightSpeed = 30,
+    FlySpeed = 35,
+    FixedDepth = -15,
+    MaxDetectionRange = 500,
+    HitboxSize = 115,
+    -- AutoSell
+    AutoSellAtivo = false,
+    AutoRetryAtivo = false,
+    AutoStartAtivo = false,
+}
+
+-- =========================================================================
+-- CONFIGURAÇÕES DO AUTO SELL
+-- =========================================================================
+local AutoSellSettings = {
+    ["weapon"]  = {["ultimate"] = false, ["legendary"] = false, ["epic"] = true,  ["rare"] = true,  ["uncommon"] = true,  ["common"] = true},
+    ["chest"]   = {["epic"] = false,      ["rare"] = true,  ["uncommon"] = true,  ["common"] = true},
+    ["helmet"]  = {["epic"] = false,      ["rare"] = true,  ["uncommon"] = true,  ["common"] = true},
+    ["ability"] = {["legendary"] = false, ["epic"] = false,      ["rare"] = true,  ["uncommon"] = true,  ["common"] = true},
+    ["ring"]    = {["epic"] = false,      ["rare"] = false, ["uncommon"] = false, ["common"] = false},
+}
+
+local Binds = {
+    Spammer = "R",
+    Farm = "G",
+    Fly = "F",
+    NoVFX = "H",
+    Speed = "J",
+    ToggleUI = "K",
+    StartDungeon = "L",
+}
+
+local HttpService = game:GetService("HttpService")
+local configsFileName = "NightHub_Configs_" .. LocalPlayer.Name .. ".json"
+
+-- Config system moved to end
+local Connections = {}
+local UIToggles = {}
+local UIHovered = false
+local ContentPages = {}
+
+-- =========================================================================
+
+-- Forward Declarations
+local UpdateUIToggle, CreateTab, CreateSection, CreateToggleWithBind, CreateSlider, CreateTextBox, CreateDungeonButton, CreateAutoRetryToggle
+local iniciarSpammer, pararSpammer, iniciarFly, pararFly, iniciarFarm, pararFarm, ativarNoVFX, desativarNoVFX, ativarVelocidadeExtra, desativarVelocidadeExtra, iniciarAutoStart, pararAutoStart
+local applyToTextLabel, refreshAllTextLabels, iniciarNameChanger, atualizarBotaoRaridade, showFeedback, rebuildConfigList
+local getAllConfigs, writeAllConfigs, getCurrentSnapshot, applySnapshot
+
+function getAllConfigs()
+    local ok, exists = pcall(isfile, configsFileName)
+    if not ok or not exists then return {} end
+    local ok2, content = pcall(readfile, configsFileName)
+    if not ok2 or not content then return {} end
+    local ok3, data = pcall(function() return HttpService:JSONDecode(content) end)
+    if not ok3 or type(data) ~= "table" then return {} end
+    return data
+end
+
+function writeAllConfigs(tbl)
+    local ok, str = pcall(function() return HttpService:JSONEncode(tbl) end)
+    if ok then pcall(writefile, configsFileName, str) end
+end
+
+function getCurrentSnapshot()
+    return {
+        OcultarNome = NightHub.OcultarNome,
+        NomePersonalizado = NightHub.NomePersonalizado,
+        VelocidadeExtra = NightHub.VelocidadeExtra,
+        NoVFXAtivo = NightHub.NoVFXAtivo,
+        FlightSpeed = NightHub.FlightSpeed,
+        FlySpeed = NightHub.FlySpeed,
+        OrbitMode = NightHub.OrbitMode,
+        FixedDepth = NightHub.FixedDepth,
+        MaxDetectionRange = NightHub.MaxDetectionRange,
+        HitboxSize = NightHub.HitboxSize,
+        AutoSellSettings = AutoSellSettings,
+        AutoSellAtivo = NightHub.AutoSellAtivo,
+        AutoRetryAtivo = NightHub.AutoRetryAtivo,
+        AutoStartAtivo = NightHub.AutoStartAtivo,
+        SpammerAtivo = NightHub.SpammerAtivo,
+        FarmAtivo = NightHub.FarmAtivo,
+        FlyAtivo = NightHub.FlyAtivo,
+        Binds = {
+            Spammer = Binds.Spammer,
+            Farm = Binds.Farm,
+            Fly = Binds.Fly,
+            NoVFX = Binds.NoVFX,
+            Speed = Binds.Speed,
+            ToggleUI = Binds.ToggleUI,
+            StartDungeon = Binds.StartDungeon,
+        },
+    }
+end
+
+function applySnapshot(data)
+    if type(data) ~= "table" then return end
+    
+    -- Primeiro as variáveis de dados
+    if data.OcultarNome ~= nil then NightHub.OcultarNome = data.OcultarNome end
+    if data.NomePersonalizado ~= nil then NightHub.NomePersonalizado = data.NomePersonalizado end
+    if data.VelocidadeExtra ~= nil then NightHub.VelocidadeExtra = data.VelocidadeExtra end
+    if data.NoVFXAtivo ~= nil then NightHub.NoVFXAtivo = data.NoVFXAtivo end
+    if data.FlightSpeed ~= nil then NightHub.FlightSpeed = data.FlightSpeed end
+    if data.FlySpeed ~= nil then NightHub.FlySpeed = data.FlySpeed end
+    if data.OrbitMode ~= nil then NightHub.OrbitMode = data.OrbitMode end
+    if data.FixedDepth ~= nil then NightHub.FixedDepth = data.FixedDepth end
+    if data.MaxDetectionRange ~= nil then NightHub.MaxDetectionRange = data.MaxDetectionRange end
+    if data.HitboxSize ~= nil then NightHub.HitboxSize = data.HitboxSize end
+    
+    if type(data.AutoSellSettings) == "table" then
+        for cat, rarities in pairs(data.AutoSellSettings) do
+            if AutoSellSettings[cat] then
+                for rar, val in pairs(rarities) do
+                    if AutoSellSettings[cat][rar] ~= nil then
+                        AutoSellSettings[cat][rar] = val
+                    end
+                end
+            end
+        end
+    end
+
+    if type(data.Binds) == "table" then
+        for k, v in pairs(data.Binds) do
+            if Binds[k] ~= nil then Binds[k] = v end
+        end
+    end
+
+    -- Aplicar estados de toggle
+    if data.SpammerAtivo ~= nil then
+        NightHub.SpammerAtivo = data.SpammerAtivo
+        UpdateUIToggle("Spammer", NightHub.SpammerAtivo)
+        if NightHub.SpammerAtivo then pcall(iniciarSpammer) else pcall(pararSpammer) end
+    end
+    if data.FarmAtivo ~= nil then
+        NightHub.FarmAtivo = data.FarmAtivo
+        UpdateUIToggle("Farm", NightHub.FarmAtivo)
+        if NightHub.FarmAtivo then pcall(iniciarFarm) else pcall(pararFarm) end
+    end
+    if data.FlyAtivo ~= nil then
+        NightHub.FlyAtivo = data.FlyAtivo
+        UpdateUIToggle("Fly", NightHub.FlyAtivo)
+        if NightHub.FlyAtivo then pcall(iniciarFly) else pcall(pararFly) end
+    end
+    if data.AutoSellAtivo ~= nil then
+        NightHub.AutoSellAtivo = data.AutoSellAtivo
+        UpdateUIToggle("AutoSell", NightHub.AutoSellAtivo)
+        if NightHub.AutoSellAtivo then
+            pcall(function()
+                local autoSell = loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQautoSell.lua'))()
+                autoSell(AutoSellSettings)
+            end)
+        end
+    end
+    if data.AutoRetryAtivo ~= nil then
+        NightHub.AutoRetryAtivo = data.AutoRetryAtivo
+        UpdateUIToggle("AutoRetry", NightHub.AutoRetryAtivo)
+        if NightHub.AutoRetryAtivo then
+            pcall(function()
+                loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQAutoRetry'))()
+            end)
+        end
+    end
+    if data.AutoStartAtivo ~= nil then
+        NightHub.AutoStartAtivo = data.AutoStartAtivo
+        UpdateUIToggle("AutoStart", NightHub.AutoStartAtivo)
+        if NightHub.AutoStartAtivo then pcall(iniciarAutoStart) else pcall(pararAutoStart) end
+    end
+    if data.NoVFXAtivo ~= nil then
+        UpdateUIToggle("NoVFX", data.NoVFXAtivo)
+        if data.NoVFXAtivo then pcall(ativarNoVFX) else pcall(desativarNoVFX) end
+    end
+    if data.VelocidadeExtra ~= nil then
+        UpdateUIToggle("Speed", data.VelocidadeExtra)
+        if data.VelocidadeExtra then pcall(ativarVelocidadeExtra) else pcall(desativarVelocidadeExtra) end
+    end
+    
+    -- Atualiza visual dos botões de raridade na aba Sell
+    for catKey, _ in pairs(AutoSellSettings) do
+        for rarKey, _ in pairs(AutoSellSettings[catKey]) do
+            atualizarBotaoRaridade(catKey, rarKey)
+        end
+    end
+    
+    refreshAllTextLabels()
+end
+
+local SavedConfigs = getAllConfigs()
+
+-- Configuração dos botões de Save/Load na aba Config
+-- INTERFACE
+-- =========================================================================
+
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "NightHub"
+ScreenGui.Parent = CoreGui
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+ScreenGui.ResetOnSpawn = false
+ScreenGui.IgnoreGuiInset = true
+
+local MainFrame = Instance.new("Frame")
+MainFrame.Size = UDim2.new(0, 540, 0, 470)
+MainFrame.Position = UDim2.new(0.5, -270, 0.5, -235)
+MainFrame.BackgroundColor3 = Cores.Fundo
+MainFrame.BorderSizePixel = 0
+MainFrame.Parent = ScreenGui
+MainFrame.Active = true
+MainFrame.Draggable = true
+
+local MainCorner = Instance.new("UICorner")
+MainCorner.CornerRadius = UDim.new(0, 12)
+MainCorner.Parent = MainFrame
+
+local MainStroke = Instance.new("UIStroke")
+MainStroke.Color = Cores.Border
+MainStroke.Thickness = 1
+MainStroke.Transparency = 0.5
+MainStroke.Parent = MainFrame
+
+-- Glow externo sutil
+local GlowFrame = Instance.new("Frame")
+GlowFrame.Size = UDim2.new(1, 8, 1, 8)
+GlowFrame.Position = UDim2.new(0, -4, 0, -4)
+GlowFrame.BackgroundTransparency = 0.85
+GlowFrame.BackgroundColor3 = Cores.Glow
+GlowFrame.BorderSizePixel = 0
+GlowFrame.ZIndex = -1
+GlowFrame.Parent = MainFrame
+local GlowCorner = Instance.new("UICorner")
+GlowCorner.CornerRadius = UDim.new(0, 14)
+GlowCorner.Parent = GlowFrame
+
+MainFrame.MouseEnter:Connect(function() UIHovered = true end)
+MainFrame.MouseLeave:Connect(function() UIHovered = false end)
+
+-- Header
+local Header = Instance.new("Frame")
+Header.Size = UDim2.new(1, 0, 0, 32)
+Header.BackgroundColor3 = Cores.Header
+Header.BorderSizePixel = 0
+Header.Parent = MainFrame
+
+local HeaderCorner = Instance.new("UICorner")
+HeaderCorner.CornerRadius = UDim.new(0, 12)
+HeaderCorner.Parent = Header
+
+local HeaderCover = Instance.new("Frame")
+HeaderCover.Size = UDim2.new(1, 0, 0, 12)
+HeaderCover.Position = UDim2.new(0, 0, 1, -12)
+HeaderCover.BackgroundColor3 = Cores.Header
+HeaderCover.BorderSizePixel = 0
+HeaderCover.Parent = Header
+
+-- Linha de destaque no header
+local HeaderAccent = Instance.new("Frame")
+HeaderAccent.Size = UDim2.new(1, 0, 0, 2)
+HeaderAccent.Position = UDim2.new(0, 0, 1, -2)
+HeaderAccent.BackgroundColor3 = Cores.Destaque
+HeaderAccent.BorderSizePixel = 0
+HeaderAccent.Parent = Header
+
+local Logo = Instance.new("TextLabel")
+Logo.Size = UDim2.new(0, 280, 1, 0)
+Logo.Position = UDim2.new(0, 12, 0, 0)
+Logo.BackgroundTransparency = 1
+Logo.RichText = true
+Logo.Text = "Dungeon Quest  <font color='#6366F1'>Night Hub</font>"
+Logo.TextColor3 = Color3.fromRGB(240, 240, 245)
+Logo.TextSize = 13
+Logo.Font = Enum.Font.GothamBold
+Logo.TextXAlignment = Enum.TextXAlignment.Left
+Logo.Parent = Header
+
+local CloseButton = Instance.new("TextButton")
+CloseButton.Size = UDim2.new(0, 26, 0, 26)
+CloseButton.Position = UDim2.new(1, -32, 0, 3)
+CloseButton.BackgroundColor3 = Color3.fromRGB(239, 68, 68)
+CloseButton.Text = ""
+CloseButton.Parent = Header
+local CloseBtnCorner = Instance.new("UICorner")
+CloseBtnCorner.CornerRadius = UDim.new(0, 6)
+CloseBtnCorner.Parent = CloseButton
+
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+-- Tabs
+local TabContainer = Instance.new("Frame")
+TabContainer.Size = UDim2.new(0, 130, 1, -34)
+TabContainer.Position = UDim2.new(0, 0, 0, 34)
+TabContainer.BackgroundColor3 = Cores.TabsBg
+TabContainer.BorderSizePixel = 0
+TabContainer.Parent = MainFrame
+
+local TabCorner = Instance.new("UICorner")
+TabCorner.CornerRadius = UDim.new(0, 0)
+TabCorner.Parent = TabContainer
+
+local TabPadding = Instance.new("UIPadding")
+TabPadding.PaddingTop = UDim.new(0, 10)
+TabPadding.PaddingLeft = UDim.new(0, 8)
+TabPadding.PaddingRight = UDim.new(0, 8)
+TabPadding.Parent = TabContainer
+
+local UIListLayout_Tabs = Instance.new("UIListLayout")
+UIListLayout_Tabs.Padding = UDim.new(0, 4)
+UIListLayout_Tabs.FillDirection = Enum.FillDirection.Vertical
+UIListLayout_Tabs.HorizontalAlignment = Enum.HorizontalAlignment.Center
+UIListLayout_Tabs.VerticalAlignment = Enum.VerticalAlignment.Top
+UIListLayout_Tabs.Parent = TabContainer
+
+local ContentContainer = Instance.new("Frame")
+ContentContainer.Size = UDim2.new(1, -140, 1, -34)
+ContentContainer.Position = UDim2.new(0, 134, 0, 34)
+ContentContainer.BackgroundColor3 = Cores.Fundo
+ContentContainer.BorderSizePixel = 0
+ContentContainer.Parent = MainFrame
+
+-- =========================================================================
+-- FUNCOES DA UI
+-- =========================================================================
+
+function UpdateUIToggle(toggleKey, state)
+    local toggleData = UIToggles[toggleKey]
+    if not toggleData then return end
+    
+    local targetColor = state and Cores.SwitchOn or Cores.SwitchOff
+    local targetPos = state and UDim2.new(1, -18, 0.5, -8) or UDim2.new(0, 2, 0.5, -8)
+    
+    pcall(function()
+        TweenService:Create(toggleData.SwitchBg, TweenInfo.new(0.2), {
+            BackgroundColor3 = targetColor
+        }):Play()
+        
+        TweenService:Create(toggleData.SwitchKnob, TweenInfo.new(0.2), {
+            Position = targetPos
+        }):Play()
+    end)
+end
+
+function CreateTab(name)
+    local tabButton = Instance.new("TextButton")
+    tabButton.Size = UDim2.new(1, -16, 0, 30)
+    tabButton.BackgroundColor3 = Cores.TabInativa
+    tabButton.Text = name
+    tabButton.TextColor3 = Cores.TextoSecundario
+    tabButton.TextSize = 12
+    tabButton.Font = Enum.Font.GothamBold
+    tabButton.Parent = TabContainer
+    
+    local tabCorner = Instance.new("UICorner")
+    tabCorner.CornerRadius = UDim.new(0, 8)
+    tabCorner.Parent = tabButton
+    
+    local contentPage = Instance.new("ScrollingFrame")
+    contentPage.Size = UDim2.new(1, 0, 1, 0)
+    contentPage.Position = UDim2.new(0, 0, 0, 0)
+    contentPage.BackgroundTransparency = 1
+    contentPage.ScrollBarThickness = 3
+    contentPage.ScrollBarImageColor3 = Cores.Destaque
+    contentPage.Visible = false
+    contentPage.CanvasSize = UDim2.new(0, 0, 0, 0)
+    contentPage.ScrollingDirection = Enum.ScrollingDirection.Y
+    contentPage.AutomaticCanvasSize = Enum.AutomaticSize.Y
+    contentPage.Parent = ContentContainer
+    
+    local pageLayout = Instance.new("UIListLayout")
+    pageLayout.Padding = UDim.new(0, 8)
+    pageLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    pageLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    pageLayout.Parent = contentPage
+    
+    local pagePadding = Instance.new("UIPadding")
+    pagePadding.PaddingTop = UDim.new(0, 10)
+    pagePadding.PaddingBottom = UDim.new(0, 10)
+    pagePadding.PaddingLeft = UDim.new(0, 4)
+    pagePadding.PaddingRight = UDim.new(0, 4)
+    pagePadding.Parent = contentPage
+    
+    ContentPages[name] = { Button = tabButton, Page = contentPage }
+    
+    tabButton.MouseButton1Click:Connect(function()
+        for _, tab in pairs(ContentPages) do
+            tab.Page.Visible = false
+            tab.Button.BackgroundColor3 = Cores.TabInativa
+            tab.Button.TextColor3 = Cores.TextoSecundario
+        end
+        contentPage.Visible = true
+        tabButton.BackgroundColor3 = Cores.TabAtiva
+        tabButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    end)
+    
+    return contentPage
+end
+
+function CreateSection(parent, title)
+    local sectionFrame = Instance.new("Frame")
+    sectionFrame.Size = UDim2.new(0.96, 0, 0, 28)
+    sectionFrame.BackgroundTransparency = 1
+    sectionFrame.LayoutOrder = #parent:GetChildren()
+    sectionFrame.Parent = parent
+    
+    local bar = Instance.new("Frame")
+    bar.Size = UDim2.new(0, 3, 0, 14)
+    bar.Position = UDim2.new(0, 0, 0, 7)
+    bar.BackgroundColor3 = Cores.Destaque
+    bar.BorderSizePixel = 0
+    bar.Parent = sectionFrame
+    local barCorner = Instance.new("UICorner")
+    barCorner.CornerRadius = UDim.new(0, 2)
+    barCorner.Parent = bar
+    
+    local sectionLabel = Instance.new("TextLabel")
+    sectionLabel.Size = UDim2.new(1, -10, 1, 0)
+    sectionLabel.Position = UDim2.new(0, 10, 0, 0)
+    sectionLabel.BackgroundTransparency = 1
+    sectionLabel.Text = string.upper(title)
+    sectionLabel.TextColor3 = Cores.Destaque
+    sectionLabel.TextSize = 11
+    sectionLabel.Font = Enum.Font.GothamBold
+    sectionLabel.TextXAlignment = Enum.TextXAlignment.Left
+    sectionLabel.Parent = sectionFrame
+    
+    return sectionFrame
+end
+
+function CreateToggleWithBind(parent, name, default, bindDefault, toggleKey, callback, bindCallback)
+    local toggleFrame = Instance.new("Frame")
+    toggleFrame.Size = UDim2.new(0.96, 0, 0, 50)
+    toggleFrame.BackgroundColor3 = Cores.Card
+    toggleFrame.BorderSizePixel = 0
+    toggleFrame.LayoutOrder = #parent:GetChildren()
+    toggleFrame.Parent = parent
+    
+    local toggleCorner = Instance.new("UICorner")
+    toggleCorner.CornerRadius = UDim.new(0, 10)
+    toggleCorner.Parent = toggleFrame
+    
+    local functionLabel = Instance.new("TextLabel")
+    functionLabel.Size = UDim2.new(0, 180, 0, 20)
+    functionLabel.Position = UDim2.new(0, 12, 0, 6)
+    functionLabel.BackgroundTransparency = 1
+    functionLabel.Text = name
+    functionLabel.TextColor3 = Cores.TextoPrimario
+    functionLabel.TextSize = 13
+    functionLabel.Font = Enum.Font.GothamBold
+    functionLabel.TextXAlignment = Enum.TextXAlignment.Left
+    functionLabel.Parent = toggleFrame
+    
+    local controlsContainer = Instance.new("Frame")
+    controlsContainer.Size = UDim2.new(1, -24, 0, 20)
+    controlsContainer.Position = UDim2.new(0, 12, 0, 26)
+    controlsContainer.BackgroundTransparency = 1
+    controlsContainer.Parent = toggleFrame
+    
+    local switchBg = Instance.new("Frame")
+    switchBg.Size = UDim2.new(0, 40, 0, 22)
+    switchBg.Position = UDim2.new(0, 0, 0.5, -11)
+    switchBg.BackgroundColor3 = default and Cores.SwitchOn or Cores.SwitchOff
+    switchBg.BorderSizePixel = 0
+    switchBg.Parent = controlsContainer
+    
+    local switchCorner = Instance.new("UICorner")
+    switchCorner.CornerRadius = UDim.new(1, 0)
+    switchCorner.Parent = switchBg
+    
+    local switchKnob = Instance.new("Frame")
+    switchKnob.Size = UDim2.new(0, 18, 0, 18)
+    switchKnob.Position = default and UDim2.new(1, -20, 0.5, -9) or UDim2.new(0, 2, 0.5, -9)
+    switchKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    switchKnob.BorderSizePixel = 0
+    switchKnob.Parent = switchBg
+    
+    local knobCorner = Instance.new("UICorner")
+    knobCorner.CornerRadius = UDim.new(1, 0)
+    knobCorner.Parent = switchKnob
+    
+    UIToggles[toggleKey] = { SwitchBg = switchBg, SwitchKnob = switchKnob }
+    
+    local state = default
+    
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Size = UDim2.new(0, 38, 0, 20)
+    toggleButton.Position = UDim2.new(0, 0, 0.5, -10)
+    toggleButton.BackgroundTransparency = 1
+    toggleButton.Text = ""
+    toggleButton.Parent = controlsContainer
+    
+    toggleButton.MouseButton1Click:Connect(function()
+        state = not state
+        UpdateUIToggle(toggleKey, state)
+        callback(state)
+    end)
+    
+    local bindBtn = Instance.new("TextButton")
+    bindBtn.Size = UDim2.new(0, 45, 0, 20)
+    bindBtn.Position = UDim2.new(1, -45, 0.5, -10)
+    bindBtn.BackgroundColor3 = Cores.Fundo
+    bindBtn.Text = bindDefault
+    bindBtn.TextColor3 = Cores.BindAzul
+    bindBtn.TextSize = 11
+    bindBtn.Font = Enum.Font.GothamBold
+    bindBtn.Parent = controlsContainer
+    
+    local bc = Instance.new("UICorner"); bc.CornerRadius = UDim.new(0,5); bc.Parent = bindBtn
+    
+    local waiting = false
+    bindBtn.MouseButton1Click:Connect(function()
+        waiting = true
+        bindBtn.Text = "..."
+        local conn
+        conn = UserInputService.InputBegan:Connect(function(inp)
+            if inp.UserInputType == Enum.UserInputType.Keyboard then
+                local key = inp.KeyCode.Name
+                bindBtn.Text = key
+                bindCallback(key)
+                waiting = false
+                conn:Disconnect()
+            end
+        end)
+    end)
+    
+    return toggleFrame
+end
+
+function CreateSlider(parent, name, min, max, default, callback)
+    local sliderFrame = Instance.new("Frame")
+    sliderFrame.Size = UDim2.new(0.96, 0, 0, 50)
+    sliderFrame.BackgroundColor3 = Cores.Card
+    sliderFrame.BorderSizePixel = 0
+    sliderFrame.LayoutOrder = #parent:GetChildren()
+    sliderFrame.Parent = parent
+    
+    local sliderCorner = Instance.new("UICorner")
+    sliderCorner.CornerRadius = UDim.new(0, 10)
+    sliderCorner.Parent = sliderFrame
+    
+    local valueLabel = Instance.new("TextLabel")
+    valueLabel.Size = UDim2.new(1, -24, 0, 18)
+    valueLabel.Position = UDim2.new(0, 12, 0, 6)
+    valueLabel.BackgroundTransparency = 1
+    valueLabel.Text = name .. ": " .. default
+    valueLabel.TextColor3 = Cores.TextoPrimario
+    valueLabel.TextSize = 13
+    valueLabel.Font = Enum.Font.GothamBold
+    valueLabel.TextXAlignment = Enum.TextXAlignment.Left
+    valueLabel.Parent = sliderFrame
+    
+    local sliderBar = Instance.new("Frame")
+    sliderBar.Size = UDim2.new(1, -24, 0, 6)
+    sliderBar.Position = UDim2.new(0, 12, 0, 32)
+    sliderBar.BackgroundColor3 = Cores.Border
+    sliderBar.BorderSizePixel = 0
+    sliderBar.Parent = sliderFrame
+    
+    local barCorner = Instance.new("UICorner")
+    barCorner.CornerRadius = UDim.new(0, 3)
+    barCorner.Parent = sliderBar
+    
+    local sliderFill = Instance.new("Frame")
+    sliderFill.Size = UDim2.new((default - min) / (max - min), 0, 1, 0)
+    sliderFill.BackgroundColor3 = Cores.Destaque
+    sliderFill.BorderSizePixel = 0
+    sliderFill.Parent = sliderBar
+    
+    local fillCorner = Instance.new("UICorner")
+    fillCorner.CornerRadius = UDim.new(0, 3)
+    fillCorner.Parent = sliderFill
+    
+    local sliderKnob = Instance.new("Frame")
+    sliderKnob.Size = UDim2.new(0, 16, 0, 16)
+    sliderKnob.Position = UDim2.new((default - min) / (max - min), -8, 0.5, -8)
+    sliderKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    sliderKnob.BorderSizePixel = 0
+    sliderKnob.Parent = sliderBar
+    
+    local knobCorner = Instance.new("UICorner")
+    knobCorner.CornerRadius = UDim.new(1, 0)
+    knobCorner.Parent = sliderKnob
+    
+    local dragButton = Instance.new("TextButton")
+    dragButton.Size = UDim2.new(2, 0, 2, 0)
+    dragButton.Position = UDim2.new(-0.5, 0, -0.5, 0)
+    dragButton.BackgroundTransparency = 1
+    dragButton.Text = ""
+    dragButton.Parent = sliderKnob
+    
+    local dragging = false
+    
+    dragButton.MouseButton1Down:Connect(function() dragging = true end)
+    
+    UserInputService.InputEnded:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseButton1 then dragging = false end
+    end)
+    
+    UserInputService.InputChanged:Connect(function(input)
+        if dragging and input.UserInputType == Enum.UserInputType.MouseMovement then
+            local mousePos = UserInputService:GetMouseLocation()
+            local barPos = sliderBar.AbsolutePosition
+            local barSize = sliderBar.AbsoluteSize
+            local percent = math.clamp((mousePos.X - barPos.X) / barSize.X, 0, 1)
+            local value = math.floor((min + (max - min) * percent) + 0.5)
+            sliderFill.Size = UDim2.new(percent, 0, 1, 0)
+            sliderKnob.Position = UDim2.new(percent, -7, 0, -4)
+            valueLabel.Text = name .. ": " .. value
+            callback(value)
+        end
+    end)
+
+    return sliderBar
+end
+
+local function CreateToggle(parent, name, default, toggleKey, callback)
+    local toggleFrame = Instance.new("Frame")
+    toggleFrame.Size = UDim2.new(0.96, 0, 0, 40)
+    toggleFrame.BackgroundColor3 = Cores.Card
+    toggleFrame.BorderSizePixel = 0
+    toggleFrame.LayoutOrder = #parent:GetChildren()
+    toggleFrame.Parent = parent
+    
+    local toggleCorner = Instance.new("UICorner")
+    toggleCorner.CornerRadius = UDim.new(0, 10)
+    toggleCorner.Parent = toggleFrame
+    
+    local functionLabel = Instance.new("TextLabel")
+    functionLabel.Size = UDim2.new(0.6, 0, 1, 0)
+    functionLabel.Position = UDim2.new(0, 12, 0, 0)
+    functionLabel.BackgroundTransparency = 1
+    functionLabel.Text = name
+    functionLabel.TextColor3 = Cores.TextoPrimario
+    functionLabel.TextSize = 13
+    functionLabel.Font = Enum.Font.GothamBold
+    functionLabel.TextXAlignment = Enum.TextXAlignment.Left
+    functionLabel.Parent = toggleFrame
+    
+    local switchBg = Instance.new("Frame")
+    switchBg.Size = UDim2.new(0, 40, 0, 22)
+    switchBg.Position = UDim2.new(1, -52, 0.5, -11)
+    switchBg.BackgroundColor3 = default and Cores.SwitchOn or Cores.SwitchOff
+    switchBg.BorderSizePixel = 0
+    switchBg.Parent = toggleFrame
+    
+    local switchCorner = Instance.new("UICorner")
+    switchCorner.CornerRadius = UDim.new(1, 0)
+    switchCorner.Parent = switchBg
+    
+    local switchKnob = Instance.new("Frame")
+    switchKnob.Size = UDim2.new(0, 18, 0, 18)
+    switchKnob.Position = default and UDim2.new(1, -20, 0.5, -9) or UDim2.new(0, 2, 0.5, -9)
+    switchKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    switchKnob.BorderSizePixel = 0
+    switchKnob.Parent = switchBg
+    
+    local knobCorner = Instance.new("UICorner")
+    knobCorner.CornerRadius = UDim.new(1, 0)
+    knobCorner.Parent = switchKnob
+    
+    UIToggles[toggleKey] = { SwitchBg = switchBg, SwitchKnob = switchKnob }
+    
+    local state = default
+    
+    local toggleButton = Instance.new("TextButton")
+    toggleButton.Size = UDim2.new(0, 38, 0, 20)
+    toggleButton.Position = UDim2.new(1, -50, 0.5, -10)
+    toggleButton.BackgroundTransparency = 1
+    toggleButton.Text = ""
+    toggleButton.Parent = toggleFrame
+    
+    toggleButton.MouseButton1Click:Connect(function()
+        state = not state
+        UpdateUIToggle(toggleKey, state)
+        callback(state)
+    end)
+    
+    return toggleFrame
+end
+
+function CreateTextBox(parent, name, placeholder, default, callback)
+    local inputFrame = Instance.new("Frame")
+    inputFrame.Size = UDim2.new(0.96, 0, 0, 58)
+    inputFrame.BackgroundColor3 = Cores.Card
+    inputFrame.BorderSizePixel = 0
+    inputFrame.LayoutOrder = #parent:GetChildren()
+    inputFrame.Parent = parent
+    
+    local inputCorner = Instance.new("UICorner")
+    inputCorner.CornerRadius = UDim.new(0, 10)
+    inputCorner.Parent = inputFrame
+    
+    local titleLabel = Instance.new("TextLabel")
+    titleLabel.Size = UDim2.new(1, -24, 0, 20)
+    titleLabel.Position = UDim2.new(0, 12, 0, 6)
+    titleLabel.BackgroundTransparency = 1
+    titleLabel.Text = name
+    titleLabel.TextColor3 = Cores.TextoPrimario
+    titleLabel.TextSize = 13
+    titleLabel.Font = Enum.Font.GothamBold
+    titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+    titleLabel.Parent = inputFrame
+    
+    local textBox = Instance.new("TextBox")
+    textBox.Size = UDim2.new(1, -24, 0, 24)
+    textBox.Position = UDim2.new(0, 12, 0, 28)
+    textBox.BackgroundColor3 = Cores.Border
+    textBox.BorderSizePixel = 0
+    textBox.Text = default
+    textBox.PlaceholderText = placeholder
+    textBox.TextColor3 = Cores.TextoPrimario
+    textBox.PlaceholderColor3 = Cores.TextoSecundario
+    textBox.TextSize = 12
+    textBox.Font = Enum.Font.GothamSemibold
+    textBox.TextXAlignment = Enum.TextXAlignment.Left
+    textBox.ClearTextOnFocus = false
+    textBox.Parent = inputFrame
+    
+    local boxCorner = Instance.new("UICorner")
+    boxCorner.CornerRadius = UDim.new(0, 6)
+    boxCorner.Parent = textBox
+    
+    local boxPadding = Instance.new("UIPadding")
+    boxPadding.PaddingLeft = UDim.new(0, 10)
+    boxPadding.PaddingRight = UDim.new(0, 10)
+    boxPadding.Parent = textBox
+    
+    textBox.FocusLost:Connect(function(enterPressed)
+        callback(textBox.Text)
+    end)
+    
+    return inputFrame
+end
+
+local counterLabel
+
+function CreateDungeonButton(parent)
+    local buttonFrame = Instance.new("Frame")
+    buttonFrame.Size = UDim2.new(0.96, 0, 0, 85)
+    buttonFrame.BackgroundColor3 = Cores.Card
+    buttonFrame.BorderSizePixel = 0
+    buttonFrame.LayoutOrder = #parent:GetChildren()
+    buttonFrame.Parent = parent
+
+    local buttonCorner = Instance.new("UICorner")
+    buttonCorner.CornerRadius = UDim.new(0, 10)
+    buttonCorner.Parent = buttonFrame
+
+    local titleLabel = Instance.new("TextLabel")
+    titleLabel.Size = UDim2.new(1, -24, 0, 22)
+    titleLabel.Position = UDim2.new(0, 12, 0, 8)
+    titleLabel.BackgroundTransparency = 1
+    titleLabel.Text = "Start Dungeon"
+    titleLabel.TextColor3 = Cores.TextoPrimario
+    titleLabel.TextSize = 15
+    titleLabel.Font = Enum.Font.GothamBold
+    titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+    titleLabel.Parent = buttonFrame
+
+    local startButton = Instance.new("TextButton")
+    startButton.Size = UDim2.new(1, -24, 0, 28)
+    startButton.Position = UDim2.new(0, 12, 0, 32)
+    startButton.BackgroundColor3 = Cores.StartGreen
+    startButton.Text = "START DUNGEON"
+    startButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    startButton.TextSize = 14
+    startButton.Font = Enum.Font.GothamBold
+    startButton.TextStrokeTransparency = 1
+    startButton.Parent = buttonFrame
+
+    local startCorner = Instance.new("UICorner")
+    startCorner.CornerRadius = UDim.new(0, 8)
+    startCorner.Parent = startButton
+
+    local bindLabel = Instance.new("TextLabel")
+    bindLabel.Size = UDim2.new(0, 60, 0, 18)
+    bindLabel.Position = UDim2.new(1, -70, 0, 2)
+    bindLabel.BackgroundTransparency = 1
+    bindLabel.Text = "Key: F"
+    bindLabel.TextColor3 = Cores.TextoSecundario
+    bindLabel.TextSize = 10
+    bindLabel.Font = Enum.Font.GothamSemibold
+    bindLabel.TextXAlignment = Enum.TextXAlignment.Right
+    bindLabel.Parent = buttonFrame
+
+    counterLabel = Instance.new("TextLabel")
+    counterLabel.Size = UDim2.new(0, 120, 0, 18)
+    counterLabel.Position = UDim2.new(0, 12, 0, 62)
+    counterLabel.BackgroundTransparency = 1
+    counterLabel.Text = "Runs: 0"
+    counterLabel.TextColor3 = Cores.TextoSecundario
+    counterLabel.TextSize = 11
+    counterLabel.Font = Enum.Font.GothamSemibold
+    counterLabel.TextXAlignment = Enum.TextXAlignment.Left
+    counterLabel.Parent = buttonFrame
+
+    local function StartDungeon()
+        pcall(function()
+            local remote = ReplicatedStorage:FindFirstChild("changeStartValue")
+            if not remote then
+                local remotes = ReplicatedStorage:FindFirstChild("remotes")
+                if remotes then
+                    remote = remotes:FindFirstChild("changeStartValue")
+                end
+            end
+
+            if not remote then
+                warn("Remote 'changeStartValue' not found!")
+                return
+            end
+
+            if remote:IsA("RemoteEvent") then
+                remote:FireServer()
+                NightHub.DungeonStartCount = NightHub.DungeonStartCount + 1
+                if counterLabel then
+                    counterLabel.Text = "Runs: " .. tostring(NightHub.DungeonStartCount)
+                end
+            end
+        end)
+    end
+
+    startButton.MouseButton1Click:Connect(StartDungeon)
+    
+    return buttonFrame
+end
+
+function CreateAutoRetryToggle(parent)
+    local toggleFrame = Instance.new("Frame")
+    toggleFrame.Size = UDim2.new(0.96, 0, 0, 50)
+    toggleFrame.BackgroundColor3 = Cores.Card
+    toggleFrame.BorderSizePixel = 0
+    toggleFrame.LayoutOrder = #parent:GetChildren()
+    toggleFrame.Parent = parent
+
+    local toggleCorner = Instance.new("UICorner")
+    toggleCorner.CornerRadius = UDim.new(0, 10)
+    toggleCorner.Parent = toggleFrame
+
+    local functionLabel = Instance.new("TextLabel")
+    functionLabel.Size = UDim2.new(0.65, 0, 0, 22)
+    functionLabel.Position = UDim2.new(0, 12, 0, 14)
+    functionLabel.BackgroundTransparency = 1
+    functionLabel.Text = "Auto Retry Ativo"
+    functionLabel.TextColor3 = Cores.TextoPrimario
+    functionLabel.TextSize = 13
+    functionLabel.Font = Enum.Font.GothamBold
+    functionLabel.TextXAlignment = Enum.TextXAlignment.Left
+    functionLabel.Parent = toggleFrame
+
+    local switchBg = Instance.new("Frame")
+    switchBg.Size = UDim2.new(0, 40, 0, 22)
+    switchBg.Position = UDim2.new(1, -52, 0.5, -11)
+    switchBg.BackgroundColor3 = NightHub.AutoRetryAtivo and Cores.SwitchOn or Cores.SwitchOff
+    switchBg.BorderSizePixel = 0
+    switchBg.Parent = toggleFrame
+    local sc = Instance.new("UICorner"); sc.CornerRadius = UDim.new(1, 0); sc.Parent = switchBg
+
+    local switchKnob = Instance.new("Frame")
+    switchKnob.Size = UDim2.new(0, 18, 0, 18)
+    switchKnob.Position = NightHub.AutoRetryAtivo and UDim2.new(1, -20, 0.5, -9) or UDim2.new(0, 2, 0.5, -9)
+    switchKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    switchKnob.BorderSizePixel = 0
+    switchKnob.Parent = switchBg
+    local kc = Instance.new("UICorner"); kc.CornerRadius = UDim.new(1, 0); kc.Parent = switchKnob
+
+    UIToggles["AutoRetry"] = { SwitchBg = switchBg, SwitchKnob = switchKnob }
+
+    local toggleBtn = Instance.new("TextButton")
+    toggleBtn.Size = UDim2.new(0, 40, 0, 22)
+    toggleBtn.Position = UDim2.new(1, -52, 0.5, -11)
+    toggleBtn.BackgroundTransparency = 1
+    toggleBtn.Text = ""
+    toggleBtn.Parent = toggleFrame
+
+    toggleBtn.MouseButton1Click:Connect(function()
+        NightHub.AutoRetryAtivo = not NightHub.AutoRetryAtivo
+        UpdateUIToggle("AutoRetry", NightHub.AutoRetryAtivo)
+        if NightHub.AutoRetryAtivo then
+            pcall(function()
+                loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQAutoRetry'))()
+            end)
+        end
+    end)
+
+    return toggleFrame
+end
+
+-- =========================================================================
+-- SISTEMA DE BINDS GLOBAL
+-- =========================================================================
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if gameProcessed then return end
+    if waitingForKey then return end
+    
+    if input.UserInputType == Enum.UserInputType.Keyboard then
+        local key = input.KeyCode
+        
+        if Binds.ToggleUI and key == Enum.KeyCode[Binds.ToggleUI] then
+            ScreenGui.Enabled = not ScreenGui.Enabled
+            return
+        end
+        
+        if Binds.Spammer and key == Enum.KeyCode[Binds.Spammer] then
+            NightHub.SpammerAtivo = not NightHub.SpammerAtivo
+            UpdateUIToggle("Spammer", NightHub.SpammerAtivo)
+            if NightHub.SpammerAtivo then iniciarSpammer() else pararSpammer() end
+        end
+        
+        if Binds.Farm and key == Enum.KeyCode[Binds.Farm] then
+            NightHub.FarmAtivo = not NightHub.FarmAtivo
+            UpdateUIToggle("Farm", NightHub.FarmAtivo)
+            if NightHub.FarmAtivo then iniciarFarm() else pararFarm() end
+        end
+        
+        if Binds.Fly and key == Enum.KeyCode[Binds.Fly] then
+            NightHub.FlyAtivo = not NightHub.FlyAtivo
+            UpdateUIToggle("Fly", NightHub.FlyAtivo)
+            if NightHub.FlyAtivo then iniciarFly() else pararFly() end
+        end
+        
+        if Binds.NoVFX and key == Enum.KeyCode[Binds.NoVFX] then
+            NightHub.NoVFXAtivo = not NightHub.NoVFXAtivo
+            UpdateUIToggle("NoVFX", NightHub.NoVFXAtivo)
+            if NightHub.NoVFXAtivo then ativarNoVFX() else desativarNoVFX() end
+        end
+        
+        if Binds.Speed and key == Enum.KeyCode[Binds.Speed] then
+            NightHub.VelocidadeExtra = not NightHub.VelocidadeExtra
+            UpdateUIToggle("Speed", NightHub.VelocidadeExtra)
+            if NightHub.VelocidadeExtra then ativarVelocidadeExtra() else desativarVelocidadeExtra() end
+        end
+    end
+end)
+
+-- =========================================================================
+-- SPAMMER
+-- =========================================================================
+function iniciarSpammer()
+    if Connections.SpamLoop then return end
+    Connections.SpamLoop = RunService.Heartbeat:Connect(function()
+        if not NightHub.SpammerAtivo then return end
+        pcall(function()
+            local char = LocalPlayer.Character
+            if not char then return end
+            
+            local tools = {}
+            for _, v in ipairs(char:GetChildren()) do if v:IsA("Tool") then table.insert(tools, v) end end
+            local bp = LocalPlayer:FindFirstChild("Backpack")
+            if bp then for _, v in ipairs(bp:GetChildren()) do if v:IsA("Tool") then table.insert(tools, v) end end end
+            
+            for _, tool in ipairs(tools) do
+                pcall(function()
+                    if tool.Parent == char then tool:Activate() end
+                    for _, d in ipairs(tool:GetDescendants()) do
+                        if d:IsA("RemoteEvent") then d:FireServer() end
+                    end
+                end)
+            end
+        end)
+    end)
+end
+
+function pararSpammer()
+    if Connections.SpamLoop then
+        Connections.SpamLoop:Disconnect()
+        Connections.SpamLoop = nil
+        NightHub.SpammerAtivo = false
+    end
+end
+
+-- =========================================================================
+-- FLY MANUAL (TOGGLE SEPARADO)
+-- =========================================================================
+local bv, bg
+local function getCharacterParts()
+    local char = LocalPlayer.Character
+    if char then
+        return char, char:FindFirstChild("HumanoidRootPart"), char:FindFirstChild("Humanoid")
+    end
+    return nil, nil, nil
+end
+
+function iniciarFly()
+    local char, rootPart, humanoid = getCharacterParts()
+    if not char or not rootPart or not humanoid then return end
+    
+    if not bv then
+        bv = Instance.new("BodyVelocity")
+        bv.MaxForce = Vector3.new(1e6, 1e6, 1e6)
+    end
+    if not bg then
+        bg = Instance.new("BodyGyro")
+        bg.MaxTorque = Vector3.new(1e6, 1e6, 1e6)
+        bg.P = 20000
+    end
+    
+    bv.Parent = rootPart
+    bg.Parent = rootPart
+    humanoid.PlatformStand = true
+    
+    -- Noclip
+    if Connections.FlyNoclip then Connections.FlyNoclip:Disconnect() end
+    Connections.FlyNoclip = RunService.Stepped:Connect(function()
+        if NightHub.FlyAtivo and char then
+            for _, part in pairs(char:GetDescendants()) do
+                if part:IsA("BasePart") then part.CanCollide = false end
+            end
+        end
+    end)
+    
+    -- Movimento manual
+    if Connections.FlyMovement then Connections.FlyMovement:Disconnect() end
+    Connections.FlyMovement = RunService.Heartbeat:Connect(function()
+        if not NightHub.FlyAtivo then return end
+        pcall(function()
+            local _, rp, _ = getCharacterParts()
+            if not rp then return end
+            
+            local camera = workspace.CurrentCamera
+            local moveDir = Vector3.new(0, 0, 0)
+            
+            if UserInputService:IsKeyDown(Enum.KeyCode.W) then moveDir = moveDir + camera.CFrame.LookVector end
+            if UserInputService:IsKeyDown(Enum.KeyCode.S) then moveDir = moveDir - camera.CFrame.LookVector end
+            if UserInputService:IsKeyDown(Enum.KeyCode.A) then moveDir = moveDir - camera.CFrame.RightVector end
+            if UserInputService:IsKeyDown(Enum.KeyCode.D) then moveDir = moveDir + camera.CFrame.RightVector end
+            
+            if moveDir.Magnitude > 0 then
+                bv.Velocity = moveDir.Unit * NightHub.FlySpeed
+            else
+                bv.Velocity = Vector3.new(0, 0.1, 0)
+            end
+            
+            bg.CFrame = CFrame.new(rp.Position, rp.Position + Vector3.new(camera.CFrame.LookVector.X, 0, camera.CFrame.LookVector.Z))
+        end)
+    end)
+end
+
+function pararFly()
+    NightHub.FlyAtivo = false
+    
+    if bv and not NightHub.FarmAtivo then
+        bv.Velocity = Vector3.new(0, 0, 0)
+        bv.Parent = nil
+    end
+    if bg and not NightHub.FarmAtivo then
+        bg.Parent = nil
+    end
+    
+    pcall(function()
+        local _, _, humanoid = getCharacterParts()
+        if humanoid and not NightHub.FarmAtivo then
+            humanoid.PlatformStand = false
+        end
+    end)
+    
+    if Connections.FlyNoclip then Connections.FlyNoclip:Disconnect(); Connections.FlyNoclip = nil end
+    if Connections.FlyMovement then Connections.FlyMovement:Disconnect(); Connections.FlyMovement = nil end
+end
+
+-- =========================================================================
+-- VOID-STALKER FARM (COM DETECÇÃO DE VOIDSHADE - ANDA PARA A FRENTE)
+-- =========================================================================
+local farmFlying = false
+local currentTarget = nil
+local currentTargetModel = nil
+local isCurrentVoidShade = false
+local orbitAngle = 0
+local currentBoss = nil
+local bossLastSeen = 0
+local BossPositions = {
+    ["Adelys"] = { pos = Vector3.new(1585, -487, 98), cooldown = 8 },
+    ["The Voidborn"] = { pos = Vector3.new(2352, -621, 87), cooldown = 10 },
+}
+local farmChar, farmRoot, farmHum
+
+local function updateFarmChar()
+    local char = LocalPlayer.Character
+    if char then
+        farmChar = char
+        farmRoot = char:FindFirstChild("HumanoidRootPart")
+        farmHum = char:FindFirstChild("Humanoid")
+        return true
+    end
+    return false
+end
+
+local function getBestPart(model)
+    local target = model:FindFirstChild("HumanoidRootPart") or 
+                   model:FindFirstChild("Torso") or 
+                   model:FindFirstChild("LowerTorso") or 
+                   model:FindFirstChild("UpperTorso") or 
+                   model.PrimaryPart or 
+                   model:FindFirstChildWhichIsA("BasePart")
+    if target and target:IsA("BasePart") then return target end
+    if target and target:IsA("Model") then return target:FindFirstChildWhichIsA("BasePart") end
+    return nil
+end
+
+local function isVoidShade(name)
+    local n = string.lower(name)
+    return string.find(n, "voidshade") or string.find(n, "void shade")
+end
+
+function iniciarFarm()
+    if not updateFarmChar() then return end
+    
+    if not bv then
+        bv = Instance.new("BodyVelocity")
+        bv.MaxForce = Vector3.new(1e6, 1e6, 1e6)
+    end
+    if not bg then
+        bg = Instance.new("BodyGyro")
+        bg.MaxTorque = Vector3.new(1e6, 1e6, 1e6)
+        bg.P = 20000
+    end
+    
+    farmFlying = true
+    bv.Parent = farmRoot
+    bg.Parent = farmRoot
+    farmHum.PlatformStand = true
+    
+    -- Noclip
+    if Connections.FarmNoclip then Connections.FarmNoclip:Disconnect() end
+    Connections.FarmNoclip = RunService.Stepped:Connect(function()
+        if farmFlying and farmChar then
+            for _, part in pairs(farmChar:GetDescendants()) do
+                if part:IsA("BasePart") then part.CanCollide = false end
+            end
+        end
+    end)
+    
+    -- Busca de Alvo (detecta VoidShades e Gregg)
+    local targetSearchRunning = true
+    local greggFound = false
+    local orbitWasAuto = false
+    if Connections.FarmTargetSearch then Connections.FarmTargetSearch:Disconnect() end
+    Connections.FarmTargetSearch = task.spawn(function()
+        while targetSearchRunning and NightHub.FarmAtivo do
+            pcall(function()
+                if not updateFarmChar() then return end
+                
+                local bossFound = false
+                local closestNormal = nil
+                local closestNormalModel = nil
+                local closestVoid = nil
+                local closestVoidModel = nil
+                local closestGregg = nil
+                local closestGreggModel = nil
+                local shortestNormal = NightHub.MaxDetectionRange
+                local shortestVoid = NightHub.MaxDetectionRange
+                local shortestGregg = NightHub.MaxDetectionRange
+                
+                for _, v in pairs(workspace:GetDescendants()) do
+                    if v:IsA("Humanoid") and v.Parent ~= farmChar and v.Health > 0 then
+                        local model = v.Parent
+                        local targetPart = getBestPart(model)
+                        if targetPart and targetPart:IsA("BasePart") then
+                            local d = (targetPart.Position - farmRoot.Position).Magnitude
+                            local nameLower = string.lower(model.Name)
+                            
+                            if string.find(nameLower, "adelys") then
+                                currentBoss = "Adelys"
+                                bossFound = true
+                                bossLastSeen = tick()
+                            elseif string.find(nameLower, "the voidborn") then
+                                currentBoss = "The Voidborn"
+                                bossFound = true
+                                bossLastSeen = tick()
+                            elseif string.find(nameLower, "gregg") then
+                                if d < shortestGregg then
+                                    shortestGregg = d
+                                    closestGregg = targetPart
+                                    closestGreggModel = model
+                                end
+                            elseif isVoidShade(model.Name) then
+                                if d < shortestVoid then
+                                    shortestVoid = d
+                                    closestVoid = targetPart
+                                    closestVoidModel = model
+                                end
+                            else
+                                if d < shortestNormal then
+                                    shortestNormal = d
+                                    closestNormal = targetPart
+                                    closestNormalModel = model
+                                end
+                            end
+                        end
+                    end
+                end
+                
+                -- Boss cooldown: manter posicao por Xs apos boss morrer
+                if not bossFound and currentBoss then
+                    local cd = BossPositions[currentBoss] and BossPositions[currentBoss].cooldown or 4
+                    if (tick() - bossLastSeen) >= cd then
+                        currentBoss = nil
+                    else
+                        currentTarget = nil
+                        currentTargetModel = nil
+                        isCurrentVoidShade = false
+                        return
+                    end
+                end
+                
+                -- Gregg tem prioridade máxima
+                if closestGregg then
+                    if not greggFound then
+                        greggFound = true
+                        orbitWasAuto = not NightHub.OrbitMode
+                        NightHub.OrbitMode = true
+                    end
+                    currentTarget = closestGregg
+                    currentTargetModel = closestGreggModel
+                    isCurrentVoidShade = false
+                else
+                    -- Gregg morreu ou desapareceu, desativa orbit auto
+                    if greggFound then
+                        greggFound = false
+                        if orbitWasAuto then
+                            NightHub.OrbitMode = false
+                            orbitWasAuto = false
+                        end
+                    end
+                    if closestNormal then
+                        currentTarget = closestNormal
+                        currentTargetModel = closestNormalModel
+                        isCurrentVoidShade = false
+                    elseif closestVoid then
+                        currentTarget = closestVoid
+                        currentTargetModel = closestVoidModel
+                        isCurrentVoidShade = true
+                    end
+                end
+            end)
+            task.wait(0.3)
+        end
+    end)
+    
+    -- Hitbox
+    local hitboxRunning = true
+    if Connections.FarmHitbox then Connections.FarmHitbox:Disconnect() end
+    Connections.FarmHitbox = task.spawn(function()
+        while hitboxRunning and NightHub.FarmAtivo do
+            pcall(function()
+                for _, v in pairs(workspace:GetDescendants()) do
+                    if v:IsA("Humanoid") and v.Parent ~= farmChar then
+                        local targetPart = getBestPart(v.Parent)
+                        if targetPart and targetPart:IsA("BasePart") and targetPart.Size.Y < NightHub.HitboxSize then
+                            targetPart.Size = Vector3.new(NightHub.HitboxSize, NightHub.HitboxSize, NightHub.HitboxSize)
+                            targetPart.Transparency = 1
+                            targetPart.CanCollide = false
+                        end
+                    end
+                end
+            end)
+            task.wait(2)
+        end
+    end)
+    
+    -- Loop de Movimento
+    if Connections.FarmMovement then Connections.FarmMovement:Disconnect() end
+    Connections.FarmMovement = RunService.Heartbeat:Connect(function()
+        if not farmFlying or not NightHub.FarmAtivo then return end
+        
+        pcall(function()
+            if not updateFarmChar() then return end
+            
+            local goToBoss = false
+            if currentBoss and BossPositions[currentBoss] then
+                if currentTarget and currentTarget:IsA("BasePart") and currentTarget.Parent then
+                    goToBoss = false
+                else
+                    goToBoss = true
+                end
+            end
+
+            if goToBoss then
+                local bossPos = BossPositions[currentBoss].pos
+                local direction = (bossPos - farmRoot.Position)
+                if direction.Magnitude > 2 then
+                    bv.Velocity = direction.Unit * NightHub.FlightSpeed
+                else
+                    bv.Velocity = Vector3.new(0, 0, 0)
+                end
+                bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(bossPos.X, farmRoot.Position.Y, bossPos.Z))
+            elseif currentTarget and currentTarget:IsA("BasePart") and currentTarget.Parent then
+                local targetPos = currentTarget.Position
+                
+                if NightHub.OrbitMode then
+                    -- ORBIT MODE: gira ao redor de qualquer NPC
+                    orbitAngle = orbitAngle + 0.02
+                    local orbitRadius = 8
+                    local orbitX = math.cos(orbitAngle) * orbitRadius
+                    local orbitZ = math.sin(orbitAngle) * orbitRadius
+                    local orbitPos = targetPos + Vector3.new(orbitX, 0, orbitZ)
+                    
+                    local direction = (orbitPos - farmRoot.Position)
+                    if direction.Magnitude > 1 then
+                        bv.Velocity = direction.Unit * NightHub.FlightSpeed
+                    else
+                        bv.Velocity = Vector3.new(0, 0, 0)
+                    end
+                    
+                    bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(targetPos.X, farmRoot.Position.Y, targetPos.Z))
+                elseif isCurrentVoidShade and currentTargetModel then
+                    -- VOIDSHADE: fica atrás dele, desvia quando ele olha para ti
+                    local voidLook = currentTarget.CFrame.LookVector
+                    local toPlayer = (farmRoot.Position - targetPos)
+                    toPlayer = Vector3.new(toPlayer.X, 0, toPlayer.Z)
+                    if toPlayer.Magnitude > 0.1 then
+                        toPlayer = toPlayer.Unit
+                    else
+                        toPlayer = Vector3.new(0, 0, -1)
+                    end
+                    
+                    local dot = voidLook:Dot(toPlayer)
+                    
+                    local backPos
+                    if dot > 0.3 then
+                        local behind = -voidLook
+                        backPos = targetPos + behind * 15
+                    else
+                        local behind = -voidLook
+                        backPos = targetPos + behind * 15
+                    end
+                    
+                    local direction = (backPos - farmRoot.Position)
+                    if direction.Magnitude > 1 then
+                        bv.Velocity = direction.Unit * NightHub.FlightSpeed
+                    else
+                        bv.Velocity = Vector3.new(0, 0, 0)
+                    end
+                    
+                    bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(targetPos.X, farmRoot.Position.Y, targetPos.Z))
+                else
+                    -- NPC normal: vai underground
+                    local undergroundPos = Vector3.new(targetPos.X, targetPos.Y + NightHub.FixedDepth, targetPos.Z)
+                    local direction = (undergroundPos - farmRoot.Position)
+                    
+                    if direction.Magnitude > 1 then
+                        bv.Velocity = direction.Unit * NightHub.FlightSpeed
+                    else
+                        bv.Velocity = Vector3.new(0, 0, 0)
+                    end
+                    
+                    bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(targetPos.X, farmRoot.Position.Y, targetPos.Z))
+                end
+            else
+                orbitAngle = 0
+                local forward = farmRoot.CFrame.LookVector
+                bv.Velocity = Vector3.new(forward.X, 0, forward.Z).Unit * (NightHub.FlightSpeed * 0.7)
+            end
+        end)
+    end)
+end
+
+function pararFarm()
+    farmFlying = false
+    currentTarget = nil
+    currentTargetModel = nil
+    isCurrentVoidShade = false
+    currentBoss = nil
+    orbitAngle = 0
+    NightHub.FarmAtivo = false
+    
+    if bv and not NightHub.FlyAtivo then
+        bv.Velocity = Vector3.new(0, 0, 0)
+        bv.Parent = nil
+    end
+    if bg and not NightHub.FlyAtivo then
+        bg.Parent = nil
+    end
+    
+    pcall(function()
+        if updateFarmChar() and not NightHub.FlyAtivo then
+            farmHum.PlatformStand = false
+        end
+    end)
+    
+    if Connections.FarmNoclip then Connections.FarmNoclip:Disconnect(); Connections.FarmNoclip = nil end
+    if Connections.FarmTargetSearch then pcall(task.cancel, Connections.FarmTargetSearch); Connections.FarmTargetSearch = nil end
+    if Connections.FarmHitbox then pcall(task.cancel, Connections.FarmHitbox); Connections.FarmHitbox = nil end
+    if Connections.FarmMovement then Connections.FarmMovement:Disconnect(); Connections.FarmMovement = nil end
+end
+
+-- =========================================================================
+-- NoVFX
+-- =========================================================================
+local function isHabilidade(nome)
+    nome = string.upper(nome)
+    for _, k in ipairs({"PULSE","LIGHTNING","MAGIC","EFFECT","SPELL","ATTACK","BOMB","EXPLOSION","BLAST","FIRE","ICE","THUNDER","STORM","WIND","EARTH","WATER","SHADOW","LIGHT","DARK","HOLY","DEMON","DRAGON","PHOENIX","WOLF","SKILL","POWER","BURST","SLASH","CUT","STAB"}) do
+        if string.match(nome, k) then return true end
+    end
+    return false
+end
+
+function ativarNoVFX()
+    if Connections.VFX then Connections.VFX:Disconnect() end
+    Connections.VFX = workspace.DescendantAdded:Connect(function(obj)
+        if not NightHub.NoVFXAtivo then return end
+        pcall(function()
+            if isHabilidade(obj.Name) or (obj.Parent and isHabilidade(obj.Parent.Name)) then
+                if obj:IsA("ParticleEmitter") or obj:IsA("Trail") or obj:IsA("Beam") or obj:IsA("Fire") or obj:IsA("Smoke") then 
+                    obj.Enabled = false
+                elseif obj:IsA("Sound") then 
+                    obj.Volume = 0 
+                end
+            end
+        end)
+    end)
+end
+
+function desativarNoVFX()
+    if Connections.VFX then Connections.VFX:Disconnect(); Connections.VFX = nil end
+end
+
+-- =========================================================================
+-- Velocidade Extra
+-- =========================================================================
+function ativarVelocidadeExtra()
+    if Connections.SpeedLoop then Connections.SpeedLoop:Disconnect() end
+    pcall(function()
+        local char = LocalPlayer.Character
+        if char and char:FindFirstChild("Humanoid") then
+            local humanoid = char.Humanoid
+            humanoid.WalkSpeed = NightHub.OriginalWalkSpeed * NightHub.SpeedMultiplier
+            Connections.SpeedLoop = humanoid:GetPropertyChangedSignal("WalkSpeed"):Connect(function()
+                if NightHub.VelocidadeExtra and humanoid.WalkSpeed ~= NightHub.OriginalWalkSpeed * NightHub.SpeedMultiplier then
+                    humanoid.WalkSpeed = NightHub.OriginalWalkSpeed * NightHub.SpeedMultiplier
+                end
+            end)
+        end
+    end)
+end
+
+function desativarVelocidadeExtra()
+    Connections.SpeedLoop = nil
+    pcall(function()
+        local char = LocalPlayer.Character
+        if char and char:FindFirstChild("Humanoid") then
+            char.Humanoid.WalkSpeed = NightHub.OriginalWalkSpeed
+        end
+    end)
+end
+
+-- =========================================================================
+-- AUTO START DUNGEON
+-- =========================================================================
+function iniciarAutoStart()
+    if Connections.AutoStart then return end
+    Connections.AutoStart = task.spawn(function()
+        while NightHub.AutoStartAtivo do
+            pcall(function()
+                local remote = ReplicatedStorage:FindFirstChild("changeStartValue")
+                if not remote then
+                    local remotes = ReplicatedStorage:FindFirstChild("remotes")
+                    if remotes then
+                        remote = remotes:FindFirstChild("changeStartValue")
+                    end
+                end
+                if remote and remote:IsA("RemoteEvent") then
+                    remote:FireServer()
+                    NightHub.DungeonStartCount = NightHub.DungeonStartCount + 1
+                    if counterLabel then
+                        counterLabel.Text = "Runs: " .. tostring(NightHub.DungeonStartCount)
+                    end
+                end
+            end)
+            task.wait(1.5)
+        end
+    end)
+end
+
+function pararAutoStart()
+    NightHub.AutoStartAtivo = false
+    if Connections.AutoStart then
+        pcall(task.cancel, Connections.AutoStart)
+        Connections.AutoStart = nil
+    end
+end
+
+-- =========================================================================
+-- SISTEMA DE CORREÇÃO DE NOMES (NAME CHANGER / HIDER)
+-- =========================================================================
+local MatchedTextLabels = {}
+local defaultDisplayName = LocalPlayer.DisplayName
+local defaultName = LocalPlayer.Name
+
+function applyToTextLabel(label)
+    if not label:IsA("TextLabel") and not label:IsA("TextBox") then return end
+    if MatchedTextLabels[label] then return end
+    
+    local txt = label.Text
+    local isMatch = string.upper(txt) == string.upper(defaultDisplayName) or 
+                    string.upper(txt) == string.upper(defaultName)
+                    
+    if isMatch then
+        local data = { OriginalText = txt, Connection = nil, Updating = false }
+        MatchedTextLabels[label] = data
+        local function check()
+            if data.Updating then return end
+            local currentText = label.Text
+            local targetText = data.OriginalText
+            if NightHub.OcultarNome then targetText = ""
+            elseif NightHub.NomePersonalizado ~= "" then targetText = NightHub.NomePersonalizado end
+            if currentText ~= targetText then
+                data.Updating = true
+                label.Text = targetText
+                data.Updating = false
+            end
+        end
+        data.Connection = label:GetPropertyChangedSignal("Text"):Connect(check)
+        check()
+    end
+end
+
+function refreshAllTextLabels()
+    for label, data in pairs(MatchedTextLabels) do
+        pcall(function()
+            if data.Updating then return end
+            local targetText = data.OriginalText
+            if NightHub.OcultarNome then targetText = ""
+            elseif NightHub.NomePersonalizado ~= "" then targetText = NightHub.NomePersonalizado end
+            if label.Text ~= targetText then
+                data.Updating = true
+                label.Text = targetText
+                data.Updating = false
+            end
+        end)
+    end
+end
+
+function iniciarNameChanger()
+    local playerGui = LocalPlayer:WaitForChild("PlayerGui")
+    local function scan(root) for _, descendant in ipairs(root:GetDescendants()) do pcall(applyToTextLabel, descendant) end end
+    scan(playerGui)
+    playerGui.DescendantAdded:Connect(function(descendant) task.wait(); pcall(applyToTextLabel, descendant) end)
+    local function monitorCharacter(char) if not char then return end scan(char) char.DescendantAdded:Connect(function(descendant) task.wait(); pcall(applyToTextLabel, descendant) end) end
+    monitorCharacter(LocalPlayer.Character)
+    LocalPlayer.CharacterAdded:Connect(monitorCharacter)
+end
+
+-- =========================================================================
+-- Seguranca (Character Respawn)
+-- =========================================================================
+LocalPlayer.CharacterAdded:Connect(function(char)
+    task.wait(0.5)
+    if char:FindFirstChild("Humanoid") then
+        NightHub.OriginalWalkSpeed = char.Humanoid.WalkSpeed
+        if NightHub.VelocidadeExtra then
+            local speed = NightHub.OriginalWalkSpeed * NightHub.SpeedMultiplier
+            char.Humanoid.WalkSpeed = speed
+        end
+    end
+    
+    if NightHub.FlyAtivo then
+        pararFly()
+        task.wait(0.3)
+        iniciarFly()
+    end
+    
+    if NightHub.FarmAtivo then
+        pararFarm()
+        task.wait(0.3)
+        iniciarFarm()
+    end
+end)
+
+-- =========================================================================
+-- PAGINAS DA UI
+-- =========================================================================
+
+-- COMBATE
+local CombatPage = CreateTab("Combate")
+CreateSection(CombatPage, "SPAM DE HABILIDADES")
+CreateToggleWithBind(CombatPage, "Spammer Automatico", false, Binds.Spammer, "Spammer",
+    function(value) NightHub.SpammerAtivo = value; if value then iniciarSpammer() else pararSpammer() end end,
+    function(bind) Binds.Spammer = bind end
+)
+
+CreateSection(CombatPage, "OTIMIZACAO")
+CreateToggleWithBind(CombatPage, "Velocidade Extra (2.0x)", NightHub.VelocidadeExtra, Binds.Speed, "Speed",
+    function(value) NightHub.VelocidadeExtra = value; if value then ativarVelocidadeExtra() else desativarVelocidadeExtra() end end,
+    function(bind) Binds.Speed = bind end
+)
+
+CreateToggleWithBind(CombatPage, "Ocultar Efeitos Visuais", NightHub.NoVFXAtivo, Binds.NoVFX, "NoVFX",
+    function(value) NightHub.NoVFXAtivo = value; if value then ativarNoVFX() else desativarNoVFX() end end,
+    function(bind) Binds.NoVFX = bind end
+)
+
+-- FARM
+local FarmPage = CreateTab("Farm")
+CreateSection(FarmPage, "FLY MANUAL")
+CreateToggleWithBind(FarmPage, "Fly Manual (WASD)", false, Binds.Fly, "Fly",
+    function(value) NightHub.FlyAtivo = value; if value then iniciarFly() else pararFly() end end,
+    function(bind) Binds.Fly = bind end
+)
+CreateSlider(FarmPage, "Velocidade do Fly", 10, 35, NightHub.FlySpeed, function(value) NightHub.FlySpeed = value end)
+
+CreateSection(FarmPage, "VOID-STALKER FARM")
+CreateToggleWithBind(FarmPage, "Auto Farm (Normal > VoidShade)", false, Binds.Farm, "Farm",
+    function(value) NightHub.FarmAtivo = value; if value then iniciarFarm() else pararFarm() end end,
+    function(bind) Binds.Farm = bind end
+)
+CreateToggle(FarmPage, "Orbit Mode (gira ao redor dos NPCs)", NightHub.OrbitMode, "OrbitMode", function(value) NightHub.OrbitMode = value end)
+
+CreateSlider(FarmPage, "Velocidade do Farm", 10, 30, NightHub.FlightSpeed, function(value) NightHub.FlightSpeed = value end)
+CreateSlider(FarmPage, "Profundidade", -30, -5, NightHub.FixedDepth, function(value) NightHub.FixedDepth = value end)
+CreateSlider(FarmPage, "Alcance de Detecção", 100, 1000, NightHub.MaxDetectionRange, function(value) NightHub.MaxDetectionRange = value end)
+CreateSlider(FarmPage, "Tamanho do Hitbox", 50, 200, NightHub.HitboxSize, function(value) NightHub.HitboxSize = value end)
+
+-- DUNGEON
+local DungeonPage = CreateTab("Dungeon")
+CreateSection(DungeonPage, "INICIAR DUNGEON")
+CreateDungeonButton(DungeonPage)
+CreateSection(DungeonPage, "AUTO START")
+CreateToggleWithBind(DungeonPage, "Auto Start Dungeon", NightHub.AutoStartAtivo, Binds.StartDungeon, "AutoStart",
+    function(value) NightHub.AutoStartAtivo = value; if value then iniciarAutoStart() else pararAutoStart() end end,
+    function(bind) Binds.StartDungeon = bind end
+)
+CreateSection(DungeonPage, "AUTO RETRY")
+CreateAutoRetryToggle(DungeonPage)
+
+-- =========================================================================
+-- ABA SELL - AUTO SELL COM SELEÇÃO DE RARIDADES
+-- =========================================================================
+local SellPage = CreateTab("Sell")
+
+-- Referência ao label de status do AutoSell (para atualizar ao ligar/desligar)
+local sellStatusLabel
+
+-- Tabela de referências aos botões de raridade para atualização visual
+local SellRarityButtons = {}
+
+-- Definições de categorias e raridades
+local categorias = {
+    { key = "weapon",  label = "Weapon" },
+    { key = "chest",   label = "Chest" },
+    { key = "helmet",  label = "Helmet" },
+    { key = "ability", label = "Ability" },
+    { key = "ring",    label = "Ring" },
+}
+
+local raridades = {
+    { key = "ultimate",  label = "Ultimate", cor = Cores.Ultimate },
+    { key = "legendary", label = "Lendário", cor = Cores.Legendary },
+    { key = "epic",      label = "Épico",    cor = Cores.Epic },
+    { key = "rare",      label = "Raro",     cor = Cores.Rare },
+    { key = "uncommon",  label = "Incomum",  cor = Cores.Uncommon },
+    { key = "common",    label = "Comum",    cor = Cores.Common },
+}
+
+-- Mapa de quais raridades existem por categoria
+local raridadesPorCategoria = {
+    weapon  = {"ultimate", "legendary", "epic", "rare", "uncommon", "common"},
+    chest   = {"epic", "rare", "uncommon", "common"},
+    helmet  = {"epic", "rare", "uncommon", "common"},
+    ability = {"legendary", "epic", "rare", "uncommon", "common"},
+    ring    = {"epic", "rare", "uncommon", "common"},
+}
+
+-- Função auxiliar: retorna a cor de uma raridade pelo key
+local function getCorRaridade(rarKey)
+    for _, r in ipairs(raridades) do
+        if r.key == rarKey then return r.cor end
+    end
+    return Cores.TextoSecundario
+end
+
+-- Função auxiliar: retorna o label de uma raridade pelo key
+local function getLabelRaridade(rarKey)
+    for _, r in ipairs(raridades) do
+        if r.key == rarKey then return r.label end
+    end
+    return rarKey
+end
+
+-- Atualiza a aparência visual de um botão de raridade
+function atualizarBotaoRaridade(catKey, rarKey)
+    local ref = SellRarityButtons[catKey] and SellRarityButtons[catKey][rarKey]
+    if not ref then return end
+    local ativo = AutoSellSettings[catKey] and AutoSellSettings[catKey][rarKey]
+    local cor = getCorRaridade(rarKey)
+    
+    -- Tenta encontrar o Stroke se existir
+    local stroke = ref:FindFirstChildOfClass("UIStroke")
+    
+    if ativo then
+        ref.BackgroundColor3 = cor
+        ref.TextColor3 = Color3.fromRGB(255, 255, 255)
+        ref.BackgroundTransparency = 0
+        if stroke then stroke.Transparency = 1 end
+    else
+        -- Quando desativado, fica cinza escuro e o texto fica com cor apagada
+        ref.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+        ref.TextColor3 = Color3.fromRGB(100, 100, 110)
+        ref.BackgroundTransparency = 0.3
+        if stroke then 
+            stroke.Transparency = 0.5 
+            stroke.Color = Color3.fromRGB(80, 80, 90)
+        end
+    end
+end
+
+-- Seção: Toggle principal do AutoSell
+CreateSection(SellPage, "AUTO SELL")
+
+-- Card do toggle principal
+do
+    local mainCard = Instance.new("Frame")
+    mainCard.Size = UDim2.new(0.96, 0, 0, 55)
+    mainCard.BackgroundColor3 = Cores.Card
+    mainCard.BorderSizePixel = 0
+    mainCard.LayoutOrder = #SellPage:GetChildren()
+    mainCard.Parent = SellPage
+    local mc = Instance.new("UICorner"); mc.CornerRadius = UDim.new(0, 10); mc.Parent = mainCard
+
+    local mainLabel = Instance.new("TextLabel")
+    mainLabel.Size = UDim2.new(0.65, 0, 0, 22)
+    mainLabel.Position = UDim2.new(0, 12, 0, 6)
+    mainLabel.BackgroundTransparency = 1
+    mainLabel.Text = "Auto Sell Ativo"
+    mainLabel.TextColor3 = Cores.TextoPrimario
+    mainLabel.TextSize = 13
+    mainLabel.Font = Enum.Font.GothamBold
+    mainLabel.TextXAlignment = Enum.TextXAlignment.Left
+    mainLabel.Parent = mainCard
+
+    sellStatusLabel = Instance.new("TextLabel")
+    sellStatusLabel.Size = UDim2.new(0.94, 0, 0, 18)
+    sellStatusLabel.Position = UDim2.new(0, 12, 0, 28)
+    sellStatusLabel.BackgroundTransparency = 1
+    sellStatusLabel.Text = "Status: Desativado"
+    sellStatusLabel.TextColor3 = Cores.TextoSecundario
+    sellStatusLabel.TextSize = 11
+    sellStatusLabel.Font = Enum.Font.GothamSemibold
+    sellStatusLabel.TextXAlignment = Enum.TextXAlignment.Left
+    sellStatusLabel.Parent = mainCard
+
+    local switchBg = Instance.new("Frame")
+    switchBg.Size = UDim2.new(0, 40, 0, 22)
+    switchBg.Position = UDim2.new(1, -52, 0.5, -11)
+    switchBg.BackgroundColor3 = Cores.SwitchOff
+    switchBg.BorderSizePixel = 0
+    switchBg.Parent = mainCard
+    local sc = Instance.new("UICorner"); sc.CornerRadius = UDim.new(1, 0); sc.Parent = switchBg
+
+    local switchKnob = Instance.new("Frame")
+    switchKnob.Size = UDim2.new(0, 18, 0, 18)
+    switchKnob.Position = UDim2.new(0, 2, 0.5, -9)
+    switchKnob.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    switchKnob.BorderSizePixel = 0
+    switchKnob.Parent = switchBg
+    local kc = Instance.new("UICorner"); kc.CornerRadius = UDim.new(1, 0); kc.Parent = switchKnob
+
+    UIToggles["AutoSell"] = { SwitchBg = switchBg, SwitchKnob = switchKnob }
+
+    local toggleBtn = Instance.new("TextButton")
+    toggleBtn.Size = UDim2.new(0, 38, 0, 20)
+    toggleBtn.Position = UDim2.new(1, -50, 0.5, -10)
+    toggleBtn.BackgroundTransparency = 1
+    toggleBtn.Text = ""
+    toggleBtn.Parent = mainCard
+
+    toggleBtn.MouseButton1Click:Connect(function()
+        NightHub.AutoSellAtivo = not NightHub.AutoSellAtivo
+        UpdateUIToggle("AutoSell", NightHub.AutoSellAtivo)
+        if NightHub.AutoSellAtivo then
+            sellStatusLabel.Text = "Status: Ativo — vendendo itens..."
+            sellStatusLabel.TextColor3 = Cores.StartGreen
+            -- Carrega e executa o AutoSell com as configurações actuais
+            pcall(function()
+                local autoSell = loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQautoSell.lua'))()
+                autoSell(AutoSellSettings)
+            end)
+        else
+            sellStatusLabel.Text = "Status: Desativado"
+            sellStatusLabel.TextColor3 = Cores.TextoSecundario
+        end
+    end)
+end
+
+-- Seção: Configuração de raridades por categoria
+CreateSection(SellPage, "RARIDADES POR CATEGORIA")
+
+-- Cria um card por categoria com botões de raridade
+for _, cat in ipairs(categorias) do
+    local catRaridades = raridadesPorCategoria[cat.key]
+    if not catRaridades then continue end
+
+    -- Calcula altura do card: título (22) + linha de botões (28) + padding (16)
+    local cardHeight = 22 + 28 + 16
+    if cat.key == "weapon" or cat.key == "ability" then cardHeight = cardHeight + 4 end -- Pequeno ajuste para caber Lendário/Ultimate
+
+    local catCard = Instance.new("Frame")
+    catCard.Size = UDim2.new(0.94, 0, 0, cardHeight)
+    catCard.BackgroundColor3 = Cores.Card
+    catCard.BorderSizePixel = 0
+    catCard.LayoutOrder = #SellPage:GetChildren()
+    catCard.Parent = SellPage
+    local ccc = Instance.new("UICorner"); ccc.CornerRadius = UDim.new(0, 8); ccc.Parent = catCard
+
+    -- Título da categoria
+    local catLabel = Instance.new("TextLabel")
+    catLabel.Size = UDim2.new(1, -24, 0, 20)
+    catLabel.Position = UDim2.new(0, 12, 0, 6)
+    catLabel.BackgroundTransparency = 1
+    catLabel.Text = cat.label
+    catLabel.TextColor3 = Cores.TextoPrimario
+    catLabel.TextSize = 13
+    catLabel.Font = Enum.Font.GothamBold
+    catLabel.TextXAlignment = Enum.TextXAlignment.Left
+    catLabel.Parent = catCard
+
+    -- Botões de raridade em linha
+    local btnContainer = Instance.new("Frame")
+    btnContainer.Size = UDim2.new(1, -24, 0, 26)
+    btnContainer.Position = UDim2.new(0, 12, 0, 28)
+    btnContainer.BackgroundTransparency = 1
+    btnContainer.Parent = catCard
+
+    local btnLayout = Instance.new("UIListLayout")
+    btnLayout.FillDirection = Enum.FillDirection.Horizontal
+    btnLayout.Padding = UDim.new(0, 4)
+    btnLayout.VerticalAlignment = Enum.VerticalAlignment.Center
+    btnLayout.HorizontalAlignment = Enum.HorizontalAlignment.Left
+    btnLayout.Parent = btnContainer
+
+    SellRarityButtons[cat.key] = {}
+
+    for _, rarKey in ipairs(catRaridades) do
+        -- Só cria o botão se a raridade existe para esta categoria
+        if AutoSellSettings[cat.key] and AutoSellSettings[cat.key][rarKey] ~= nil then
+            local rarLabel = getLabelRaridade(rarKey)
+            local rarCor = getCorRaridade(rarKey)
+            local isAtivo = AutoSellSettings[cat.key][rarKey]
+
+            local rarBtn = Instance.new("TextButton")
+            local btnWidth = 58
+            if cat.key == "weapon" or cat.key == "ability" then btnWidth = 50 end -- Diminuir largura para caber todos na mesma linha
+            rarBtn.Size = UDim2.new(0, btnWidth, 0, 24)
+            
+            -- Borda para indicar a raridade
+            local rbStroke = Instance.new("UIStroke")
+            rbStroke.Thickness = 1.5
+            rbStroke.Parent = rarBtn
+
+            if isAtivo then
+                rarBtn.BackgroundColor3 = rarCor
+                rarBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+                rarBtn.BackgroundTransparency = 0
+                rbStroke.Transparency = 1
+                rbStroke.Color = rarCor
+            else
+                rarBtn.BackgroundColor3 = Color3.fromRGB(40, 40, 45)
+                rarBtn.TextColor3 = Color3.fromRGB(100, 100, 110)
+                rarBtn.BackgroundTransparency = 0.3
+                rbStroke.Transparency = 0.5
+                rbStroke.Color = Color3.fromRGB(80, 80, 90)
+            end
+
+            rarBtn.Text = rarLabel
+            rarBtn.TextSize = 10
+            rarBtn.Font = Enum.Font.GothamBold
+            rarBtn.AutoButtonColor = false
+            rarBtn.Parent = btnContainer
+
+            local rbc = Instance.new("UICorner"); rbc.CornerRadius = UDim.new(0, 5); rbc.Parent = rarBtn
+
+            SellRarityButtons[cat.key][rarKey] = rarBtn
+
+            local catKeyCapture = cat.key
+            local rarKeyCapture = rarKey
+
+            rarBtn.MouseButton1Click:Connect(function()
+                AutoSellSettings[catKeyCapture][rarKeyCapture] = not AutoSellSettings[catKeyCapture][rarKeyCapture]
+                local novoEstado = AutoSellSettings[catKeyCapture][rarKeyCapture]
+                local cor = getCorRaridade(rarKeyCapture)
+
+                if novoEstado then
+                    TweenService:Create(rarBtn, TweenInfo.new(0.15), {
+                        BackgroundColor3 = cor,
+                        TextColor3 = Color3.fromRGB(255, 255, 255),
+                        BackgroundTransparency = 0
+                    }):Play()
+                    TweenService:Create(rbStroke, TweenInfo.new(0.15), {
+                        Transparency = 1,
+                        Color = cor
+                    }):Play()
+                else
+                    TweenService:Create(rarBtn, TweenInfo.new(0.15), {
+                        BackgroundColor3 = Color3.fromRGB(40, 40, 45),
+                        TextColor3 = Color3.fromRGB(100, 100, 110),
+                        BackgroundTransparency = 0.3
+                    }):Play()
+                    TweenService:Create(rbStroke, TweenInfo.new(0.15), {
+                        Transparency = 0.5,
+                        Color = Color3.fromRGB(80, 80, 90)
+                    }):Play()
+                end
+
+                -- Se o AutoSell já estiver ativo, reinicia com as novas configurações
+                if NightHub.AutoSellAtivo then
+                    pcall(function()
+                        local autoSell = loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQautoSell.lua'))()
+                        autoSell(AutoSellSettings)
+                    end)
+                end
+            end)
+        end
+    end
+end
+
+-- Seção: Botão de venda manual imediata
+CreateSection(SellPage, "VENDA MANUAL")
+
+do
+    local manualCard = Instance.new("Frame")
+    manualCard.Size = UDim2.new(0.94, 0, 0, 58)
+    manualCard.BackgroundColor3 = Cores.Card
+    manualCard.BorderSizePixel = 0
+    manualCard.LayoutOrder = #SellPage:GetChildren()
+    manualCard.Parent = SellPage
+    local mcc = Instance.new("UICorner"); mcc.CornerRadius = UDim.new(0, 8); mcc.Parent = manualCard
+
+    local manualDesc = Instance.new("TextLabel")
+    manualDesc.Size = UDim2.new(1, -24, 0, 18)
+    manualDesc.Position = UDim2.new(0, 12, 0, 6)
+    manualDesc.BackgroundTransparency = 1
+    manualDesc.Text = "Vender agora com as configurações actuais"
+    manualDesc.TextColor3 = Cores.TextoSecundario
+    manualDesc.TextSize = 11
+    manualDesc.Font = Enum.Font.GothamSemibold
+    manualDesc.TextXAlignment = Enum.TextXAlignment.Left
+    manualDesc.Parent = manualCard
+
+    local manualBtn = Instance.new("TextButton")
+    manualBtn.Size = UDim2.new(1, -24, 0, 24)
+    manualBtn.Position = UDim2.new(0, 12, 0, 26)
+    manualBtn.BackgroundColor3 = Cores.SellRed
+    manualBtn.Text = "VENDER ITENS AGORA"
+    manualBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    manualBtn.TextSize = 13
+    manualBtn.Font = Enum.Font.GothamBold
+    manualBtn.AutoButtonColor = false
+    manualBtn.Parent = manualCard
+    local mbc = Instance.new("UICorner"); mbc.CornerRadius = UDim.new(0, 6); mbc.Parent = manualBtn
+
+    manualBtn.MouseButton1Click:Connect(function()
+        manualBtn.Text = "A vender..."
+        manualBtn.BackgroundColor3 = Color3.fromRGB(160, 40, 40)
+        pcall(function()
+            local autoSell = loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQautoSell.lua'))()
+            autoSell(AutoSellSettings)
+        end)
+        task.delay(1.5, function()
+            pcall(function()
+                manualBtn.Text = "VENDER ITENS AGORA"
+                manualBtn.BackgroundColor3 = Cores.SellRed
+            end)
+        end)
+    end)
+end
+
+-- PROFILE
+local ProfilePage = CreateTab("Profile")
+CreateSection(ProfilePage, "CUSTOMIZAÇÃO")
+CreateToggle(ProfilePage, "Ocultar Nome", NightHub.OcultarNome, "OcultarNome", function(value)
+    NightHub.OcultarNome = value
+    refreshAllTextLabels()
+end)
+
+CreateTextBox(ProfilePage, "Nome Personalizado", "Digite seu nome personalizado...", NightHub.NomePersonalizado, function(text)
+    NightHub.NomePersonalizado = text
+    refreshAllTextLabels()
+end)
+
+-- CONFIGS
+local ConfigPage = CreateTab("Config")
+CreateSection(ConfigPage, "GERENCIADOR DE CONFIGS")
+
+local configNameInput do
+    local inputFrame = Instance.new("Frame")
+    inputFrame.Size = UDim2.new(0.94, 0, 0, 56)
+    inputFrame.BackgroundColor3 = Cores.Card
+    inputFrame.BorderSizePixel = 0
+    inputFrame.LayoutOrder = #ConfigPage:GetChildren()
+    inputFrame.Parent = ConfigPage
+    local ic = Instance.new("UICorner"); ic.CornerRadius = UDim.new(0,8); ic.Parent = inputFrame
+    local lbl = Instance.new("TextLabel")
+    lbl.Size = UDim2.new(1,-24,0,20); lbl.Position = UDim2.new(0,12,0,6)
+    lbl.BackgroundTransparency = 1; lbl.Text = "Nome da Config"
+    lbl.TextColor3 = Cores.TextoPrimario; lbl.TextSize = 13
+    lbl.Font = Enum.Font.GothamBold; lbl.TextXAlignment = Enum.TextXAlignment.Left
+    lbl.Parent = inputFrame
+    configNameInput = Instance.new("TextBox")
+    configNameInput.Size = UDim2.new(1,-24,0,22); configNameInput.Position = UDim2.new(0,12,0,26)
+    configNameInput.BackgroundColor3 = Cores.Fundo; configNameInput.BorderSizePixel = 0
+    configNameInput.Text = ""; configNameInput.PlaceholderText = "Ex: FarmRapido, PVP..."
+    configNameInput.TextColor3 = Cores.TextoPrimario; configNameInput.PlaceholderColor3 = Cores.TextoSecundario
+    configNameInput.TextSize = 12; configNameInput.Font = Enum.Font.GothamSemibold
+    configNameInput.TextXAlignment = Enum.TextXAlignment.Left
+    configNameInput.ClearTextOnFocus = false
+    configNameInput.Parent = inputFrame
+    local bc = Instance.new("UICorner"); bc.CornerRadius = UDim.new(0,5); bc.Parent = configNameInput
+    local bp = Instance.new("UIPadding"); bp.PaddingLeft = UDim.new(0,8); bp.PaddingRight = UDim.new(0,8); bp.Parent = configNameInput
+end
+
+local saveConfigBtn = Instance.new("TextButton")
+saveConfigBtn.Size = UDim2.new(0.94, 0, 0, 30)
+saveConfigBtn.BackgroundColor3 = Cores.StartGreen
+saveConfigBtn.Text = "Salvar Config"
+saveConfigBtn.TextColor3 = Color3.fromRGB(255,255,255)
+saveConfigBtn.TextSize = 13
+saveConfigBtn.Font = Enum.Font.GothamBold
+saveConfigBtn.AutoButtonColor = false
+saveConfigBtn.LayoutOrder = #ConfigPage:GetChildren()
+saveConfigBtn.Parent = ConfigPage
+local sbc = Instance.new("UICorner"); sbc.CornerRadius = UDim.new(0,8); sbc.Parent = saveConfigBtn
+
+local configListSection do
+    configListSection = Instance.new("Frame")
+    configListSection.Size = UDim2.new(0.94, 0, 0, 0)
+    configListSection.AutomaticSize = Enum.AutomaticSize.Y
+    configListSection.BackgroundTransparency = 1
+    configListSection.LayoutOrder = #ConfigPage:GetChildren()
+    configListSection.Parent = ConfigPage
+    local ll = Instance.new("UIListLayout")
+    ll.Padding = UDim.new(0,6)
+    ll.SortOrder = Enum.SortOrder.LayoutOrder
+    ll.Parent = configListSection
+end
+
+local configFeedback = Instance.new("TextLabel")
+configFeedback.Size = UDim2.new(0.94, 0, 0, 20)
+configFeedback.BackgroundTransparency = 1
+configFeedback.Text = ""
+configFeedback.TextColor3 = Cores.StartGreen
+configFeedback.TextSize = 11
+configFeedback.Font = Enum.Font.GothamSemibold
+configFeedback.TextXAlignment = Enum.TextXAlignment.Center
+configFeedback.LayoutOrder = #ConfigPage:GetChildren()
+configFeedback.Parent = ConfigPage
+
+function showFeedback(msg, isError)
+    configFeedback.Text = msg
+    configFeedback.TextColor3 = isError and Color3.fromRGB(220,60,60) or Cores.StartGreen
+    task.delay(2.5, function() configFeedback.Text = "" end)
+end
+
+-- =========================================================================
+-- KEYBINDS - TROCAR BIND DO MENU
+-- =========================================================================
+CreateSection(ConfigPage, "KEYBINDS")
+
+local KeybindNames = {
+    { Key = "ToggleUI", Label = "Abrir/Fechar Menu" },
+    { Key = "Spammer", Label = "Spammer" },
+    { Key = "Farm", Label = "Farm" },
+    { Key = "Fly", Label = "Fly" },
+    { Key = "NoVFX", Label = "No VFX" },
+    { Key = "Speed", Label = "Velocidade" },
+    { Key = "StartDungeon", Label = "Iniciar Dungeon" },
+}
+
+local waitingForKey = nil
+
+for _, bind in ipairs(KeybindNames) do
+    local bindFrame = Instance.new("Frame")
+    bindFrame.Size = UDim2.new(0.96, 0, 0, 42)
+    bindFrame.BackgroundColor3 = Cores.Card
+    bindFrame.BorderSizePixel = 0
+    bindFrame.LayoutOrder = #ConfigPage:GetChildren()
+    bindFrame.Parent = ConfigPage
+    local bfc = Instance.new("UICorner"); bfc.CornerRadius = UDim.new(0, 10); bfc.Parent = bindFrame
+
+    local bindLabel = Instance.new("TextLabel")
+    bindLabel.Size = UDim2.new(0.55, 0, 1, 0)
+    bindLabel.Position = UDim2.new(0, 12, 0, 0)
+    bindLabel.BackgroundTransparency = 1
+    bindLabel.Text = bind.Label
+    bindLabel.TextColor3 = Cores.TextoPrimario
+    bindLabel.TextSize = 13
+    bindLabel.Font = Enum.Font.GothamBold
+    bindLabel.TextXAlignment = Enum.TextXAlignment.Left
+    bindLabel.Parent = bindFrame
+
+    local bindBtn = Instance.new("TextButton")
+    bindBtn.Size = UDim2.new(0, 50, 0, 26)
+    bindBtn.Position = UDim2.new(1, -62, 0.5, -13)
+    bindBtn.BackgroundColor3 = Cores.BindAzul
+    bindBtn.Text = Binds[bind.Key] or "?"
+    bindBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    bindBtn.TextSize = 14
+    bindBtn.Font = Enum.Font.GothamBold
+    bindBtn.AutoButtonColor = false
+    bindBtn.Parent = bindFrame
+    local bbc = Instance.new("UICorner"); bbc.CornerRadius = UDim.new(0, 8); bbc.Parent = bindBtn
+
+    bindBtn.MouseButton1Click:Connect(function()
+        waitingForKey = bind.Key
+        bindBtn.Text = "..."
+        bindBtn.BackgroundColor3 = Cores.Destaque
+    end)
+end
+
+UserInputService.InputBegan:Connect(function(input, gameProcessed)
+    if waitingForKey and input.UserInputType == Enum.UserInputType.Keyboard then
+        local keyName = input.KeyCode.Name
+        Binds[waitingForKey] = keyName
+        
+        -- Atualiza visualmente o botão
+        for _, child in ipairs(ConfigPage:GetDescendants()) do
+            if child:IsA("TextButton") and child.Text == "..." then
+                child.Text = keyName
+                child.BackgroundColor3 = Cores.BindAzul
+            end
+        end
+        
+        showFeedback("Bind atualizado: " .. keyName)
+        waitingForKey = nil
+    end
+end)
+
+local rebuildConfigList
+rebuildConfigList = function()
+    for _, child in ipairs(configListSection:GetChildren()) do if not child:IsA("UIListLayout") then child:Destroy() end end
+    local configs = getAllConfigs()
+    for cfgName, _ in pairs(configs) do
+        local row = Instance.new("Frame")
+        row.Size = UDim2.new(1, 0, 0, 32)
+        row.BackgroundColor3 = Cores.Card
+        row.BorderSizePixel = 0
+        row.Parent = configListSection
+        local rc = Instance.new("UICorner"); rc.CornerRadius = UDim.new(0,7); rc.Parent = row
+        local nameTag = Instance.new("TextLabel")
+        nameTag.Size = UDim2.new(1,-80,1,0); nameTag.Position = UDim2.new(0,10,0,0); nameTag.BackgroundTransparency = 1
+        nameTag.Text = cfgName; nameTag.TextColor3 = Cores.TextoPrimario; nameTag.TextSize = 12; nameTag.Font = Enum.Font.GothamSemibold; nameTag.TextXAlignment = Enum.TextXAlignment.Left; nameTag.Parent = row
+        local loadBtn = Instance.new("TextButton")
+        loadBtn.Size = UDim2.new(0,36,0,22); loadBtn.Position = UDim2.new(1,-76,0.5,-11); loadBtn.BackgroundColor3 = Cores.BindAzul; loadBtn.Text = "Load"; loadBtn.TextColor3 = Color3.fromRGB(255,255,255); loadBtn.TextSize = 11; loadBtn.Font = Enum.Font.GothamBold; loadBtn.Parent = row
+        local lc = Instance.new("UICorner"); lc.CornerRadius = UDim.new(0,5); lc.Parent = loadBtn
+        local delBtn = Instance.new("TextButton")
+        delBtn.Size = UDim2.new(0,32,0,22); delBtn.Position = UDim2.new(1,-36,0.5,-11); delBtn.BackgroundColor3 = Color3.fromRGB(180,50,50); delBtn.Text = "X"; delBtn.TextColor3 = Color3.fromRGB(255,255,255); delBtn.TextSize = 12; delBtn.Font = Enum.Font.GothamBold; delBtn.Parent = row
+        local dc = Instance.new("UICorner"); dc.CornerRadius = UDim.new(0,5); dc.Parent = delBtn
+        loadBtn.MouseButton1Click:Connect(function()
+            local all = getAllConfigs()
+            if all[cfgName] then
+                applySnapshot(all[cfgName])
+                refreshAllTextLabels()
+                -- Atualiza visualmente os botões de raridade após carregar config
+                for catKey, rarMap in pairs(AutoSellSettings) do
+                    for rarKey, _ in pairs(rarMap) do
+                        atualizarBotaoRaridade(catKey, rarKey)
+                    end
+                end
+                showFeedback('Config "' .. cfgName .. '" carregada!')
+            end
+        end)
+        delBtn.MouseButton1Click:Connect(function()
+            local all = getAllConfigs()
+            all[cfgName] = nil
+            writeAllConfigs(all)
+            rebuildConfigList()
+            showFeedback('Config "' .. cfgName .. '" removida.', false)
+        end)
+    end
+end
+
+saveConfigBtn.MouseButton1Click:Connect(function()
+    local name = configNameInput.Text
+    if name == "" then showFeedback("Escreve um nome para a config!", true) return end
+    local all = getAllConfigs()
+    all[name] = getCurrentSnapshot()
+    writeAllConfigs(all)
+    rebuildConfigList()
+    showFeedback('Config "' .. name .. '" salva!')
+    configNameInput.Text = ""
+    configNameInput:ReleaseFocus()
+end)
+
+rebuildConfigList()
+
+-- =========================================================================
+-- EXPORT / IMPORT DE CONFIG (LOADSTRING)
+-- =========================================================================
+CreateSection(ConfigPage, "EXPORT / IMPORT")
+
+-- Função: gera loadstring a partir do snapshot atual
+local function generateConfigLoadstring()
+    local snap = getCurrentSnapshot()
+    local encoded = HttpService:JSONEncode(snap)
+    local escaped = string.gsub(encoded, "\\", "\\\\")
+    escaped = string.gsub(escaped, "'", "\\'")
+    return "return game:GetService('HttpService'):JSONDecode('" .. escaped .. "')"
+end
+
+-- Card de Export
+do
+    local exportCard = Instance.new("Frame")
+    exportCard.Size = UDim2.new(0.94, 0, 0, 90)
+    exportCard.BackgroundColor3 = Cores.Card
+    exportCard.BorderSizePixel = 0
+    exportCard.LayoutOrder = #ConfigPage:GetChildren()
+    exportCard.Parent = ConfigPage
+    local ecc = Instance.new("UICorner"); ecc.CornerRadius = UDim.new(0, 8); ecc.Parent = exportCard
+
+    local exportLabel = Instance.new("TextLabel")
+    exportLabel.Size = UDim2.new(1, -24, 0, 18)
+    exportLabel.Position = UDim2.new(0, 12, 0, 8)
+    exportLabel.BackgroundTransparency = 1
+    exportLabel.Text = "Exportar Config Atual"
+    exportLabel.TextColor3 = Cores.TextoPrimario
+    exportLabel.TextSize = 13
+    exportLabel.Font = Enum.Font.GothamBold
+    exportLabel.TextXAlignment = Enum.TextXAlignment.Left
+    exportLabel.Parent = exportCard
+
+    local exportDesc = Instance.new("TextLabel")
+    exportDesc.Size = UDim2.new(1, -24, 0, 14)
+    exportDesc.Position = UDim2.new(0, 12, 0, 28)
+    exportDesc.BackgroundTransparency = 1
+    exportDesc.Text = "Gera um loadstring com a config atual"
+    exportDesc.TextColor3 = Cores.TextoSecundario
+    exportDesc.TextSize = 10
+    exportDesc.Font = Enum.Font.GothamSemibold
+    exportDesc.TextXAlignment = Enum.TextXAlignment.Left
+    exportDesc.Parent = exportCard
+
+    local exportBtn = Instance.new("TextButton")
+    exportBtn.Size = UDim2.new(1, -24, 0, 26)
+    exportBtn.Position = UDim2.new(0, 12, 0, 48)
+    exportBtn.BackgroundColor3 = Cores.BindAzul
+    exportBtn.Text = "COPIAR LOADSTRING"
+    exportBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    exportBtn.TextSize = 12
+    exportBtn.Font = Enum.Font.GothamBold
+    exportBtn.AutoButtonColor = false
+    exportBtn.Parent = exportCard
+    local ebc = Instance.new("UICorner"); ebc.CornerRadius = UDim.new(0, 6); ebc.Parent = exportBtn
+
+    exportBtn.MouseButton1Click:Connect(function()
+        local ls = generateConfigLoadstring()
+        if setclipboard then
+            setclipboard(ls)
+            showFeedback("Loadstring copiado para a clipboard!")
+        else
+            showFeedback("setclipboard indisponível — copia manualmente", true)
+        end
+    end)
+end
+
+-- Card de Import
+do
+    local importCard = Instance.new("Frame")
+    importCard.Size = UDim2.new(0.94, 0, 0, 90)
+    importCard.BackgroundColor3 = Cores.Card
+    importCard.BorderSizePixel = 0
+    importCard.LayoutOrder = #ConfigPage:GetChildren()
+    importCard.Parent = ConfigPage
+    local icc = Instance.new("UICorner"); icc.CornerRadius = UDim.new(0, 8); icc.Parent = importCard
+
+    local importLabel = Instance.new("TextLabel")
+    importLabel.Size = UDim2.new(1, -24, 0, 18)
+    importLabel.Position = UDim2.new(0, 12, 0, 8)
+    importLabel.BackgroundTransparency = 1
+    importLabel.Text = "Importar Config (Loadstring)"
+    importLabel.TextColor3 = Cores.TextoPrimario
+    importLabel.TextSize = 13
+    importLabel.Font = Enum.Font.GothamBold
+    importLabel.TextXAlignment = Enum.TextXAlignment.Left
+    importLabel.Parent = importCard
+
+    local importInput = Instance.new("TextBox")
+    importInput.Size = UDim2.new(1, -24, 0, 22)
+    importInput.Position = UDim2.new(0, 12, 0, 28)
+    importInput.BackgroundColor3 = Cores.Fundo
+    importInput.BorderSizePixel = 0
+    importInput.Text = ""
+    importInput.PlaceholderText = "Cola o loadstring aqui..."
+    importInput.TextColor3 = Cores.TextoPrimario
+    importInput.PlaceholderColor3 = Cores.TextoSecundario
+    importInput.TextSize = 10
+    importInput.Font = Enum.Font.GothamSemibold
+    importInput.TextXAlignment = Enum.TextXAlignment.Left
+    importInput.ClearTextOnFocus = false
+    importInput.Parent = importCard
+    local ibc = Instance.new("UICorner"); ibc.CornerRadius = UDim.new(0, 5); ibc.Parent = importInput
+    local ibp = Instance.new("UIPadding"); ibp.PaddingLeft = UDim.new(0, 8); ibp.PaddingRight = UDim.new(0, 8); ibp.Parent = importInput
+
+    local importBtn = Instance.new("TextButton")
+    importBtn.Size = UDim2.new(1, -24, 0, 26)
+    importBtn.Position = UDim2.new(0, 12, 0, 56)
+    importBtn.BackgroundColor3 = Cores.StartGreen
+    importBtn.Text = "APLICAR CONFIG"
+    importBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+    importBtn.TextSize = 12
+    importBtn.Font = Enum.Font.GothamBold
+    importBtn.AutoButtonColor = false
+    importBtn.Parent = importCard
+    local imbc = Instance.new("UICorner"); imbc.CornerRadius = UDim.new(0, 6); imbc.Parent = importBtn
+
+    importBtn.MouseButton1Click:Connect(function()
+        local raw = importInput.Text
+        if raw == "" then showFeedback("Cola um loadstring primeiro!", true) return end
+
+        pcall(function()
+            local func = loadstring(raw)
+            if not func then showFeedback("Loadstring inválido!", true) return end
+            local result = func()
+            if type(result) == "string" then
+                -- Se retornou string, é JSON-encoded
+                local ok, decoded = pcall(function() return HttpService:JSONDecode(result) end)
+                if ok and type(decoded) == "table" then
+                    applySnapshot(decoded)
+                    refreshAllTextLabels()
+                    for catKey, rarMap in pairs(AutoSellSettings) do
+                        for rarKey, _ in pairs(rarMap) do
+                            atualizarBotaoRaridade(catKey, rarKey)
+                        end
+                    end
+                    showFeedback("Config importada com sucesso!")
+                else
+                    showFeedback("JSON inválido no loadstring!", true)
+                end
+            elseif type(result) == "table" then
+                -- Se retornou tabela direto
+                applySnapshot(result)
+                refreshAllTextLabels()
+                for catKey, rarMap in pairs(AutoSellSettings) do
+                    for rarKey, _ in pairs(rarMap) do
+                        atualizarBotaoRaridade(catKey, rarKey)
+                    end
+                end
+                showFeedback("Config importada com sucesso!")
+            else
+                showFeedback("Loadstring não retornou config válida!", true)
+            end
+        end)
+    end)
+end
+
+-- =========================================================================
+-- AVATAR CHANGER
+-- =========================================================================
+function iniciarChanger()
+    local asset = "rbxassetid://103879899072630"
+    local function isAvatarImage(label)
+        local img = label.Image
+        if typeof(img) == "string" and img ~= "" then
+            if string.find(img, tostring(LocalPlayer.UserId)) then return true end
+            if string.find(img, "rbxthumb://") and (string.find(string.lower(img), "avatar") or string.find(string.lower(img), "headshot") or string.find(string.lower(img), "bust")) then return true end
+        end
+        local name = string.lower(label.Name)
+        if name == "avatar" or name == "portrait" or name == "playericon" or name == "avatarimage" or name == "charicon" or name == "charactericon" then return true end
+        if label.Parent then
+            local pName = string.lower(label.Parent.Name)
+            if pName == "avatar" or pName == "portrait" or pName == "playerframe" or pName == "avatarframe" or pName == "charframe" or pName == "portraitframe" then return true end
+        end
+        return false
+    end
+    local function applyToLabel(label)
+        if label:IsA("ImageLabel") or label:IsA("ImageButton") then
+            local function check()
+                if typeof(label.Image) == "string" and label.Image ~= asset and isAvatarImage(label) then label.Image = asset end
+            end
+            check()
+            label:GetPropertyChangedSignal("Image"):Connect(check)
+        end
+    end
+    local playerGui = LocalPlayer:WaitForChild("PlayerGui")
+    for _, descendant in ipairs(playerGui:GetDescendants()) do pcall(applyToLabel, descendant) end
+    playerGui.DescendantAdded:Connect(function(descendant) task.wait(); pcall(applyToLabel, descendant) end)
+end
+
+-- =========================================================================
+-- ATIVAR PRIMEIRA ABA
+-- =========================================================================
+if ContentPages["Combate"] then
+    ContentPages["Combate"].Page.Visible = true
+    ContentPages["Combate"].Button.BackgroundColor3 = Cores.TabAtiva
+    ContentPages["Combate"].Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+end
+
+-- =========================================================================
+-- INIT FINAL
+-- =========================================================================
+task.spawn(function()
+    pcall(iniciarChanger)
+    pcall(iniciarNameChanger)
+    while not LocalPlayer.Character or not LocalPlayer.Character:FindFirstChild("Humanoid") do task.wait(0.5) end
+    NightHub.OriginalWalkSpeed = LocalPlayer.Character.Humanoid.WalkSpeed
+    if NightHub.VelocidadeExtra then ativarVelocidadeExtra() end
+end)
+
+-- =========================================================================
+-- CLEANUP FUNCTION PARA SCRIPT DUPLICADO
+-- =========================================================================
+_G[NIGHTHUB_ID].Cleanup = function()
+    -- Desativa todas as funções
+    pcall(function() if NightHub.SpammerAtivo then pararSpammer() end end)
+    pcall(function() if NightHub.FlyAtivo then pararFly() end end)
+    pcall(function() if NightHub.FarmAtivo then pararFarm() end end)
+    pcall(function() if NightHub.NoVFXAtivo then desativarNoVFX() end end)
+    pcall(function() if NightHub.VelocidadeExtra then desativarVelocidadeExtra() end end)
+    pcall(function() if NightHub.AutoStartAtivo then pararAutoStart() end end)
+    
+    -- Desconecta todas as conexões
+    for _, conn in ipairs(Connections) do
+        pcall(function() conn:Disconnect() end)
+    end
+    Connections = {}
+    
+    -- Remove a GUI
+    pcall(function() ScreenGui:Destroy() end)
+    
+    -- Marca como inativo
+    _G[NIGHTHUB_ID].Active = false
+end
+
+print("Night Hub + Void-Stalker Farm + Fly Manual + Auto Sell ativado com sucesso!")
+print("Abas: Combate | Farm | Dungeon | Sell | Profile | Config")
+print("Binds: Spammer=R | Farm=G | Fly=F | NoVFX=H | Speed=J | UI=K | Dungeon=L")
