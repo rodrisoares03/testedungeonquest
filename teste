@@ -3,7 +3,14 @@
 -- NIGHT HUB - DUNGEON QUEST SPAMMER & VOID-STALKER FARM
 -- COM FLY MANUAL, FARM INTELIGENTE, PROFILE, CONFIGS E AUTO SELL
 -- =========================================================================
+local HttpService = game:GetService("HttpService")
+local defaultConfig = '{"VelocidadeExtra":true,"OcultarNome":false,"FlightSpeed":30,"FixedDepth":-17,"NomePersonalizado":"Autofarm afk","FlySpeed":35,"MaxDetectionRange":500,"Binds":{"Spammer":"R","ToggleUI":"K","Farm":"G","Fly":"F","StartDungeon":"L","NoVFX":"H","Speed":"J"},"FarmAtivo":true,"AutoStartAtivo":true,"AutoSellAtivo":false,"OrbitMode":false,"SpammerAtivo":true,"AutoSellSettings":{"chest":{"epic":false,"common":true,"uncommon":true,"rare":true},"helmet":{"epic":false,"common":true,"uncommon":true,"rare":true},"ability":{"legendary":false,"common":true,"epic":false,"uncommon":true,"rare":true},"ring":{"epic":false,"common":false,"uncommon":false,"rare":false},"weapon":{"legendary":false,"common":true,"epic":true,"rare":true,"uncommon":true,"ultimate":false}},"HitboxSize":200,"FlyAtivo":false,"AutoRetryAtivo":true,"NoVFXAtivo":false}'
 
+-- Transforma o texto JSON em uma tabela Luau funcional
+local Config = HttpService:JSONDecode(defaultConfig)
+
+-- A partir daqui, o seu script usa a variável 'Config'
+-- Exemplo: if Config.FarmAtivo then ... end
 -- Serviços
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
