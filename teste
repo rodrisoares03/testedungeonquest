@@ -3,14 +3,7 @@
 -- NIGHT HUB - DUNGEON QUEST SPAMMER & VOID-STALKER FARM
 -- COM FLY MANUAL, FARM INTELIGENTE, PROFILE, CONFIGS E AUTO SELL
 -- =========================================================================
-local HttpService = game:GetService("HttpService")
-local defaultConfig = '{"VelocidadeExtra":true,"OcultarNome":false,"FlightSpeed":30,"FixedDepth":-17,"NomePersonalizado":"Autofarm afk","FlySpeed":35,"MaxDetectionRange":500,"Binds":{"Spammer":"R","ToggleUI":"K","Farm":"G","Fly":"F","StartDungeon":"L","NoVFX":"H","Speed":"J"},"FarmAtivo":true,"AutoStartAtivo":true,"AutoSellAtivo":false,"OrbitMode":false,"SpammerAtivo":true,"AutoSellSettings":{"chest":{"epic":false,"common":true,"uncommon":true,"rare":true},"helmet":{"epic":false,"common":true,"uncommon":true,"rare":true},"ability":{"legendary":false,"common":true,"epic":false,"uncommon":true,"rare":true},"ring":{"epic":false,"common":false,"uncommon":false,"rare":false},"weapon":{"legendary":false,"common":true,"epic":true,"rare":true,"uncommon":true,"ultimate":false}},"HitboxSize":200,"FlyAtivo":false,"AutoRetryAtivo":true,"NoVFXAtivo":false}'
 
--- Transforma o texto JSON em uma tabela Luau funcional
-local Config = HttpService:JSONDecode(defaultConfig)
-
--- A partir daqui, o seu script usa a variável 'Config'
--- Exemplo: if Config.FarmAtivo then ... end
 -- Serviços
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
@@ -2270,7 +2263,7 @@ local function generateConfigLoadstring()
     local encoded = HttpService:JSONEncode(snap)
     local escaped = string.gsub(encoded, "\\", "\\\\")
     escaped = string.gsub(escaped, "'", "\\'")
-    return "return game:GetService('HttpService'):JSONDecode('" .. escaped .. "')"
+    return "_G.NightHubConfigPending = game:GetService('HttpService'):JSONDecode('" .. escaped .. "')"
 end
 
 -- Card de Export
@@ -2385,25 +2378,13 @@ do
         pcall(function()
             local func = loadstring(raw)
             if not func then showFeedback("Loadstring inválido!", true) return end
-            local result = func()
-            if type(result) == "string" then
-                -- Se retornou string, é JSON-encoded
-                local ok, decoded = pcall(function() return HttpService:JSONDecode(result) end)
-                if ok and type(decoded) == "table" then
-                    applySnapshot(decoded)
-                    refreshAllTextLabels()
-                    for catKey, rarMap in pairs(AutoSellSettings) do
-                        for rarKey, _ in pairs(rarMap) do
-                            atualizarBotaoRaridade(catKey, rarKey)
-                        end
-                    end
-                    showFeedback("Config importada com sucesso!")
-                else
-                    showFeedback("JSON inválido no loadstring!", true)
-                end
-            elseif type(result) == "table" then
-                -- Se retornou tabela direto
-                applySnapshot(result)
+            func()
+
+            -- Formato novo: _G.NightHubConfigPending = ...
+            if _G.NightHubConfigPending and type(_G.NightHubConfigPending) == "table" then
+                local cfg = _G.NightHubConfigPending
+                _G.NightHubConfigPending = nil
+                applySnapshot(cfg)
                 refreshAllTextLabels()
                 for catKey, rarMap in pairs(AutoSellSettings) do
                     for rarKey, _ in pairs(rarMap) do
@@ -2411,9 +2392,12 @@ do
                     end
                 end
                 showFeedback("Config importada com sucesso!")
-            else
-                showFeedback("Loadstring não retornou config válida!", true)
+                return
             end
+
+            -- Formato antigo: return JSONDecode(...)
+            -- (não aplicável com novo formato, mas mantido por compatibilidade)
+            showFeedback("Loadstring não contém config válida!", true)
         end)
     end)
 end
@@ -2496,6 +2480,48 @@ _G[NIGHTHUB_ID].Cleanup = function()
     _G[NIGHTHUB_ID].Active = false
 end
 
+-- Expõe applySnapshot via _G para loadstring externo aplicar config
+_G[NIGHTHUB_ID].ApplyConfig = function(configData)
+    pcall(function()
+        applySnapshot(configData)
+        refreshAllTextLabels()
+        for catKey, rarMap in pairs(AutoSellSettings) do
+            for rarKey, _ in pairs(rarMap) do
+                atualizarBotaoRaridade(catKey, rarKey)
+            end
+        end
+    end)
+end
+
 print("Night Hub + Void-Stalker Farm + Fly Manual + Auto Sell ativado com sucesso!")
 print("Abas: Combate | Farm | Dungeon | Sell | Profile | Config")
 print("Binds: Spammer=R | Farm=G | Fly=F | NoVFX=H | Speed=J | UI=K | Dungeon=L")
+
+-- =========================================================================
+-- AUTO-IMPORT: verifica se existe config pendente no _G e aplica
+-- =========================================================================
+task.spawn(function()
+    task.wait(3)
+    -- Verifica _G.Config (definido pelo loadstring externo)
+    if _G.Config and type(_G.Config) == "table" then
+        local cfg = _G.Config
+        for _, v in pairs(_G) do
+            if type(v) == "table" and v.ApplyConfig then
+                v.ApplyConfig(cfg)
+                print("[NightHub] Config importada automaticamente via _G.Config!")
+                break
+            end
+        end
+    -- Verifica _G.NightHubConfigPending (formato alternativo)
+    elseif _G.NightHubConfigPending and type(_G.NightHubConfigPending) == "table" then
+        local cfg = _G.NightHubConfigPending
+        _G.NightHubConfigPending = nil
+        for _, v in pairs(_G) do
+            if type(v) == "table" and v.ApplyConfig then
+                v.ApplyConfig(cfg)
+                print("[NightHub] Config importada automaticamente!")
+                break
+            end
+        end
+    end
+end)
