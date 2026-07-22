@@ -2502,24 +2502,45 @@ print("Binds: Spammer=R | Farm=G | Fly=F | NoVFX=H | Speed=J | UI=K | Dungeon=L"
 -- =========================================================================
 task.spawn(function()
     task.wait(3)
-    -- Verifica _G.Config (definido pelo loadstring externo)
+
+    -- Formato 1: _G.NightHubConfigLoadstring contém loadstring da config
+    if _G.NightHubConfigLoadstring and type(_G.NightHubConfigLoadstring) == "string" then
+        local ok, cfgFunc = pcall(loadstring, _G.NightHubConfigLoadstring)
+        if ok and cfgFunc then
+            local ok2, cfg = pcall(cfgFunc)
+            if ok2 and type(cfg) == "table" then
+                for _, v in pairs(_G) do
+                    if type(v) == "table" and v.ApplyConfig then
+                        v.ApplyConfig(cfg)
+                        print("[NightHub] Config importada via loadstring!")
+                        break
+                    end
+                end
+            end
+        end
+        return
+    end
+
+    -- Formato 2: _G.Config é tabela direta
     if _G.Config and type(_G.Config) == "table" then
-        local cfg = _G.Config
         for _, v in pairs(_G) do
             if type(v) == "table" and v.ApplyConfig then
-                v.ApplyConfig(cfg)
-                print("[NightHub] Config importada automaticamente via _G.Config!")
+                v.ApplyConfig(_G.Config)
+                print("[NightHub] Config importada via _G.Config!")
                 break
             end
         end
-    -- Verifica _G.NightHubConfigPending (formato alternativo)
-    elseif _G.NightHubConfigPending and type(_G.NightHubConfigPending) == "table" then
+        return
+    end
+
+    -- Formato 3: _G.NightHubConfigPending
+    if _G.NightHubConfigPending and type(_G.NightHubConfigPending) == "table" then
         local cfg = _G.NightHubConfigPending
         _G.NightHubConfigPending = nil
         for _, v in pairs(_G) do
             if type(v) == "table" and v.ApplyConfig then
                 v.ApplyConfig(cfg)
-                print("[NightHub] Config importada automaticamente!")
+                print("[NightHub] Config importada!")
                 break
             end
         end
