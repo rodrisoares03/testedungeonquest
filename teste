@@ -80,11 +80,6 @@ local NightHub = {
     AutoSellAtivo = false,
     AutoRetryAtivo = false,
     AutoStartAtivo = false,
-    -- Setup
-    LeapingStrikeEquipped = false,
-    SetupHealSlot = "E",
-    SetupDamageSlot = "Q",
-    SupportedHeals = {"Chain Heal", "Life Dash", "Universal Heal"},
     -- Leaping Strike TP
     LeapingStrikeTPAtivo = false,
     ForceClickAtivo = false,
@@ -250,6 +245,9 @@ function getCurrentSnapshot()
         SpammerAtivo = NightHub.SpammerAtivo,
         FarmAtivo = NightHub.FarmAtivo,
         FlyAtivo = NightHub.FlyAtivo,
+        LeapingStrikeTPAtivo = NightHub.LeapingStrikeTPAtivo,
+        ForceClickAtivo = NightHub.ForceClickAtivo,
+        SpeedMultiplier = NightHub.SpeedMultiplier,
         Binds = {
             Spammer = Binds.Spammer,
             Farm = Binds.Farm,
@@ -258,6 +256,7 @@ function getCurrentSnapshot()
             Speed = Binds.Speed,
             ToggleUI = Binds.ToggleUI,
             StartDungeon = Binds.StartDungeon,
+            ForceClick = Binds.ForceClick,
         },
     }
 end
@@ -271,7 +270,7 @@ function applySnapshot(data)
     if data.VelocidadeExtra ~= nil then NightHub.VelocidadeExtra = data.VelocidadeExtra end
     if data.NoVFXAtivo ~= nil then NightHub.NoVFXAtivo = data.NoVFXAtivo end
     if data.FlightSpeed ~= nil then NightHub.FlightSpeed = data.FlightSpeed; UpdateSlider("Velocidade do Farm", data.FlightSpeed) end
-    if data.FlySpeed ~= nil then NightHub.FlySpeed = data.FlySpeed end
+    if data.FlySpeed ~= nil then NightHub.FlySpeed = data.FlySpeed; UpdateSlider("Velocidade do Fly", data.FlySpeed) end
     if data.OrbitMode ~= nil then NightHub.OrbitMode = data.OrbitMode end
     if data.FixedDepth ~= nil then NightHub.FixedDepth = data.FixedDepth; UpdateSlider("Profundidade", data.FixedDepth) end
     if data.MaxDetectionRange ~= nil then NightHub.MaxDetectionRange = data.MaxDetectionRange; UpdateSlider("Alcance de Detecção", data.MaxDetectionRange) end
@@ -357,6 +356,18 @@ function applySnapshot(data)
     if data.VelocidadeExtra ~= nil then
         UpdateUIToggle("Speed", data.VelocidadeExtra)
         if data.VelocidadeExtra then pcall(ativarVelocidadeExtra) else pcall(desativarVelocidadeExtra) end
+    end
+    if data.LeapingStrikeTPAtivo ~= nil then
+        NightHub.LeapingStrikeTPAtivo = data.LeapingStrikeTPAtivo
+        UpdateUIToggle("LeapingStrikeTP", NightHub.LeapingStrikeTPAtivo)
+        if NightHub.LeapingStrikeTPAtivo then pcall(iniciarLeapingStrikeTP) else pcall(pararLeapingStrikeTP) end
+    end
+    if data.ForceClickAtivo ~= nil then
+        NightHub.ForceClickAtivo = data.ForceClickAtivo
+        UpdateUIToggle("ForceClick", NightHub.ForceClickAtivo)
+    end
+    if data.SpeedMultiplier ~= nil then
+        NightHub.SpeedMultiplier = data.SpeedMultiplier
     end
     
     -- Atualiza visual dos botões de raridade na aba Sell
@@ -1235,8 +1246,8 @@ local function getSortedZoneKeys(zones)
 end
 
 local BossPositions = {
-    ["Adelys"] = { pos = Vector3.new(1585, -487, 98), cooldown = 8 },
-    ["The Voidborn"] = { pos = Vector3.new(2352, -621, 87), cooldown = 10 },
+    ["Adelys"] = { pos = Vector3.new(1574, -485, 112), cooldown = 8 },
+    ["The Voidborn"] = { pos = Vector3.new(2367, -623, 72), cooldown = 10 },
 }
 
 local function getBestPart(model)
@@ -1256,8 +1267,35 @@ local function isVoidShade(name)
     return string.find(n, "voidshade") or string.find(n, "void shade")
 end
 
+local function isGroundTPNPC(name)
+    local n = string.lower(name)
+    return string.find(n, "corrupted growth") or string.find(n, "eldritch reaver")
+end
+
+local function getLowestPartY(model)
+    local lowestY = nil
+    local hrp = model:FindFirstChild("HumanoidRootPart")
+    local hrpY = hrp and (hrp.Position.Y - hrp.Size.Y / 2) or nil
+    for _, part in pairs(model:GetDescendants()) do
+        if part:IsA("BasePart") then
+            local y = part.Position.Y - part.Size.Y / 2
+            if hrpY and y < hrpY - 20 then continue end
+            if not lowestY or y < lowestY then
+                lowestY = y
+            end
+        end
+    end
+    return lowestY
+end
+
 function iniciarLeapingStrikeTP()
     if Connections.LeapingStrikeTP then return end
+
+    pcall(function()
+        local char = LocalPlayer.Character
+        local hum = char and char:FindFirstChildOfClass("Humanoid")
+        if hum then hum:SetStateEnabled(Enum.HumanoidStateType.FallingDown, false) end
+    end)
 
     local tpBV = Instance.new("BodyVelocity")
     tpBV.MaxForce = Vector3.new(1e6, 1e6, 1e6)
@@ -1275,14 +1313,35 @@ function iniciarLeapingStrikeTP()
                 local rootPart = char and char:FindFirstChild("HumanoidRootPart")
                 if not rootPart then return end
 
-                tpBV.Parent = rootPart
-                tpBG.Parent = rootPart
+                if waitingForVoidborn then
+                    tpBV.Parent = rootPart
+                    tpBG.Parent = rootPart
+                    tpBV.Velocity = Vector3.new(0, 0, 0)
+                    local bPos = BossPositions["The Voidborn"].pos
+                    rootPart.CFrame = CFrame.new(bPos.X, bPos.Y, bPos.Z)
+                    if (tick() - voidbornWaitStart) >= 5 then
+                        waitingForVoidborn = false
+                    end
+                    return
+                end
+
+                if currentBoss == "The Voidborn" then
+                    tpBV.Parent = rootPart
+                    tpBV.Velocity = Vector3.new(0, 0, 0)
+                    local bPos = BossPositions["The Voidborn"].pos
+                    rootPart.CFrame = CFrame.new(bPos.X, bPos.Y, bPos.Z)
+                    return
+                end
 
                 local closestNPC = nil
                 local closestDist = math.huge
                 local closestNPCModel = nil
                 local isVoidShadeTarget = false
+                local isGroundTarget = false
                 local bossName = nil
+                local bossNPC = nil
+                local bossNPCModel = nil
+                local hasNormalNPC = false
 
                 for _, v in pairs(workspace:GetDescendants()) do
                     if v:IsA("Humanoid") and v.Parent ~= char and v.Health > 0 then
@@ -1293,34 +1352,53 @@ function iniciarLeapingStrikeTP()
                             local nameLower = string.lower(model.Name)
 
                             if string.find(nameLower, "adelys") then
+                                bossNPC = targetPart
+                                bossNPCModel = model
                                 bossName = "Adelys"
-                                closestNPC = targetPart
-                                closestNPCModel = model
-                                closestDist = d
                             elseif string.find(nameLower, "the voidborn") then
+                                bossNPC = targetPart
+                                bossNPCModel = model
                                 bossName = "The Voidborn"
-                                closestNPC = targetPart
-                                closestNPCModel = model
-                                closestDist = d
                             elseif isVoidShade(model.Name) then
+                                hasNormalNPC = true
                                 if d < closestDist then
                                     closestDist = d
                                     closestNPC = targetPart
                                     closestNPCModel = model
                                     isVoidShadeTarget = true
-                                    bossName = nil
+                                    isGroundTarget = false
                                 end
-                            else
-                                if d < closestDist and not bossName then
+                            elseif isGroundTPNPC(model.Name) then
+                                hasNormalNPC = true
+                                if d < closestDist then
                                     closestDist = d
                                     closestNPC = targetPart
                                     closestNPCModel = model
                                     isVoidShadeTarget = false
-                                    bossName = nil
+                                    isGroundTarget = true
+                                end
+                            else
+                                hasNormalNPC = true
+                                if d < closestDist then
+                                    closestDist = d
+                                    closestNPC = targetPart
+                                    closestNPCModel = model
+                                    isVoidShadeTarget = false
+                                    isGroundTarget = false
                                 end
                             end
                         end
                     end
+                end
+
+                if bossName == "The Voidborn" then
+                    closestNPC = bossNPC
+                    closestNPCModel = bossNPCModel
+                elseif not hasNormalNPC and bossNPC then
+                    closestNPC = bossNPC
+                    closestNPCModel = bossNPCModel
+                elseif hasNormalNPC then
+                    bossName = nil
                 end
 
                 local npcAlive = false
@@ -1332,36 +1410,66 @@ function iniciarLeapingStrikeTP()
                 end
 
                 if npcAlive then
+                    tpBV.Parent = rootPart
                     tpBV.Velocity = Vector3.new(0, 0, 0)
+                    tpBG.Parent = nil
+
+                    local npcNameLower = string.lower(closestNPCModel.Name)
 
                     if bossName == "Adelys" then
-                        rootPart.CFrame = CFrame.new(closestNPC.Position)
+                        local bPos = BossPositions["Adelys"].pos
+                        local waitPos = Vector3.new(bPos.X, bPos.Y + 5, bPos.Z)
+                        rootPart.CFrame = CFrame.new(waitPos, closestNPC.Position)
 
                     elseif bossName == "The Voidborn" then
-                        rootPart.CFrame = CFrame.new(closestNPC.Position)
+                        local bPos = BossPositions["The Voidborn"].pos
+                        rootPart.CFrame = CFrame.new(bPos.X, bPos.Y, bPos.Z)
 
-                    elseif isVoidShadeTarget and closestNPC then
+                    elseif isVoidShadeTarget then
                         local voidLook = closestNPC.CFrame.LookVector
-                        local toPlayer = (rootPart.Position - closestNPC.Position)
-                        toPlayer = Vector3.new(toPlayer.X, 0, toPlayer.Z)
-                        if toPlayer.Magnitude > 0.1 then
-                            toPlayer = toPlayer.Unit
-                        else
-                            toPlayer = Vector3.new(0, 0, -1)
-                        end
-
                         local behind = -voidLook
-                        local backPos = closestNPC.Position + behind * 15
-                        rootPart.CFrame = CFrame.new(backPos, closestNPC.Position)
+                        local lowestY = getLowestPartY(closestNPCModel) or closestNPC.Position.Y - 3
+                        local baseY = math.max(lowestY, closestNPC.Position.Y - 5)
+                        local backX = closestNPC.Position.X + behind.X * 8
+                        local backZ = closestNPC.Position.Z + behind.Z * 8
+                        rootPart.CFrame = CFrame.new(Vector3.new(backX, baseY, backZ), closestNPC.Position)
 
-                    elseif closestNPC and closestDist > 8 then
-                        local behind = -closestNPC.CFrame.LookVector
-                        local backPos = closestNPC.Position + behind * 10
-                        rootPart.CFrame = CFrame.new(backPos, closestNPC.Position)
+                    elseif isGroundTarget then
+                        local lowestY = getLowestPartY(closestNPCModel) or closestNPC.Position.Y - 5
+                        local groundY = lowestY - 2
+                        rootPart.CFrame = CFrame.new(closestNPC.Position.X, groundY, closestNPC.Position.Z)
+
+                    else
+                        local lowestY = getLowestPartY(closestNPCModel) or closestNPC.Position.Y - 3
+                        local baseY = math.max(lowestY, closestNPC.Position.Y - 5)
+                        local sideOffset = closestNPC.CFrame.RightVector * 5
+                        local posX = closestNPC.Position.X + sideOffset.X
+                        local posZ = closestNPC.Position.Z + sideOffset.Z
+                        rootPart.CFrame = CFrame.new(Vector3.new(posX, baseY, posZ), closestNPC.Position)
                     end
                 else
-                    tpBV.Velocity = Vector3.new(0, 0.5, 0)
-                    tpBG.CFrame = CFrame.new(rootPart.Position, rootPart.Position + rootPart.CFrame.LookVector)
+                    local waitBoss = nil
+                    if bossPhase == 0 then
+                        waitBoss = "Adelys"
+                    elseif bossPhase == 1 then
+                        waitBoss = "The Voidborn"
+                    end
+                    if waitBoss and BossPositions[waitBoss] then
+                        tpBV.Parent = rootPart
+                        tpBG.Parent = rootPart
+                        local bossPos = BossPositions[waitBoss].pos
+                        local waitPos = Vector3.new(bossPos.X, bossPos.Y + 15, bossPos.Z)
+                        local dir = (waitPos - rootPart.Position)
+                        if dir.Magnitude > 3 then
+                            tpBV.Velocity = dir.Unit * 30
+                        else
+                            tpBV.Velocity = Vector3.new(0, 0, 0)
+                        end
+                        tpBG.CFrame = CFrame.new(rootPart.Position, Vector3.new(bossPos.X, rootPart.Position.Y, bossPos.Z))
+                    else
+                        tpBV.Parent = nil
+                        tpBG.Parent = nil
+                    end
                 end
             end)
             task.wait(0.1)
@@ -1378,6 +1486,11 @@ function pararLeapingStrikeTP()
     NightHub.LeapingStrikeTPAtivo = false
     currentZoneMap = nil
     currentZoneKeys = nil
+    pcall(function()
+        local char = LocalPlayer.Character
+        local hum = char and char:FindFirstChildOfClass("Humanoid")
+        if hum then hum:SetStateEnabled(Enum.HumanoidStateType.FallingDown, true) end
+    end)
     if Connections.LeapingStrikeTPCleanup then
         pcall(Connections.LeapingStrikeTPCleanup)
         Connections.LeapingStrikeTPCleanup = nil
@@ -1412,76 +1525,6 @@ local function findToolInInventory(toolName)
     end
 
     return nil, nil
-end
-
-local function findHealAbility()
-    local char = LocalPlayer.Character
-    local backpack = LocalPlayer:FindFirstChild("Backpack")
-
-    -- Procura os heals suportados na ordem de prioridade
-    for _, healName in ipairs(NightHub.SupportedHeals) do
-        if char then
-            for _, tool in ipairs(char:GetChildren()) do
-                if tool:IsA("Tool") and tool.Name == healName then
-                    return tool, char, healName
-                end
-            end
-        end
-        if backpack then
-            for _, tool in ipairs(backpack:GetChildren()) do
-                if tool:IsA("Tool") and tool.Name == healName then
-                    return tool, backpack, healName
-                end
-            end
-        end
-    end
-
-    return nil, nil, nil
-end
-
-local function setupAbilities()
-    local char = LocalPlayer.Character
-    if not char then return end
-
-    local humanoid = char:FindFirstChild("Humanoid")
-    if not humanoid then return end
-
-    -- Espera o character estar pronto
-    task.wait(1)
-
-    -- Procura e equipa o heal para o slot E
-    local healTool, parent, healName = findHealAbility()
-    if healTool then
-        print("[Setup] Heal encontrado: " .. healName)
-        -- O heal fica no slot E (Backpack)
-        -- O tool já está no inventário, só precisa de estar no slot correto
-    else
-        warn("[Setup] Nenhum heal suportado encontrado (Chain Heal, Life Dash, Universal Heal)")
-        warn("[Setup] Healing NÃO funcionará sem um destes heals!")
-    end
-
-    -- Procura ability de dano para o slot Q
-    local backpack = LocalPlayer:FindFirstChild("Backpack")
-    if backpack then
-        for _, tool in ipairs(backpack:GetChildren()) do
-            if tool:IsA("Tool") and tool.Name ~= "Leaping Strike" then
-                -- Verifica se NÃO é o heal que já encontramos
-                local isHeal = false
-                for _, healName in ipairs(NightHub.SupportedHeals) do
-                    if tool.Name == healName then
-                        isHeal = true
-                        break
-                    end
-                end
-                if not isHeal then
-                    print("[Setup] Ability de dano encontrada: " .. tool.Name)
-                    break
-                end
-            end
-        end
-    end
-
-    print("[Setup] Layout correto: Q = Damage Spell | E = Healing Spell")
 end
 
 -- =========================================================================
@@ -1521,93 +1564,24 @@ end
 
 function iniciarSpammer()
     if Connections.SpamLoop then return end
-    LeapingStrikeUsedOnce = false
-    LeapingStrikeAutoUsed = false
-
-    task.defer(function()
-        for _ = 1, 20 do
-            if not NightHub.SpammerAtivo then return end
-            usarLeapingStrikeUmaVez()
-            if LeapingStrikeAutoUsed then return end
-            task.wait(0.1)
-        end
-    end)
-
     Connections.SpamLoop = RunService.Heartbeat:Connect(function()
         if not NightHub.SpammerAtivo then return end
-
         pcall(function()
             local char = LocalPlayer.Character
             if not char then return end
-            local bp = LocalPlayer:FindFirstChild("Backpack")
-
-            -- Desativa animações de tools para não causar pausas
-            for _, tool in ipairs(char:GetChildren()) do
-                if tool:IsA("Tool") and tool.Name ~= "Leaping Strike" then
-                    pcall(function()
-                        local humanoid = char:FindFirstChildOfClass("Humanoid")
-                        if humanoid then
-                            local animator = humanoid:FindFirstChildOfClass("Animator")
-                            if animator then
-                                for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
-                                    if track and track.IsPlaying then
-                                        track:Stop(0)
-                                    end
-                                end
-                            end
-                        end
-                    end)
-                end
-            end
-
-            -- Spam Q key (dano)
-            pcall(function()
-                VIM:SendKeyEvent(true, Enum.KeyCode.Q, false, game)
-                task.defer(function()
-                    VIM:SendKeyEvent(false, Enum.KeyCode.Q, false, game)
-                end)
-            end)
-
-            -- Spam E key (cura)
-            pcall(function()
-                VIM:SendKeyEvent(true, Enum.KeyCode.E, false, game)
-                task.defer(function()
-                    VIM:SendKeyEvent(false, Enum.KeyCode.E, false, game)
-                end)
-            end)
+            if not char:FindFirstChild("HumanoidRootPart") then return end
+            if not char:FindFirstChild("Humanoid") then return end
 
             local tools = {}
-            for _, v in ipairs(char:GetChildren()) do
-                if v:IsA("Tool") then table.insert(tools, v) end
-            end
-            if bp then
-                for _, v in ipairs(bp:GetChildren()) do
-                    if v:IsA("Tool") then table.insert(tools, v) end
-                end
-            end
+            for _, v in ipairs(char:GetChildren()) do if v:IsA("Tool") then table.insert(tools, v) end end
+            local bp = LocalPlayer:FindFirstChild("Backpack")
+            if bp then for _, v in ipairs(bp:GetChildren()) do if v:IsA("Tool") then table.insert(tools, v) end end end
 
             for _, tool in ipairs(tools) do
                 pcall(function()
-                    if tool.Name ~= "Leaping Strike" then
-                        -- Desativa animação da tool
-                        pcall(function()
-                            for _, obj in ipairs(tool:GetDescendants()) do
-                                if obj:IsA("AnimationTrack") then
-                                    obj:Stop(0)
-                                end
-                            end
-                        end)
-
-                        if tool.Parent == char then
-                            tool:Activate()
-                        end
-
-                        -- Fire RemoteEvents diretamente (bypass animação)
-                        for _, d in ipairs(tool:GetDescendants()) do
-                            if d:IsA("RemoteEvent") then
-                                d:FireServer()
-                            end
-                        end
+                    if tool.Parent == char then tool:Activate() end
+                    for _, d in ipairs(tool:GetDescendants()) do
+                        if d:IsA("RemoteEvent") then d:FireServer() end
                     end
                 end)
             end
@@ -1636,14 +1610,19 @@ local function getCharacterParts()
 end
 
 function iniciarFly()
+    if NightHub.FarmAtivo then
+        NightHub.FarmAtivo = false
+        pcall(pararFarm)
+    end
+
     local char, rootPart, humanoid = getCharacterParts()
     if not char or not rootPart or not humanoid then return end
     
-    if not bv then
+    if not bv or not bv.Parent then
         bv = Instance.new("BodyVelocity")
         bv.MaxForce = Vector3.new(1e6, 1e6, 1e6)
     end
-    if not bg then
+    if not bg or not bg.Parent then
         bg = Instance.new("BodyGyro")
         bg.MaxTorque = Vector3.new(1e6, 1e6, 1e6)
         bg.P = 20000
@@ -1656,9 +1635,12 @@ function iniciarFly()
     -- Noclip
     if Connections.FlyNoclip then Connections.FlyNoclip:Disconnect() end
     Connections.FlyNoclip = RunService.Stepped:Connect(function()
-        if NightHub.FlyAtivo and char then
-            for _, part in pairs(char:GetDescendants()) do
-                if part:IsA("BasePart") then part.CanCollide = false end
+        if NightHub.FlyAtivo then
+            local c, _, _ = getCharacterParts()
+            if c then
+                for _, part in pairs(c:GetDescendants()) do
+                    if part:IsA("BasePart") then part.CanCollide = false end
+                end
             end
         end
     end)
@@ -1668,8 +1650,20 @@ function iniciarFly()
     Connections.FlyMovement = RunService.Heartbeat:Connect(function()
         if not NightHub.FlyAtivo then return end
         pcall(function()
-            local _, rp, _ = getCharacterParts()
-            if not rp then return end
+            local c, rp, h = getCharacterParts()
+            if not c or not rp then return end
+
+            if not bv or not bv.Parent then
+                bv = Instance.new("BodyVelocity")
+                bv.MaxForce = Vector3.new(1e6, 1e6, 1e6)
+                bv.Parent = rp
+            end
+            if not bg or not bg.Parent then
+                bg = Instance.new("BodyGyro")
+                bg.MaxTorque = Vector3.new(1e6, 1e6, 1e6)
+                bg.P = 20000
+                bg.Parent = rp
+            end
             
             local camera = workspace.CurrentCamera
             local moveDir = Vector3.new(0, 0, 0)
@@ -1719,9 +1713,13 @@ local farmFlying = false
 local currentTarget = nil
 local currentTargetModel = nil
 local isCurrentVoidShade = false
+local isCurrentGroundNPC = false
 local orbitAngle = 0
 local currentBoss = nil
 local bossLastSeen = 0
+local bossPhase = 0
+local voidbornWaitStart = 0
+local waitingForVoidborn = false
 local farmChar, farmRoot, farmHum
 
 local function updateFarmChar()
@@ -1737,6 +1735,11 @@ end
 
 function iniciarFarm()
     if not updateFarmChar() then return end
+    
+    if NightHub.FlyAtivo then
+        NightHub.FlyAtivo = false
+        pcall(pararFly)
+    end
     
     if not bv then
         bv = Instance.new("BodyVelocity")
@@ -1789,9 +1792,12 @@ function iniciarFarm()
                 local closestVoidModel = nil
                 local closestGregg = nil
                 local closestGreggModel = nil
+                local closestGround = nil
+                local closestGroundModel = nil
                 local shortestNormal = NightHub.MaxDetectionRange
                 local shortestVoid = NightHub.MaxDetectionRange
                 local shortestGregg = NightHub.MaxDetectionRange
+                local shortestGround = NightHub.MaxDetectionRange
                 
                 for _, v in pairs(workspace:GetDescendants()) do
                     if v:IsA("Humanoid") and v.Parent ~= farmChar and v.Health > 0 then
@@ -1803,12 +1809,15 @@ function iniciarFarm()
                             
                             if string.find(nameLower, "adelys") then
                                 currentBoss = "Adelys"
+                                bossPhase = 1
                                 bossFound = true
                                 bossLastSeen = tick()
                             elseif string.find(nameLower, "the voidborn") then
                                 currentBoss = "The Voidborn"
+                                bossPhase = 2
                                 bossFound = true
                                 bossLastSeen = tick()
+                                waitingForVoidborn = false
                             elseif string.find(nameLower, "gregg") then
                                 if d < shortestGregg then
                                     shortestGregg = d
@@ -1820,6 +1829,12 @@ function iniciarFarm()
                                     shortestVoid = d
                                     closestVoid = targetPart
                                     closestVoidModel = model
+                                end
+                            elseif isGroundTPNPC(model.Name) then
+                                if d < shortestGround then
+                                    shortestGround = d
+                                    closestGround = targetPart
+                                    closestGroundModel = model
                                 end
                             else
                                 if d < shortestNormal then
@@ -1836,6 +1851,10 @@ function iniciarFarm()
                 if not bossFound and currentBoss then
                     local cd = BossPositions[currentBoss] and BossPositions[currentBoss].cooldown or 4
                     if (tick() - bossLastSeen) >= cd then
+                        if currentBoss == "Adelys" then
+                            waitingForVoidborn = true
+                            voidbornWaitStart = tick()
+                        end
                         currentBoss = nil
                     else
                         currentTarget = nil
@@ -1846,7 +1865,12 @@ function iniciarFarm()
                 end
                 
                 -- Gregg tem prioridade máxima
-                if closestGregg then
+                if currentBoss == "The Voidborn" then
+                    currentTarget = nil
+                    currentTargetModel = nil
+                    isCurrentVoidShade = false
+                    isCurrentGroundNPC = false
+                elseif closestGregg then
                     if not greggFound then
                         greggFound = true
                         orbitWasAuto = not NightHub.OrbitMode
@@ -1855,6 +1879,7 @@ function iniciarFarm()
                     currentTarget = closestGregg
                     currentTargetModel = closestGreggModel
                     isCurrentVoidShade = false
+                    isCurrentGroundNPC = false
                 else
                     -- Gregg morreu ou desapareceu, desativa orbit auto
                     if greggFound then
@@ -1864,14 +1889,21 @@ function iniciarFarm()
                             orbitWasAuto = false
                         end
                     end
-                    if closestNormal then
+                    if closestGround then
+                        currentTarget = closestGround
+                        currentTargetModel = closestGroundModel
+                        isCurrentVoidShade = false
+                        isCurrentGroundNPC = true
+                    elseif closestNormal then
                         currentTarget = closestNormal
                         currentTargetModel = closestNormalModel
                         isCurrentVoidShade = false
+                        isCurrentGroundNPC = false
                     elseif closestVoid then
                         currentTarget = closestVoid
                         currentTargetModel = closestVoidModel
                         isCurrentVoidShade = true
+                        isCurrentGroundNPC = false
                     end
                 end
             end)
@@ -1907,6 +1939,33 @@ function iniciarFarm()
         
         pcall(function()
             if not updateFarmChar() then return end
+
+            if waitingForVoidborn then
+                local bPos = BossPositions["The Voidborn"].pos
+                local direction = (bPos - farmRoot.Position)
+                if direction.Magnitude > 2 then
+                    bv.Velocity = direction.Unit * NightHub.FlightSpeed
+                else
+                    bv.Velocity = Vector3.new(0, 0, 0)
+                end
+                bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(bPos.X, farmRoot.Position.Y, bPos.Z))
+                if (tick() - voidbornWaitStart) >= 5 then
+                    waitingForVoidborn = false
+                end
+                return
+            end
+
+            if currentBoss == "The Voidborn" then
+                local bPos = BossPositions["The Voidborn"].pos
+                local direction = (bPos - farmRoot.Position)
+                if direction.Magnitude > 2 then
+                    bv.Velocity = direction.Unit * NightHub.FlightSpeed
+                else
+                    bv.Velocity = Vector3.new(0, 0, 0)
+                end
+                bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(bPos.X, farmRoot.Position.Y, bPos.Z))
+                return
+            end
             
             local goToBoss = false
             if currentBoss and BossPositions[currentBoss] then
@@ -1946,63 +2005,86 @@ function iniciarFarm()
                     
                     bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(targetPos.X, farmRoot.Position.Y, targetPos.Z))
                 elseif isCurrentVoidShade and currentTargetModel then
-                    -- VOIDSHADE: fica atrás dele, desvia quando ele olha para ti
+                    -- VOIDSHADE: fica atrás dele no chão
                     local voidLook = currentTarget.CFrame.LookVector
-                    local toPlayer = (farmRoot.Position - targetPos)
-                    toPlayer = Vector3.new(toPlayer.X, 0, toPlayer.Z)
-                    if toPlayer.Magnitude > 0.1 then
-                        toPlayer = toPlayer.Unit
-                    else
-                        toPlayer = Vector3.new(0, 0, -1)
-                    end
-                    
-                    local dot = voidLook:Dot(toPlayer)
-                    
-                    local backPos
-                    if dot > 0.3 then
-                        local behind = -voidLook
-                        backPos = targetPos + behind * 15
-                    else
-                        local behind = -voidLook
-                        backPos = targetPos + behind * 15
-                    end
-                    
-                    local direction = (backPos - farmRoot.Position)
+                    local behind = -voidLook
+                    local lowestY = getLowestPartY(currentTargetModel) or targetPos.Y - 3
+                    local baseY = math.max(lowestY, targetPos.Y - 5)
+                    local backX = targetPos.X + behind.X * 8
+                    local backZ = targetPos.Z + behind.Z * 8
+                    local groundPos = Vector3.new(backX, baseY, backZ)
+
+                    local direction = (groundPos - farmRoot.Position)
                     if direction.Magnitude > 1 then
                         bv.Velocity = direction.Unit * NightHub.FlightSpeed
                     else
                         bv.Velocity = Vector3.new(0, 0, 0)
                     end
-                    
+
+                    bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(targetPos.X, farmRoot.Position.Y, targetPos.Z))
+                elseif isCurrentGroundNPC and currentTargetModel then
+                    -- GROUND NPC (Corrupted Growth, Eldritch Reaver): teleporta aos pés
+                    local lowestY = getLowestPartY(currentTargetModel) or targetPos.Y - 5
+                    local groundY = lowestY - 2
+                    local groundPos = Vector3.new(targetPos.X, groundY, targetPos.Z)
+
+                    local direction = (groundPos - farmRoot.Position)
+                    if direction.Magnitude > 1 then
+                        bv.Velocity = direction.Unit * NightHub.FlightSpeed
+                    else
+                        bv.Velocity = Vector3.new(0, 0, 0)
+                    end
+
                     bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(targetPos.X, farmRoot.Position.Y, targetPos.Z))
                 else
-                    -- NPC normal: vai underground
-                    local undergroundPos = Vector3.new(targetPos.X, targetPos.Y + NightHub.FixedDepth, targetPos.Z)
-                    local direction = (undergroundPos - farmRoot.Position)
-                    
+                    -- NPC normal: sempre no chão ao lado
+                    local lowestY = getLowestPartY(currentTargetModel) or targetPos.Y - 3
+                    local baseY = math.max(lowestY, targetPos.Y - 5)
+                    local sideOffset = currentTarget.CFrame.RightVector * 5
+                    local posX = targetPos.X + sideOffset.X
+                    local posZ = targetPos.Z + sideOffset.Z
+                    local groundPos = Vector3.new(posX, baseY, posZ)
+
+                    local direction = (groundPos - farmRoot.Position)
                     if direction.Magnitude > 1 then
                         bv.Velocity = direction.Unit * NightHub.FlightSpeed
                     else
                         bv.Velocity = Vector3.new(0, 0, 0)
                     end
-                    
-                    bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(targetPos.X, farmRoot.Position.Y, farmRoot.Position.Z))
+                    bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(targetPos.X, farmRoot.Position.Y, targetPos.Z))
                 end
             else
-                -- Sem alvo: ficar no mesmo nível, NÃO ir underground
+                -- Sem alvo: ir para a posição do boss esperado
                 orbitAngle = 0
-                local currentY = farmRoot.Position.Y
-                local targetY = currentY
-                -- Manter altitude segura (acima do underground)
-                if targetY < -10 then targetY = -5 end
-                local safePos = Vector3.new(farmRoot.Position.X, targetY, farmRoot.Position.Z)
-                local direction = (safePos - farmRoot.Position)
-                if direction.Magnitude > 1 then
-                    bv.Velocity = direction.Unit * (NightHub.FlightSpeed * 0.5)
-                else
-                    bv.Velocity = Vector3.new(0, 0.5, 0)
+                local waitBoss = nil
+                if bossPhase == 0 then
+                    waitBoss = "Adelys"
+                elseif bossPhase == 1 then
+                    waitBoss = "The Voidborn"
                 end
-                bg.CFrame = CFrame.new(farmRoot.Position, farmRoot.Position + farmRoot.CFrame.LookVector)
+                if waitBoss and BossPositions[waitBoss] then
+                    local bossPos = BossPositions[waitBoss].pos
+                    local waitPos = Vector3.new(bossPos.X, bossPos.Y + 15, bossPos.Z)
+                    local direction = (waitPos - farmRoot.Position)
+                    if direction.Magnitude > 3 then
+                        bv.Velocity = direction.Unit * NightHub.FlightSpeed
+                    else
+                        bv.Velocity = Vector3.new(0, 0, 0)
+                    end
+                    bg.CFrame = CFrame.new(farmRoot.Position, Vector3.new(bossPos.X, farmRoot.Position.Y, farmRoot.Position.Z))
+                else
+                    local currentY = farmRoot.Position.Y
+                    local targetY = currentY
+                    if targetY < -10 then targetY = -5 end
+                    local safePos = Vector3.new(farmRoot.Position.X, targetY, farmRoot.Position.Z)
+                    local direction = (safePos - farmRoot.Position)
+                    if direction.Magnitude > 1 then
+                        bv.Velocity = direction.Unit * (NightHub.FlightSpeed * 0.5)
+                    else
+                        bv.Velocity = Vector3.new(0, 0.5, 0)
+                    end
+                    bg.CFrame = CFrame.new(farmRoot.Position, farmRoot.Position + farmRoot.CFrame.LookVector)
+                end
             end
         end)
     end)
@@ -2013,7 +2095,11 @@ function pararFarm()
     currentTarget = nil
     currentTargetModel = nil
     isCurrentVoidShade = false
+    isCurrentGroundNPC = false
     currentBoss = nil
+    bossPhase = 0
+    waitingForVoidborn = false
+    voidbornWaitStart = 0
     orbitAngle = 0
     NightHub.FarmAtivo = false
     
@@ -2321,6 +2407,13 @@ LocalPlayer.CharacterAdded:Connect(function(char)
         pararFarm()
         task.wait(0.3)
         iniciarFarm()
+    end
+    
+    if NightHub.LeapingStrikeTPAtivo then
+        pararLeapingStrikeTP()
+        task.wait(0.3)
+        NightHub.LeapingStrikeTPAtivo = true
+        iniciarLeapingStrikeTP()
     end
 end)
 
@@ -2805,7 +2898,7 @@ do
     qLabel2.Size = UDim2.new(1, -24, 0, 20)
     qLabel2.Position = UDim2.new(0, 12, 0, 8)
     qLabel2.BackgroundTransparency = 1
-    qLabel2.Text = "Q: As minhas habilidades não causam dano / cura não funciona?"
+    qLabel2.Text = "Q: As minhas habilidades não causam dano?"
     qLabel2.TextColor3 = Cores.Destaque
     qLabel2.TextSize = 12
     qLabel2.Font = Enum.Font.GothamBold
@@ -2817,7 +2910,7 @@ do
     aLabel2.Size = UDim2.new(1, -24, 0, 105)
     aLabel2.Position = UDim2.new(0, 12, 0, 32)
     aLabel2.BackgroundTransparency = 1
-    aLabel2.Text = "A: O teu setup deve seguir este layout exato:\n\n• Slot Q → Spell de dano\n• Slot E → Spell de cura (Chain Heal, Life Dash, ou Universal Heal)\n\nO script faz auto-swap do slot E para um heal suportado no startup. Se não tiveres nenhum destes heals, a cura não funciona."
+    aLabel2.Text = "A: O teu setup deve seguir este layout exato:\n\n• Slot Q → Spell de dano\n• Slot E → Spell de cura\n\nVerifica se tens as abilities corretas equipadas no inventário."
     aLabel2.TextColor3 = Cores.TextoSecundario
     aLabel2.TextSize = 11
     aLabel2.Font = Enum.Font.GothamSemibold
@@ -2851,7 +2944,7 @@ do
     setupLabel.Size = UDim2.new(1, -24, 0, 65)
     setupLabel.Position = UDim2.new(0, 12, 0, 32)
     setupLabel.BackgroundTransparency = 1
-    setupLabel.Text = "✓ Leaping Strike no inventário (para bypass)\n✓ Slot Q: Ability de dano\n✓ Slot E: Chain Heal / Life Dash / Universal Heal"
+    setupLabel.Text = "✓ Leaping Strike no inventário (para bypass)\n✓ Slot Q: Ability de dano\n✓ Slot E: Ability de cura"
     setupLabel.TextColor3 = Cores.TextoSecundario
     setupLabel.TextSize = 11
     setupLabel.Font = Enum.Font.GothamSemibold
@@ -3075,7 +3168,7 @@ CreateSection(ConfigPage, "EXPORT / IMPORT")
 local function generateConfigLoadstring()
     local snap = getCurrentSnapshot()
     local encoded = HttpService:JSONEncode(snap)
-    return "_G.NightHubConfigLoadstring = [==[return game:GetService('HttpService'):JSONDecode('" .. encoded .. "')]==]"
+    return "_G.NightHubConfigPending = game:GetService('HttpService'):JSONDecode([==[" .. encoded .. "]==])"
 end
 
 -- Card de Export
@@ -3192,7 +3285,7 @@ do
             if not func then showFeedback("Loadstring inválido!", true) return end
             func()
 
-            -- Formato novo: _G.NightHubConfigPending = ...
+            -- Formato 1: _G.NightHubConfigPending é tabela direta
             if _G.NightHubConfigPending and type(_G.NightHubConfigPending) == "table" then
                 local cfg = _G.NightHubConfigPending
                 _G.NightHubConfigPending = nil
@@ -3207,8 +3300,42 @@ do
                 return
             end
 
-            -- Formato antigo: return JSONDecode(...)
-            -- (não aplicável com novo formato, mas mantido por compatibilidade)
+            -- Formato 2: _G.Config é tabela direta
+            if _G.Config and type(_G.Config) == "table" then
+                local cfg = _G.Config
+                _G.Config = nil
+                applySnapshot(cfg)
+                refreshAllTextLabels()
+                for catKey, rarMap in pairs(AutoSellSettings) do
+                    for rarKey, _ in pairs(rarMap) do
+                        atualizarBotaoRaridade(catKey, rarKey)
+                    end
+                end
+                showFeedback("Config importada com sucesso!")
+                return
+            end
+
+            -- Formato 3 (legado): _G.NightHubConfigLoadstring contém string com JSON
+            if _G.NightHubConfigLoadstring and type(_G.NightHubConfigLoadstring) == "string" then
+                local configStr = _G.NightHubConfigLoadstring
+                _G.NightHubConfigLoadstring = nil
+                local ok2, cfgFunc2 = pcall(loadstring, configStr)
+                if ok2 and cfgFunc2 then
+                    local ok3, cfg2 = pcall(cfgFunc2)
+                    if ok3 and type(cfg2) == "table" then
+                        applySnapshot(cfg2)
+                        refreshAllTextLabels()
+                        for catKey, rarMap in pairs(AutoSellSettings) do
+                            for rarKey, _ in pairs(rarMap) do
+                                atualizarBotaoRaridade(catKey, rarKey)
+                            end
+                        end
+                        showFeedback("Config importada com sucesso!")
+                        return
+                    end
+                end
+            end
+
             showFeedback("Loadstring não contém config válida!", true)
         end)
     end)
@@ -3276,31 +3403,20 @@ task.spawn(function()
         local char = LocalPlayer.Character
         if not char then return end
         local backpack = LocalPlayer:FindFirstChild("Backpack")
-        -- Procura a ability de dano (slot Q) e ativa
         if backpack then
             for _, tool in ipairs(backpack:GetChildren()) do
                 if tool:IsA("Tool") and tool.Name ~= "Leaping Strike" then
-                    local isHeal = false
-                    for _, healName in ipairs(NightHub.SupportedHeals) do
-                        if tool.Name == healName then isHeal = true; break end
-                    end
-                    if not isHeal then
-                        tool.Parent = char
-                        task.wait(0.2)
-                        tool:Activate()
-                        task.wait(0.3)
-                        tool.Parent = backpack
-                        print("[Init] Q ability ativada para desbugar!")
-                        break
-                    end
+                    tool.Parent = char
+                    task.wait(0.2)
+                    tool:Activate()
+                    task.wait(0.3)
+                    tool.Parent = backpack
+                    print("[Init] Q ability ativada para desbugar!")
+                    break
                 end
             end
         end
     end)
-
-    -- Auto-setup de habilidades (Q=Damage, E=Heal)
-    task.wait(1)
-    pcall(setupAbilities)
 end)
 
 -- =========================================================================
@@ -3351,33 +3467,19 @@ print("Binds: Spammer=R | Farm=G | Fly=F | NoVFX=H | Speed=J | UI=K | Dungeon=L 
 -- AUTO-IMPORT: verifica se existe config pendente no _G e aplica
 -- =========================================================================
 task.spawn(function()
-    -- Espera o NightHub inicializar
     task.wait(0.1)
 
-    -- Loop até encontrar config
     for i = 1, 40 do
-        -- Formato 1: _G.NightHubConfigLoadstring contém loadstring da config
-        if _G.NightHubConfigLoadstring and type(_G.NightHubConfigLoadstring) == "string" then
-            print("[NightHub] Config loadstring detectado, a processar...")
-            local configStr = _G.NightHubConfigLoadstring
-            _G.NightHubConfigLoadstring = nil -- limpar para não repetir
-            local ok, cfgFunc = pcall(loadstring, configStr)
-            if ok and cfgFunc then
-                local ok2, cfg = pcall(cfgFunc)
-                if ok2 and type(cfg) == "table" then
-                    print("[NightHub] Config decodificada com sucesso, a aplicar...")
-                    for _, v in pairs(_G) do
-                        if type(v) == "table" and v.ApplyConfig then
-                            v.ApplyConfig(cfg)
-                            print("[NightHub] Config importada via loadstring!")
-                            return -- PARAR o loop
-                        end
-                    end
-                else
-                    print("[NightHub] Erro ao decodificar config:", ok2, cfg)
+        -- Formato 1: _G.NightHubConfigPending é tabela direta (export loadstring)
+        if _G.NightHubConfigPending and type(_G.NightHubConfigPending) == "table" then
+            local cfg = _G.NightHubConfigPending
+            _G.NightHubConfigPending = nil
+            for _, v in pairs(_G) do
+                if type(v) == "table" and v.ApplyConfig then
+                    v.ApplyConfig(cfg)
+                    print("[NightHub] Config importada via loadstring!")
+                    return
                 end
-            else
-                print("[NightHub] Erro ao executar loadstring:", ok, cfgFunc)
             end
         end
 
@@ -3394,15 +3496,21 @@ task.spawn(function()
             end
         end
 
-        -- Formato 3: _G.NightHubConfigPending
-        if _G.NightHubConfigPending and type(_G.NightHubConfigPending) == "table" then
-            local cfg = _G.NightHubConfigPending
-            _G.NightHubConfigPending = nil
-            for _, v in pairs(_G) do
-                if type(v) == "table" and v.ApplyConfig then
-                    v.ApplyConfig(cfg)
-                    print("[NightHub] Config importada!")
-                    return
+        -- Formato 3 (legado): _G.NightHubConfigLoadstring contém string com JSON
+        if _G.NightHubConfigLoadstring and type(_G.NightHubConfigLoadstring) == "string" then
+            local configStr = _G.NightHubConfigLoadstring
+            _G.NightHubConfigLoadstring = nil
+            local ok, cfgFunc = pcall(loadstring, configStr)
+            if ok and cfgFunc then
+                local ok2, cfg = pcall(cfgFunc)
+                if ok2 and type(cfg) == "table" then
+                    for _, v in pairs(_G) do
+                        if type(v) == "table" and v.ApplyConfig then
+                            v.ApplyConfig(cfg)
+                            print("[NightHub] Config importada via loadstring (legado)!")
+                            return
+                        end
+                    end
                 end
             end
         end
