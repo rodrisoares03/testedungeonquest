@@ -99,6 +99,10 @@ local NightHub = {
     AutoFAtivo = false,
     AutoFDelay = 1,
     AutoFSaveConfig = false,
+    -- Modo Limbo / Segurança
+    LimboAtivo = false,
+    LimboAltura = -700,
+    LimboSafeRefresh = 2,
 }
 
 -- =========================================================================
@@ -112,6 +116,115 @@ local AutoSellSettings = {
     ["ring"]    = {["epic"] = false,      ["rare"] = false, ["uncommon"] = false, ["common"] = false},
 }
 
+-- =========================================================================
+-- AUTO SELL NATIVO (sem depender de script externo)
+-- Lê os itens direto da UI de venda do jogo (`sellShop`) e dispara o remote
+-- `remotes.sellItemEvent`. A raridade é identificada pela COR real do item.
+-- =========================================================================
+
+-- Cores REAIS usadas pelo jogo na UI de venda (NÃO são as cores do hub).
+-- Sem cor de "Ultimate": itens com raridade desconhecida nunca são vendidos.
+AutoSellRarityCores = {
+    ["legendary"] = Color3.fromRGB(244, 154, 9),
+    ["epic"]      = Color3.fromRGB(146, 70, 159),
+    ["rare"]      = Color3.fromRGB(75, 77, 195),
+    ["uncommon"]  = Color3.fromRGB(91, 194, 80),
+    ["common"]    = Color3.fromRGB(152, 152, 152),
+}
+
+-- Compara duas cores com tolerância (joga 0-255 → tolerância de 3 por canal).
+-- Evita falsos positivos por arredondamento float do Roblox.
+local function coresIguais(a, b, tol)
+    tol = tol or 3
+    local function c255(x) return math.floor(x * 255 + 0.5) end
+    return math.abs(c255(a.R) - c255(b.R)) <= tol
+       and math.abs(c255(a.G) - c255(b.G)) <= tol
+       and math.abs(c255(a.B) - c255(b.B)) <= tol
+end
+
+-- Coleta os itens da UI de venda identificando raridade pela cor do item.
+-- Retorna uma lista de { tipo, indice, raridade } apenas para itens cuja cor
+-- bate com uma raridade conhecida (com tolerância de ±3 por canal RGB).
+-- Itens sem correspondência ficam de fora e NUNCA são vendidos.
+function coletarItensVenda()
+    local sellShop = LocalPlayer.PlayerGui:FindFirstChild("sellShop")
+    local frame = sellShop and sellShop:FindFirstChild("Frame")
+    local innerFrame = frame and frame:FindFirstChild("innerFrame")
+    local rightSide = innerFrame and innerFrame:FindFirstChild("rightSideFrame")
+    local scrolling = rightSide and rightSide:FindFirstChild("ScrollingFrame")
+    if not scrolling then return {} end
+    local itens = {}
+    for _, v in ipairs(scrolling:GetChildren()) do
+        if v:IsA("ImageLabel") then
+            local itemTypeObj = v:FindFirstChild("itemType")
+            local uniqueNum = itemTypeObj and itemTypeObj:FindFirstChild("uniqueItemNum")
+            if itemTypeObj and uniqueNum then
+                local tipo = itemTypeObj.Value
+                local indice = tonumber(uniqueNum.Value)
+                if AutoSellSettings[tipo] and indice and indice > 0 then
+                    local raridade = nil
+                    for chave, cor in pairs(AutoSellRarityCores) do
+                        if coresIguais(v.ImageColor3, cor) then
+                            raridade = chave
+                            break
+                        end
+                    end
+                    if raridade then
+                        table.insert(itens, { tipo = tipo, indice = indice, raridade = raridade })
+                    end
+                end
+            end
+        end
+    end
+    return itens
+end
+
+-- Executa UMA passada de venda respeitando as configurações atuais.
+-- Só vende item cuja categoria E raridade estejam marcadas no AutoSellSettings.
+-- Retorna a quantidade de itens enviados (0 se nada foi vendido).
+function executarVendaAutomatica()
+    local remotes = ReplicatedStorage:FindFirstChild("remotes")
+    local sellEvent = remotes and remotes:FindFirstChild("sellItemEvent")
+    if not sellEvent then return 0 end
+    local args = { ["chest"] = {}, ["helmet"] = {}, ["ability"] = {}, ["ring"] = {}, ["weapon"] = {} }
+    local contadores = { ["chest"] = 0, ["helmet"] = 0, ["ability"] = 0, ["ring"] = 0, ["weapon"] = 0 }
+    local total = 0
+    for _, item in ipairs(coletarItensVenda()) do
+        local cfgCat = AutoSellSettings[item.tipo]
+        if cfgCat and cfgCat[item.raridade] then
+            contadores[item.tipo] = contadores[item.tipo] + 1
+            args[item.tipo][contadores[item.tipo]] = item.indice
+            total = total + 1
+        end
+    end
+    if total > 0 then
+        sellEvent:FireServer(args)
+    end
+    return total
+end
+
+function loopAutoSell()
+    while NightHub.AutoSellAtivo do
+        pcall(executarVendaAutomatica)
+        task.wait(0.6)
+    end
+end
+
+function iniciarAutoSell()
+    local loop = NightHub.AutoSellLoop
+    if loop and coroutine.status(loop) ~= "dead" then return end
+    NightHub.AutoSellLoop = task.spawn(loopAutoSell)
+end
+
+function pararAutoSell()
+    NightHub.AutoSellAtivo = false
+    local loop = NightHub.AutoSellLoop
+    NightHub.AutoSellLoop = nil
+    if loop then
+        pcall(task.cancel, loop)
+    end
+end
+
 local Binds = {
     Spammer = "R",
     Farm = "G",
@@ -122,6 +235,7 @@ local Binds = {
     StartDungeon = "L",
     ForceClick = "E",
     AutoF = "T",
+    Limbo = "U",
 }
 
 local HttpService = game:GetService("HttpService")
@@ -297,6 +411,10 @@ function getCurrentSnapshot()
         AutoFSaveConfig = NightHub.AutoFSaveConfig,
         LeapingStepDistance = NightHub.LeapingStepDistance,
         LeapingStableTime = NightHub.LeapingStableTime,
+        LeapingStrikeTPDodge = NightHub.LeapingStrikeTPDodge,
+        LimboAtivo = NightHub.LimboAtivo,
+        LimboAltura = NightHub.LimboAltura,
+        LimboSafeRefresh = NightHub.LimboSafeRefresh,
         Binds = {
             Spammer = Binds.Spammer,
             Farm = Binds.Farm,
@@ -307,6 +425,7 @@ function getCurrentSnapshot()
             StartDungeon = Binds.StartDungeon,
             ForceClick = Binds.ForceClick,
             AutoF = Binds.AutoF,
+            Limbo = Binds.Limbo,
         },
     }
 end
@@ -354,6 +473,10 @@ function applySnapshot(data)
                 if data.AoeFarmAtivo ~= nil then NightHub.AoeFarmAtivo = data.AoeFarmAtivo end
                 if data.LeapingStepDistance ~= nil then NightHub.LeapingStepDistance = data.LeapingStepDistance end
                 if data.LeapingStableTime ~= nil then NightHub.LeapingStableTime = data.LeapingStableTime end
+                if data.LeapingStrikeTPDodge ~= nil then
+                    NightHub.LeapingStrikeTPDodge = data.LeapingStrikeTPDodge
+                    UpdateUIToggle("LeapingStrikeTPDodge", NightHub.LeapingStrikeTPDodge)
+                end
 
                 if type(data.AutoSellSettings) == "table" then
                     for cat, rarities in pairs(data.AutoSellSettings) do
@@ -422,12 +545,7 @@ function applySnapshot(data)
                 if data.AutoSellAtivo ~= nil then
                     NightHub.AutoSellAtivo = data.AutoSellAtivo
                     UpdateUIToggle("AutoSell", NightHub.AutoSellAtivo)
-                    if NightHub.AutoSellAtivo then
-                        pcall(function()
-                            local autoSell = loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQautoSell.lua'))()
-                            autoSell(AutoSellSettings)
-                        end)
-                    end
+                    if NightHub.AutoSellAtivo then pcall(iniciarAutoSell) else pcall(pararAutoSell) end
                 end
                 if data.AutoRetryAtivo ~= nil and not autoRetryApplied then
                     NightHub.AutoRetryAtivo = data.AutoRetryAtivo
@@ -441,6 +559,13 @@ function applySnapshot(data)
                 if data.VelocidadeExtra ~= nil then
                     UpdateUIToggle("Speed", data.VelocidadeExtra)
                     if data.VelocidadeExtra then pcall(ativarVelocidadeExtra) else pcall(desativarVelocidadeExtra) end
+                end
+                if data.LimboAltura ~= nil then NightHub.LimboAltura = data.LimboAltura end
+                if data.LimboSafeRefresh ~= nil then NightHub.LimboSafeRefresh = data.LimboSafeRefresh end
+                if data.LimboAtivo ~= nil then
+                    NightHub.LimboAtivo = data.LimboAtivo
+                    UpdateUIToggle("Limbo", NightHub.LimboAtivo)
+                    if NightHub.LimboAtivo then pcall(iniciarLimbo) else pcall(pararLimbo) end
                 end
 
                 for catKey, _ in pairs(AutoSellSettings) do
@@ -470,6 +595,10 @@ function applySnapshot(data)
     if data.HitboxSize ~= nil then NightHub.HitboxSize = data.HitboxSize; UpdateSlider("Tamanho do Hitbox", data.HitboxSize) end
     if data.LeapingStepDistance ~= nil then NightHub.LeapingStepDistance = data.LeapingStepDistance end
     if data.LeapingStableTime ~= nil then NightHub.LeapingStableTime = data.LeapingStableTime end
+    if data.LeapingStrikeTPDodge ~= nil then
+        NightHub.LeapingStrikeTPDodge = data.LeapingStrikeTPDodge
+        UpdateUIToggle("LeapingStrikeTPDodge", NightHub.LeapingStrikeTPDodge)
+    end
     
     if type(data.AutoSellSettings) == "table" then
         for cat, rarities in pairs(data.AutoSellSettings) do
@@ -557,12 +686,7 @@ function applySnapshot(data)
     if data.AutoSellAtivo ~= nil then
         NightHub.AutoSellAtivo = data.AutoSellAtivo
         UpdateUIToggle("AutoSell", NightHub.AutoSellAtivo)
-        if NightHub.AutoSellAtivo then
-            pcall(function()
-                local autoSell = loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQautoSell.lua'))()
-                autoSell(AutoSellSettings)
-            end)
-        end
+        if NightHub.AutoSellAtivo then pcall(iniciarAutoSell) else pcall(pararAutoSell) end
     end
     if data.AutoRetryAtivo ~= nil and not autoRetryApplied then
         NightHub.AutoRetryAtivo = data.AutoRetryAtivo
@@ -576,6 +700,13 @@ function applySnapshot(data)
     if data.VelocidadeExtra ~= nil then
         UpdateUIToggle("Speed", data.VelocidadeExtra)
         if data.VelocidadeExtra then pcall(ativarVelocidadeExtra) else pcall(desativarVelocidadeExtra) end
+    end
+    if data.LimboAltura ~= nil then NightHub.LimboAltura = data.LimboAltura end
+    if data.LimboSafeRefresh ~= nil then NightHub.LimboSafeRefresh = data.LimboSafeRefresh end
+    if data.LimboAtivo ~= nil then
+        NightHub.LimboAtivo = data.LimboAtivo
+        UpdateUIToggle("Limbo", NightHub.LimboAtivo)
+        if NightHub.LimboAtivo then pcall(iniciarLimbo) else pcall(pararLimbo) end
     end
     
     -- Atualiza visual dos botões de raridade na aba Sell
@@ -1485,6 +1616,12 @@ UserInputService.InputBegan:Connect(function(input, gameProcessed)
             UpdateUIToggle("AutoF", NightHub.AutoFAtivo)
             if NightHub.AutoFAtivo then iniciarAutoF() else pararAutoF() end
             if NightHub.AutoFSaveConfig then autoSaveConfig() end
+        end
+
+        if Binds.Limbo and key == Enum.KeyCode[Binds.Limbo] then
+            NightHub.LimboAtivo = not NightHub.LimboAtivo
+            UpdateUIToggle("Limbo", NightHub.LimboAtivo)
+            if NightHub.LimboAtivo then iniciarLimbo() else pararLimbo() end
         end
     end
 end)
@@ -2725,7 +2862,7 @@ function iniciarLeapingStrikeTP()
 
                     elseif info.targetType == "Gregg" then
                         local dir = (-flatLook + flatRight * 0.8).Unit
-                        local safePos = baseOrigin + (dir * 15)
+                        local safePos = baseOrigin + (dir * 6)
                         applyTP(safePos, npcPos)
 
                     else
@@ -2847,7 +2984,7 @@ function iniciarLeapingStrikeTP()
 
                     elseif info.targetType == "Gregg" then
                         local dir = (-flatLook + flatRight * 0.8).Unit
-                        local safePos = baseOrigin + (dir * 15)
+                        local safePos = baseOrigin + (dir * 6)
                         if isSafeTpPos(safePos) then rootPart.CFrame = CFrame.new(safePos, npcPos) end
 
                     else
@@ -2874,7 +3011,8 @@ function iniciarLeapingStrikeTP()
                 local npcList = fastScanNPCs(char, nil, nil)
                 for _, npc in ipairs(npcList) do
                     local targetPart = npc.root
-                    -- Gregg fica com o tamanho normal (só o anti-queda o segura, não puxar/bugar).
+                    -- Gregg fica com o tamanho normal: hitbox gigante nele buga (teleporta).
+                    -- O dano no Gregg vem do posicionamento próximo (offset menor no TP).
                     if string.find(string.lower(npc.model.Name), "gregg", 1, true) then continue end
                     if targetPart and targetPart:IsA("BasePart") and targetPart.Size.Y < NightHub.HitboxSize then
                         targetPart.Size = Vector3.new(NightHub.HitboxSize, NightHub.HitboxSize, NightHub.HitboxSize)
@@ -3852,7 +3990,7 @@ function iniciarFarm()
                 local npcList = fastScanNPCs(farmChar, nil, nil)
                 for _, npc in ipairs(npcList) do
                     local targetPart = npc.root
-                    -- Gregg fica com o tamanho normal (só o anti-queda o segura, não puxar/bugar).
+                    -- Gregg fica com o tamanho normal: hitbox gigante nele buga (teleporta).
                     if string.find(string.lower(npc.model.Name), "gregg", 1, true) then continue end
                     if targetPart and targetPart.Size.Y < NightHub.HitboxSize then
                         targetPart.Size = Vector3.new(NightHub.HitboxSize, NightHub.HitboxSize, NightHub.HitboxSize)
@@ -4385,7 +4523,7 @@ end
 -- Captura a velocidade base do personagem SEM capturar o valor já turbinado.
 -- Evita o bug em que a 2x acumula (16 -> 32 -> 64...) quando o script é
 -- autoexecutado ou o personagem respawna com a velocidade ainda boostada.
-local function atualizarVelocidadeBase(humanoid)
+function atualizarVelocidadeBase(humanoid)
     if not humanoid then return NightHub.OriginalWalkSpeed end
     local atual = humanoid.WalkSpeed
     if atual <= 0 then return NightHub.OriginalWalkSpeed end
@@ -4541,6 +4679,81 @@ end
 -- ===============================================================================
 -- CONSTRUÇÃO DA INTERFACE (função para evitar limite de 200 registradores do Luau)
 -- ===============================================================================
+
+-- =========================================================================
+-- MODO LIMBO / SEGURANÇA (volta para posição segura ao cair no vazio)
+-- Funciona em qualquer modo (Farm, Fly, LeapingStrike TP, parado): se o
+-- personagem cair para o vazio ou sair dos limites do mapa, teleporta de
+-- volta para a última posição segura registrada.
+-- =========================================================================
+NightHub.LimboSafePos = nil
+NightHub.LimboLastStore = 0
+
+function iniciarLimbo()
+    if Connections.LimboLoop then return end
+    local function limboPosValida(pos)
+        if not pos then return false end
+        if pos.X ~= pos.X or pos.Y ~= pos.Y or pos.Z ~= pos.Z then return false end
+        if pos.Y > 1000 or pos.Y < -800 then return false end
+        if pos.Magnitude > 50000 then return false end
+        return true
+    end
+    Connections.LimboLoop = RunService.Heartbeat:Connect(function()
+        if not NightHub.LimboAtivo then return end
+        pcall(function()
+            local char = LocalPlayer.Character
+            if not char then return end
+            local root = char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart
+            if not root or not root:IsA("BasePart") then return end
+            local pos = root.Position
+            local now = tick()
+
+            -- Registra a posição atual como segura (quando está dentro dos limites)
+            if limboPosValida(pos) then
+                if (now - NightHub.LimboLastStore) >= NightHub.LimboSafeRefresh then
+                    NightHub.LimboLastStore = now
+                    NightHub.LimboSafePos = pos
+                end
+            end
+
+            -- Detecta limbo/vazio: fora dos limites OU abaixo da altura configurada
+            local emLimbo = not limboPosValida(pos) or pos.Y < NightHub.LimboAltura
+            if not emLimbo then
+                -- Queda rápida abaixo do piso mais profundo (caiu do mapa em alta velocidade)
+                local vel = root.AssemblyLinearVelocity
+                if vel and vel.Y < -200 and pos.Y < -650 then
+                    emLimbo = true
+                end
+            end
+
+            if emLimbo then
+                local destino = NightHub.LimboSafePos
+                if not (destino and limboPosValida(destino)) then
+                    local spawn = workspace:FindFirstChildWhichIsA("SpawnLocation")
+                    if spawn then
+                        destino = spawn.Position + Vector3.new(0, 4, 0)
+                    else
+                        destino = Vector3.new(0, 50, 0)
+                    end
+                end
+                root.CFrame = CFrame.new(destino.X, destino.Y + 3, destino.Z)
+                pcall(function()
+                    local bv = root:FindFirstChild("BodyVelocity")
+                    if bv then bv.Velocity = Vector3.new() end
+                end)
+            end
+        end)
+    end)
+end
+
+function pararLimbo()
+    NightHub.LimboAtivo = false
+    if Connections.LimboLoop then
+        pcall(Connections.LimboLoop.Disconnect, Connections.LimboLoop)
+        Connections.LimboLoop = nil
+    end
+end
+
 local function montarInterface()
 function iniciarNameChanger()
     local playerGui = LocalPlayer:WaitForChild("PlayerGui")
@@ -4564,6 +4777,7 @@ LocalPlayer.CharacterAdded:Connect(function(char)
     _lowestYCache = {}
     _toolRemoteCache = {}
     _toolAnimCache = {}
+    NightHub.LimboSafePos = nil
     if char:FindFirstChild("Humanoid") then
         NightHub.OriginalWalkSpeed = atualizarVelocidadeBase(char.Humanoid)
         if NightHub.VelocidadeExtra then
@@ -4622,6 +4836,12 @@ CreateToggleWithBind(CombatPage, "Velocidade Extra (2.0x)", NightHub.VelocidadeE
 CreateToggleWithBind(CombatPage, "Ocultar Efeitos Visuais", NightHub.NoVFXAtivo, Binds.NoVFX, "NoVFX",
     function(value) NightHub.NoVFXAtivo = value; if value then ativarNoVFX() else desativarNoVFX() end end,
     function(bind) Binds.NoVFX = bind end
+)
+
+CreateSection(CombatPage, "SEGURANCA")
+CreateToggleWithBind(CombatPage, "Modo Limbo (Anti-Queda)", NightHub.LimboAtivo, Binds.Limbo, "Limbo",
+    function(value) NightHub.LimboAtivo = value; if value then iniciarLimbo() else pararLimbo() end end,
+    function(bind) Binds.Limbo = bind end
 )
 
 -- FARM
@@ -4816,14 +5036,11 @@ do
         if NightHub.AutoSellAtivo then
             sellStatusLabel.Text = "Status: Ativo — vendendo itens..."
             sellStatusLabel.TextColor3 = Cores.StartGreen
-            -- Carrega e executa o AutoSell com as configurações actuais
-            pcall(function()
-                local autoSell = loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQautoSell.lua'))()
-                autoSell(AutoSellSettings)
-            end)
+            pcall(iniciarAutoSell)
         else
             sellStatusLabel.Text = "Status: Desativado"
             sellStatusLabel.TextColor3 = Cores.TextoSecundario
+            pcall(pararAutoSell)
         end
     end)
 end
@@ -4946,14 +5163,6 @@ for _, cat in ipairs(categorias) do
                         Color = Color3.fromRGB(80, 80, 90)
                     }):Play()
                 end
-
-                -- Se o AutoSell já estiver ativo, reinicia com as novas configurações
-                if NightHub.AutoSellAtivo then
-                    pcall(function()
-                        local autoSell = loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQautoSell.lua'))()
-                        autoSell(AutoSellSettings)
-                    end)
-                end
             end)
         end
     end
@@ -4997,10 +5206,7 @@ do
     manualBtn.MouseButton1Click:Connect(function()
         manualBtn.Text = "A vender..."
         manualBtn.BackgroundColor3 = Color3.fromRGB(160, 40, 40)
-        pcall(function()
-            local autoSell = loadstring(game:HttpGet('https://raw.githubusercontent.com/ValorantIsKewl/RBX/refs/heads/main/DQautoSell.lua'))()
-            autoSell(AutoSellSettings)
-        end)
+        pcall(executarVendaAutomatica)
         task.delay(1.5, function()
             pcall(function()
                 manualBtn.Text = "VENDER ITENS AGORA"
@@ -5608,6 +5814,7 @@ _G[NIGHTHUB_ID].Cleanup = function()
     pcall(function() if NightHub.AutoStartAtivo then pararAutoStart() end end)
     pcall(function() if NightHub.LeapingStrikeTPAtivo then pararLeapingStrikeTP() end end)
     pcall(function() if NightHub.AutoFAtivo then pararAutoF() end end)
+    pcall(function() if NightHub.LimboAtivo then pararLimbo() end end)
     
     -- Desconecta todas as conexões
     for _, conn in ipairs(Connections) do
@@ -5662,6 +5869,11 @@ task.spawn(function()
             if savedConfig.LeapingStableTime ~= nil then NightHub.LeapingStableTime = savedConfig.LeapingStableTime end
             if savedConfig.OrbitMode ~= nil then NightHub.OrbitMode = savedConfig.OrbitMode end
             if savedConfig.AoeFarmAtivo ~= nil then NightHub.AoeFarmAtivo = savedConfig.AoeFarmAtivo end
+            if savedConfig.LimboAtivo ~= nil then
+                NightHub.LimboAtivo = savedConfig.LimboAtivo
+                UpdateUIToggle("Limbo", NightHub.LimboAtivo)
+                if NightHub.LimboAtivo then pcall(iniciarLimbo) end
+            end
             if type(savedConfig.Binds) == "table" then
                 for k, v in pairs(savedConfig.Binds) do
                     if Binds[k] ~= nil then Binds[k] = v end
