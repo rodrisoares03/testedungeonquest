@@ -132,14 +132,52 @@ AutoSellRarityCores = {
     ["common"]    = Color3.fromRGB(152, 152, 152),
 }
 
--- Compara duas cores com tolerância (joga 0-255 → tolerância de 3 por canal).
+-- Compara duas cores com tolerância (joga 0-255 → tolerância por canal RGB).
 -- Evita falsos positivos por arredondamento float do Roblox.
-local function coresIguais(a, b, tol)
-    tol = tol or 3
+function coresIguais(a, b, tol)
+    tol = tol or 1
     local function c255(x) return math.floor(x * 255 + 0.5) end
     return math.abs(c255(a.R) - c255(b.R)) <= tol
        and math.abs(c255(a.G) - c255(b.G)) <= tol
        and math.abs(c255(a.B) - c255(b.B)) <= tol
+end
+
+-- Ordem de valor das raridades (para proteção contra vender item valioso por engano).
+local RarityTier = {
+    ["common"] = 0,
+    ["uncommon"] = 1,
+    ["rare"] = 2,
+    ["epic"] = 3,
+    ["legendary"] = 4,
+    ["ultimate"] = 5,
+}
+
+-- Detecta a raridade pelo MENOR desvio de cor (best-match) em vez do primeiro
+-- que bater num `pairs()` de ordem aleatória. Tolerância apertada para não errar
+-- em casos de borda. Se a cor também chegar perto de uma raridade MAIS ALTA que a
+-- detectada (mesmo com tolerância frouxa), o item é tratado como ambíguo e NÃO é
+-- vendido — proteção contra vender lendário/épico valioso por engano.
+function detectarRaridadeItem(cor)
+    local melhor = nil
+    local melhorDist = math.huge
+    for chave, corRef in pairs(AutoSellRarityCores) do
+        local d = math.abs(corRef.R - cor.R) + math.abs(corRef.G - cor.G) + math.abs(corRef.B - cor.B)
+        if d < melhorDist then
+            melhorDist = d
+            melhor = chave
+        end
+    end
+    if not melhor or not coresIguais(cor, AutoSellRarityCores[melhor], 1) then
+        return nil
+    end
+    local tierDetectado = RarityTier[melhor] or 0
+    for chave, corRef in pairs(AutoSellRarityCores) do
+        local tier = RarityTier[chave] or 0
+        if tier > tierDetectado and coresIguais(cor, corRef, 6) then
+            return nil
+        end
+    end
+    return melhor
 end
 
 -- Coleta os itens da UI de venda identificando raridade pela cor do item.
@@ -162,13 +200,7 @@ function coletarItensVenda()
                 local tipo = itemTypeObj.Value
                 local indice = tonumber(uniqueNum.Value)
                 if AutoSellSettings[tipo] and indice and indice > 0 then
-                    local raridade = nil
-                    for chave, cor in pairs(AutoSellRarityCores) do
-                        if coresIguais(v.ImageColor3, cor) then
-                            raridade = chave
-                            break
-                        end
-                    end
+                    local raridade = detectarRaridadeItem(v.ImageColor3)
                     if raridade then
                         table.insert(itens, { tipo = tipo, indice = indice, raridade = raridade })
                     end
@@ -243,12 +275,12 @@ local configsFileName = "NightHub_Configs_" .. LocalPlayer.Name .. ".json"
 local autoSaveFileName = "NightHub_AutoSave_" .. LocalPlayer.Name .. ".json"
 
 -- Auto-save / Auto-load
-local function autoSaveConfig()
+function autoSaveConfig()
     local ok, str = pcall(function() return HttpService:JSONEncode(getCurrentSnapshot()) end)
     if ok and str then pcall(writefile, autoSaveFileName, str) end
 end
 
-local function autoLoadConfig()
+function autoLoadConfig()
     local ok, exists = pcall(isfile, autoSaveFileName)
     if not ok or not exists then return nil end
     local ok2, content = pcall(readfile, autoSaveFileName)
@@ -291,7 +323,7 @@ function getAllConfigs()
     return data
 end
 
-local function resolveDungeonStartRemote(waitSeconds)
+function resolveDungeonStartRemote(waitSeconds)
     local deadline = os.clock() + math.max(0, waitSeconds or 0)
 
     while true do
@@ -319,7 +351,7 @@ end
 local ePressedOnStart = false
 local dungeonStarted = false
 
-local function fireDungeonStart(waitSeconds)
+function fireDungeonStart(waitSeconds)
     local remote = resolveDungeonStartRemote(waitSeconds or 0)
     if not remote then
         warn("Remote 'changeStartValue' not found!")
@@ -343,7 +375,7 @@ local function fireDungeonStart(waitSeconds)
     return false
 end
 
-local function clickAt(x, y)
+function clickAt(x, y)
     pcall(function()
         if mousemoveabs then
             mousemoveabs(x, y)
@@ -364,7 +396,7 @@ local function clickAt(x, y)
     end)
 end
 
-local function pressEOnce()
+function pressEOnce()
     if ePressedOnStart then return end
     ePressedOnStart = true
     task.spawn(function()
@@ -816,7 +848,7 @@ local BossIDs = {
     ["forest dragon"] = "Enchanted Forest Dragon",
 }
 
-local function updateHudData()
+function updateHudData()
     _stats.boss = "Nenhum"
     local enemySeen = false
     for _, obj in ipairs(workspace:GetDescendants()) do
@@ -1303,7 +1335,7 @@ function CreateSlider(parent, name, min, max, default, callback)
     return sliderBar
 end
 
-local function CreateToggle(parent, name, default, toggleKey, callback)
+function CreateToggle(parent, name, default, toggleKey, callback)
     local toggleFrame = Instance.new("Frame")
     toggleFrame.Size = UDim2.new(0.96, 0, 0, 40)
     toggleFrame.BackgroundColor3 = Cores.Card
@@ -1629,7 +1661,7 @@ end)
 -- =========================================================================
 -- BYPASS ANTI-TELEPORT KICK (LEAPING STRIKE)
 -- =========================================================================
-local function equipLeapingStrike()
+function equipLeapingStrike()
     local char = LocalPlayer.Character
     if not char then return false end
 
@@ -1644,7 +1676,7 @@ local function equipLeapingStrike()
     return false
 end
 
-local function useLeapingStrikeBypass()
+function useLeapingStrikeBypass()
     local char = LocalPlayer.Character
     if not char then return end
 
@@ -1758,11 +1790,11 @@ end
 
 local ZoneChunkSize = 50
 
-local function getZoneKey(pos)
+function getZoneKey(pos)
     return math.floor(pos.Z / ZoneChunkSize)
 end
 
-local function getAllAliveNPCs(char)
+function getAllAliveNPCs(char)
     local npcs = {}
     local charRoot = char and char:FindFirstChild("HumanoidRootPart")
     local maxRange = NightHub.MaxDetectionRange
@@ -1785,7 +1817,7 @@ local function getAllAliveNPCs(char)
     return npcs
 end
 
-local function buildZoneMap(npcs, charRootPos)
+function buildZoneMap(npcs, charRootPos)
     local zones = {}
     for _, npc in ipairs(npcs) do
         local key = getZoneKey(npc.root.Position)
@@ -1803,7 +1835,7 @@ local function buildZoneMap(npcs, charRootPos)
     return zones
 end
 
-local function getSortedZoneKeys(zones)
+function getSortedZoneKeys(zones)
     local keys = {}
     for k, _ in pairs(zones) do table.insert(keys, k) end
     table.sort(keys, function(a, b) return zones[a].distFromStart < zones[b].distFromStart end)
@@ -1817,7 +1849,7 @@ local BossPositions = {
     ["Sarugami"] = { pos = Vector3.new(5472, 267, -3214), cooldown = 10 },
 }
 
-local function getBestPart(model)
+function getBestPart(model)
     local target = model:FindFirstChild("HumanoidRootPart") or
                    model:FindFirstChild("Torso") or
                    model:FindFirstChild("LowerTorso") or
@@ -1829,7 +1861,7 @@ local function getBestPart(model)
     return nil
 end
 
-local function applySafeTeleport(rootPart, pos, lookAt)
+function applySafeTeleport(rootPart, pos, lookAt)
     if not rootPart or not pos then return end
     if pos.X ~= pos.X or pos.Y ~= pos.Y or pos.Z ~= pos.Z then return end
     if pos.Y > 1000 or pos.Y < -800 then return end
@@ -1853,17 +1885,17 @@ local function applySafeTeleport(rootPart, pos, lookAt)
     rootPart.CFrame = CFrame.new(pos, lookPt)
 end
 
-local function isVoidShade(name)
+function isVoidShade(name)
     local n = string.lower(name)
     return string.find(n, "voidshade") or string.find(n, "void shade")
 end
 
-local function isCorruptedGrowth(name)
+function isCorruptedGrowth(name)
     local n = string.lower(name)
     return string.find(n, "corrupted growth")
 end
 
-local function isEldritchReaver(name)
+function isEldritchReaver(name)
     local n = string.lower(name)
     return string.find(n, "eldritch reaver")
 end
@@ -1891,7 +1923,7 @@ local _skipNames = {
     Teams = true,
 }
 
-local function fastScanNPCs(charFilter, originPos, maxRange)
+function fastScanNPCs(charFilter, originPos, maxRange)
     local now = tick()
     if not ((now - _npcScanCacheTime) < 0.5 and #_npcScanCache > 0) then
         _npcScanCache = {}
@@ -1946,7 +1978,7 @@ local function fastScanNPCs(charFilter, originPos, maxRange)
     return result
 end
 
-local function getLowestPartY(model)
+function getLowestPartY(model)
 	if not model then return nil end
 	local key = model:GetFullName()
 	local c = _lowestYCache[key]
@@ -1968,7 +2000,7 @@ local function getLowestPartY(model)
 	return lowestY
 end
 
-local function getGroundYAt(model, fallbackY, atPos)
+function getGroundYAt(model, fallbackY, atPos)
 	if not model then return fallbackY end
 	local base = model:FindFirstChild("HumanoidRootPart") or model.PrimaryPart or model:FindFirstChildWhichIsA("BasePart")
 	if not base then return fallbackY end
@@ -2024,7 +2056,7 @@ local _yokaiRouteAtiva = false
 local _yokaiLeonaruMorto = false
 local _leonaruJaVisto = false
 
-local function rotaYokaiPeakAtiva()
+function rotaYokaiPeakAtiva()
     if _stats.dungeon == "Yokai Peak" then
         _yokaiRouteAtiva = true
     elseif not dungeonStarted then
@@ -2056,7 +2088,7 @@ local BOSS_NAME_KEYS = {
     "eldritch reaver", "corrupted growth", "voidshade",
 }
 
-local function isBossName(nameLower)
+function isBossName(nameLower)
     for i = 1, #BOSS_NAME_KEYS do
         if string.find(nameLower, BOSS_NAME_KEYS[i], 1, true) then return true end
     end
@@ -2065,7 +2097,7 @@ end
 
 local _bossSeenDungeon = nil
 
-local function getBossPosKey(nameLower)
+function getBossPosKey(nameLower)
     for key, _ in pairs(BossPositions) do
         if string.find(nameLower, string.lower(key), 1, true) then
             return key
@@ -2074,7 +2106,7 @@ local function getBossPosKey(nameLower)
     return nil
 end
 
-local function getArenaWaypoint(rootPos)
+function getArenaWaypoint(rootPos)
     if _stats.dungeon ~= _bossSeenDungeon then return nil end
     if _stats.dungeon ~= "Yokai Peak" then return nil end
     local entry
@@ -2090,7 +2122,7 @@ local function getArenaWaypoint(rootPos)
     return nil
 end
 
-local function getYokaiTPPos(behindDir, baseOrigin, step)
+function getYokaiTPPos(behindDir, baseOrigin, step)
     local dir = Vector3.new(behindDir.X, 0, behindDir.Z)
     if dir.Magnitude < 0.5 then
         dir = Vector3.new(0, 0, 1)
@@ -2106,7 +2138,7 @@ local _adelysMotion = {}
 local _adelysStopStart = {}
 local _adelysCleanupAt = 0
 
-local function isAdelysStationary(model)
+function isAdelysStationary(model)
     local root = model and (model:FindFirstChild("HumanoidRootPart") or model.PrimaryPart or model:FindFirstChildWhichIsA("BasePart"))
     if not root then return false end
     local now = tick()
@@ -2124,7 +2156,7 @@ local function isAdelysStationary(model)
     return false
 end
 
-local function cleanupAdelysMotion()
+function cleanupAdelysMotion()
     for m, _ in pairs(_adelysMotion) do
         local hum = m and m:FindFirstChildOfClass("Humanoid")
         if not m or not m.Parent or not hum or hum.Health <= 0 then
@@ -2140,7 +2172,7 @@ local _targetLandedStart = {}
 local _outsideMapCache = {}
 local _outsideMapCacheTime = {}
 
-local function isNPCOutsideMap(model)
+function isNPCOutsideMap(model)
     local root = model and (model:FindFirstChild("HumanoidRootPart") or model.PrimaryPart or model:FindFirstChildWhichIsA("BasePart"))
     if not root then return true end
     local found = false
@@ -2159,7 +2191,7 @@ local function isNPCOutsideMap(model)
     return not found
 end
 
-local function isNPCOutsideMapCached(model)
+function isNPCOutsideMapCached(model)
     if not model then return true end
     local key = model:GetFullName()
     local now = tick()
@@ -2171,7 +2203,7 @@ local function isNPCOutsideMapCached(model)
     return outside
 end
 
-local function isTargetLanded(model)
+function isTargetLanded(model)
     local root = model and (model:FindFirstChild("HumanoidRootPart") or model.PrimaryPart or model:FindFirstChildWhichIsA("BasePart"))
     if not root then return false end
     local now = tick()
@@ -2189,7 +2221,7 @@ local function isTargetLanded(model)
     return false
 end
 
-local function cleanupTargetLanded()
+function cleanupTargetLanded()
     for m, _ in pairs(_targetLandedMotion) do
         local hum = m and m:FindFirstChildOfClass("Humanoid")
         if not m or not m.Parent or not hum or hum.Health <= 0 then
@@ -2856,13 +2888,16 @@ function iniciarLeapingStrikeTP()
                         -- Fica ATRÁS do Voidshade (oposto ao look vector): ele vira para
                         -- o jogador a cada frame, por isso o destino alterna de lado e
                         -- assim o jogador desvia dos ataques frontais automaticamente.
-                        local dir = (-flatLook + flatRight * 0.8).Unit
+                        local dir = (-flatLook).Unit
                         local safePos = baseOrigin + (dir * 15)
                         applyTP(safePos, npcPos)
 
                     elseif info.targetType == "Gregg" then
-                        local dir = (-flatLook + flatRight * 0.8).Unit
-                        local safePos = baseOrigin + (dir * 6)
+                        -- Desvia indo EXATAMENTE para trás (oposto ao look) e com distância
+                        -- maior que 6 para não ficar colado no corpo do Gregg (evita o
+                        -- efeito "magnético" de parecer que ele te puxa).
+                        local dir = (-flatLook).Unit
+                        local safePos = baseOrigin + (dir * 18)
                         applyTP(safePos, npcPos)
 
                     else
@@ -2983,8 +3018,8 @@ function iniciarLeapingStrikeTP()
                         if isSafeTpPos(safePos) then rootPart.CFrame = CFrame.new(safePos, npcPos) end
 
                     elseif info.targetType == "Gregg" then
-                        local dir = (-flatLook + flatRight * 0.8).Unit
-                        local safePos = baseOrigin + (dir * 6)
+                        local dir = (-flatLook).Unit
+                        local safePos = baseOrigin + (dir * 18)
                         if isSafeTpPos(safePos) then rootPart.CFrame = CFrame.new(safePos, npcPos) end
 
                     else
@@ -3003,7 +3038,7 @@ function iniciarLeapingStrikeTP()
     end)
 
     -- Hitbox gigante em todos os NPCs: força o dano a contar (Voidshade e
-    -- alvos em ângulos/sítios onde o ataque não conectava).
+    -- alvos em ângulos/sítios onde o ataque não conectava.
     Connections.LeapingStrikeTPHitbox = task.spawn(function()
         while NightHub.LeapingStrikeTPAtivo do
             pcall(function()
@@ -3025,49 +3060,12 @@ function iniciarLeapingStrikeTP()
         end
     end)
 
-    -- Travamento do Gregg no chão: impede que ele caia para baixo do mapa,
-    -- mantendo-o colado à superfície do solo (sem anchor, para o dano contar).
-    -- Leve e barato: só procura Greggs a ≤250 studs do jogador, e só corrige
-    -- quando ele está claramente afundado (> 3 studs) — não luta com o jogo.
-    Connections.LeapingStrikeTPGroundLock = task.spawn(function()
-        while NightHub.LeapingStrikeTPAtivo do
-            pcall(function()
-                local char = LocalPlayer.Character
-                local rootPart = char and (char:FindFirstChild("HumanoidRootPart") or char.PrimaryPart)
-                if not rootPart then return end
-                local playerPos = rootPart.Position
-                local npcList = fastScanNPCs(char, playerPos, 250)
-                for _, npc in ipairs(npcList) do
-                    local model = npc.model
-                    if string.find(string.lower(model.Name), "gregg", 1, true) then
-                        local hrp = model:FindFirstChild("HumanoidRootPart") or model.PrimaryPart
-                        if hrp and hrp:IsA("BasePart") then
-                            local pos = hrp.Position
-                            local params = RaycastParams.new()
-                            params.FilterType = Enum.RaycastFilterType.Exclude
-                            local filter = { model }
-                            if char then filter[#filter + 1] = char end
-                            params.FilterDescendantsInstances = filter
-                            local function groundAt(startY, downLen)
-                                local r = workspace:Raycast(Vector3.new(pos.X, startY, pos.Z), Vector3.new(0, -downLen, 0), params)
-                                if r and r.Instance and r.Instance:IsA("BasePart") and r.Instance.CanCollide then
-                                    return r.Position.Y + 1
-                                end
-                                return nil
-                            end
-                            local groundY = groundAt(pos.Y + 100, 120)
-                            if not groundY then groundY = groundAt(1000, 5000) end
-                            if groundY and groundY > -800 and groundY < 1000 and pos.Y < groundY - 3 then
-                                hrp.CFrame = CFrame.new(Vector3.new(pos.X, groundY, pos.Z))
-                                pcall(function() hrp.AssemblyLinearVelocity = Vector3.new() end)
-                            end
-                        end
-                    end
-                end
-            end)
-            task.wait(0.25)
-        end
-    end)
+    -- Travamento do Gregg no chão REMOVIDO.
+    -- Antes, ele reescrevia o CFrame do HumanoidRootPart do Gregg no cliente. Como o
+    -- jogador fica teleportado colado no Gregg (mesma posição X/Z), esse raycast achava
+    -- o mesmo chão que está sob o jogador e "puxava" o Gregg para baixo, criando o
+    -- efeito magnético de parecer que o Gregg é arrastado até você. Isso também não
+    -- replicava para o servidor (parte não é de sua posse de rede), gerando dessync visual.
 
     Connections.LeapingStrikeTPCleanup = function()
         if tpBV then tpBV:Destroy() end
@@ -3117,13 +3115,13 @@ local VIM = game:GetService("VirtualInputManager")
 local ForceClickActive = false
 local LeapingStrikeAutoUsed = false
 
-local function toolTemAbilitySlot(tool)
+function toolTemAbilitySlot(tool)
     if not tool then return false end
     if tool.abilitySlot then return true end
     return tool:GetAttribute("abilitySlot") ~= nil
 end
 
-local function sendAbilityKey(key)
+function sendAbilityKey(key)
     local char = LocalPlayer.Character
     local equipped = char and char:FindFirstChildOfClass("Tool")
     if equipped and not toolTemAbilitySlot(equipped) then
@@ -3307,7 +3305,7 @@ end
 -- FLY MANUAL (TOGGLE SEPARADO)
 -- =========================================================================
 local bv, bg
-local function getCharacterParts()
+function getCharacterParts()
     local char = LocalPlayer.Character
     if char then
         return char, char:FindFirstChild("HumanoidRootPart"), char:FindFirstChild("Humanoid")
@@ -3420,7 +3418,7 @@ local voidbornWaitStart = 0
 local waitingForVoidborn = false
 local farmChar, farmRoot, farmHum
 
-local function updateFarmChar()
+function updateFarmChar()
     local char = LocalPlayer.Character
     if char then
         farmChar = char
@@ -3447,7 +3445,7 @@ local DODGE_SCAN_RANGE = 150
 local _dodgeScanCache = {}
 local _dodgeScanCacheTime = 0
 
-local function isAttackIndicator(obj)
+function isAttackIndicator(obj)
     if not obj:IsA("BasePart") then return false end
     local char = LocalPlayer.Character
     if char and char:IsAncestorOf(obj) then return false end
@@ -3489,7 +3487,7 @@ local function isAttackIndicator(obj)
     return false, nil
 end
 
-local function isDodgeBoundsSafe(pos)
+function isDodgeBoundsSafe(pos)
     if not pos then return false end
     if pos.X ~= pos.X or pos.Y ~= pos.Y or pos.Z ~= pos.Z then return false end
     if pos.Y > 1000 or pos.Y < -800 then return false end
@@ -3497,7 +3495,7 @@ local function isDodgeBoundsSafe(pos)
     return true
 end
 
-local function hasSolidFloorBelow(pos)
+function hasSolidFloorBelow(pos)
     local params = RaycastParams.new()
     params.FilterType = Enum.RaycastFilterType.Exclude
     local filter = {}
@@ -3514,7 +3512,7 @@ local function hasSolidFloorBelow(pos)
     return false
 end
 
-local function isDodgePathClear(fromPos, toPos)
+function isDodgePathClear(fromPos, toPos)
     local delta = toPos - fromPos
     if delta.Magnitude < 0.5 then return true end
     local params = RaycastParams.new()
@@ -3532,7 +3530,7 @@ local function isDodgePathClear(fromPos, toPos)
     return true
 end
 
-local function clearsAllDangers(dangers, cand)
+function clearsAllDangers(dangers, cand)
     for _, d in ipairs(dangers) do
         local dx = cand.X - d.center.X
         local dz = cand.Z - d.center.Z
@@ -3543,7 +3541,7 @@ local function clearsAllDangers(dangers, cand)
     return true
 end
 
-local function isDodgePosSafe(fromPos, p)
+function isDodgePosSafe(fromPos, p)
     if not isDodgeBoundsSafe(p) then return false end
     if not isDodgePathClear(fromPos, p) then return false end
     if not hasSolidFloorBelow(p) then return false end
@@ -3670,7 +3668,7 @@ end
 local _dodgeUntil = 0
 local _dodgeDir = Vector3.new(0, 0, 0)
 
-local function detectAoEDodge(rootPart)
+function detectAoEDodge(rootPart)
     if not bv or not bg then return false end
     local now = tick()
     if now < _dodgeUntil then
@@ -3705,7 +3703,7 @@ end
 -- APROVEITAR AOE: posicionar-se no centro de 2+ NPCs próximos para os
 -- acertar a todos com a habilidade de área ao mesmo tempo
 -- =========================================================================
-local function getAoeClusterPos(origin, targetPart)
+function getAoeClusterPos(origin, targetPart)
     if not NightHub.AoeFarmAtivo or not targetPart then return nil end
     local npcList = fastScanNPCs(nil, origin, NightHub.MaxDetectionRange)
     local cluster = { targetPart }
@@ -4252,7 +4250,7 @@ end
 local NoVFXObjects = {}
 local NoVFXPartData = {}
 
-local function isPartOfNPC(obj)
+function isPartOfNPC(obj)
     local p = obj
     while p and p ~= workspace do
         if p:IsA("Model") and p:FindFirstChildOfClass("Humanoid") then
@@ -4263,7 +4261,7 @@ local function isPartOfNPC(obj)
     return false
 end
 
-local function optimizePartForFPS(obj)
+function optimizePartForFPS(obj)
     if not obj:IsA("BasePart") then return end
     if isPartOfNPC(obj) then return end
     pcall(function()
@@ -4304,7 +4302,7 @@ local function optimizePartForFPS(obj)
     end)
 end
 
-local function simplifyNPCParts()
+function simplifyNPCParts()
     local function scan(folder)
         for _, v in pairs(folder:GetChildren()) do
             if v:IsA("Model") and v:FindFirstChildOfClass("Humanoid") then
@@ -4348,7 +4346,7 @@ local function simplifyNPCParts()
     scan(workspace)
 end
 
-local function disableVFX(obj)
+function disableVFX(obj)
     if not NightHub.NoVFXAtivo then return end
     pcall(function()
         local cn = obj.ClassName
@@ -4515,7 +4513,7 @@ end
 -- =========================================================================
 -- Velocidade Extra
 -- =========================================================================
-local function getVelocidadeExtra()
+function getVelocidadeExtra()
     if rotaYokaiPeakAtiva() then return NightHub.YokaiPeakSpeedMultiplier end
     return NightHub.SpeedMultiplier
 end
@@ -4688,6 +4686,7 @@ end
 -- =========================================================================
 NightHub.LimboSafePos = nil
 NightHub.LimboLastStore = 0
+local _limboHoldUntil = 0
 
 function iniciarLimbo()
     if Connections.LimboLoop then return end
@@ -4726,7 +4725,12 @@ function iniciarLimbo()
                 end
             end
 
-            if emLimbo then
+            -- TP único aplicado só uma vez pode ser revertido pela física do servidor:
+            -- na TELA você volta para a posição segura, mas os OUTROS jogadores não veem.
+            -- Por isso aplicamos de novo por ~1.2s (janela de recuperação) e zeramos
+            -- qualquer BodyVelocity/BodyGyro que esteja "prendendo" o personagem.
+            local emRecuperacao = emLimbo or tick() < _limboHoldUntil
+            if emRecuperacao then
                 local destino = NightHub.LimboSafePos
                 if not (destino and limboPosValida(destino)) then
                     local spawn = workspace:FindFirstChildWhichIsA("SpawnLocation")
@@ -4736,11 +4740,18 @@ function iniciarLimbo()
                         destino = Vector3.new(0, 50, 0)
                     end
                 end
-                root.CFrame = CFrame.new(destino.X, destino.Y + 3, destino.Z)
                 pcall(function()
-                    local bv = root:FindFirstChild("BodyVelocity")
-                    if bv then bv.Velocity = Vector3.new() end
+                    for _, forca in ipairs(root:GetChildren()) do
+                        if forca:IsA("BodyVelocity") then
+                            forca.Velocity = Vector3.new()
+                        end
+                    end
                 end)
+                root.AssemblyLinearVelocity = Vector3.new()
+                root.CFrame = CFrame.new(destino.X, destino.Y + 3, destino.Z)
+                if emLimbo then
+                    _limboHoldUntil = now + 1.2
+                end
             end
         end)
     end)
@@ -4754,56 +4765,9 @@ function pararLimbo()
     end
 end
 
-local function montarInterface()
-function iniciarNameChanger()
-    local playerGui = LocalPlayer:WaitForChild("PlayerGui")
-    local function scan(root) for _, descendant in ipairs(root:GetDescendants()) do pcall(applyToTextLabel, descendant) end end
-    scan(playerGui)
-    playerGui.DescendantAdded:Connect(function(descendant) task.wait(); pcall(applyToTextLabel, descendant) end)
-    local function monitorCharacter(char) if not char then return end scan(char) char.DescendantAdded:Connect(function(descendant) task.wait(); pcall(applyToTextLabel, descendant) end) end
-    monitorCharacter(LocalPlayer.Character)
-    LocalPlayer.CharacterAdded:Connect(monitorCharacter)
-end
 
--- =========================================================================
--- Seguranca (Character Respawn)
--- =========================================================================
-LocalPlayer.CharacterAdded:Connect(function(char)
-    task.wait(0.5)
-    ePressedOnStart = false
-    dungeonStarted = false
-    _npcScanCache = {}
-    _npcScanCacheTime = 0
-    _lowestYCache = {}
-    _toolRemoteCache = {}
-    _toolAnimCache = {}
-    NightHub.LimboSafePos = nil
-    if char:FindFirstChild("Humanoid") then
-        NightHub.OriginalWalkSpeed = atualizarVelocidadeBase(char.Humanoid)
-        if NightHub.VelocidadeExtra then
-            local speed = NightHub.OriginalWalkSpeed * getVelocidadeExtra()
-            char.Humanoid.WalkSpeed = speed
-        end
-    end
-    
-    if NightHub.FlyAtivo then
-        pararFly()
-        task.wait(0.3)
-        iniciarFly()
-    end
-    
-    if NightHub.FarmAtivo then
-        pararFarm()
-        task.wait(0.3)
-        iniciarFarm()
-    end
-end)
-
--- =========================================================================
--- PAGINAS DA UI
--- =========================================================================
-
--- COMBATE
+-- ==================== PAGINAS (top-level) ====================
+function montarTabCombate()
 local CombatPage = CreateTab("Combate")
 CreateSection(CombatPage, "SPAM DE HABILIDADES")
 CreateToggleWithBind(CombatPage, "Spammer Automatico", false, Binds.Spammer, "Spammer",
@@ -4843,8 +4807,11 @@ CreateToggleWithBind(CombatPage, "Modo Limbo (Anti-Queda)", NightHub.LimboAtivo,
     function(value) NightHub.LimboAtivo = value; if value then iniciarLimbo() else pararLimbo() end end,
     function(bind) Binds.Limbo = bind end
 )
+end
+montarTabCombate()
 
 -- FARM
+function montarTabFarm()
 local FarmPage = CreateTab("Farm")
 CreateSection(FarmPage, "FLY MANUAL")
 CreateToggleWithBind(FarmPage, "Fly Manual (WASD)", false, Binds.Fly, "Fly",
@@ -4876,8 +4843,11 @@ CreateToggle(FarmPage, "TP por Zonas (mata NPCs por zona)", false, "LeapingStrik
     if value then iniciarLeapingStrikeTP() else pararLeapingStrikeTP() end
 end)
 CreateToggle(FarmPage, "Desviar AOE (pesado no FPS)", NightHub.LeapingStrikeTPDodge, "LeapingStrikeTPDodge", function(value) NightHub.LeapingStrikeTPDodge = value end)
+end
+montarTabFarm()
 
 -- DUNGEON
+function montarTabDungeon()
 local DungeonPage = CreateTab("Dungeon")
 CreateSection(DungeonPage, "INICIAR DUNGEON")
 CreateDungeonButton(DungeonPage)
@@ -4888,10 +4858,13 @@ CreateToggleWithBind(DungeonPage, "Auto Start Dungeon", NightHub.AutoStartAtivo,
 )
 CreateSection(DungeonPage, "AUTO RETRY")
 CreateAutoRetryToggle(DungeonPage)
+end
+montarTabDungeon()
 
 -- =========================================================================
 -- ABA SELL - AUTO SELL COM SELEÇÃO DE RARIDADES
 -- =========================================================================
+function montarSellPage()
 local SellPage = CreateTab("Sell")
 
 -- Referência ao label de status do AutoSell (para atualizar ao ligar/desligar)
@@ -4928,7 +4901,7 @@ local raridadesPorCategoria = {
 }
 
 -- Função auxiliar: retorna a cor de uma raridade pelo key
-local function getCorRaridade(rarKey)
+function getCorRaridade(rarKey)
     for _, r in ipairs(raridades) do
         if r.key == rarKey then return r.cor end
     end
@@ -4936,7 +4909,7 @@ local function getCorRaridade(rarKey)
 end
 
 -- Função auxiliar: retorna o label de uma raridade pelo key
-local function getLabelRaridade(rarKey)
+function getLabelRaridade(rarKey)
     for _, r in ipairs(raridades) do
         if r.key == rarKey then return r.label end
     end
@@ -5215,8 +5188,11 @@ do
         end)
     end)
 end
+end
+montarSellPage()
 
 -- PROFILE
+function montarTabProfile()
 local ProfilePage = CreateTab("Profile")
 CreateSection(ProfilePage, "CUSTOMIZAÇÃO")
 CreateToggle(ProfilePage, "Painel de Dungeon (HUD)", NightHub.MostrarHUD, "MostrarHUD", function(value)
@@ -5232,10 +5208,13 @@ CreateTextBox(ProfilePage, "Nome Personalizado", "Digite seu nome personalizado.
     NightHub.NomePersonalizado = text
     refreshAllTextLabels()
 end)
+end
+montarTabProfile()
 
 -- =========================================================================
 -- ABA FAQ / INFO
 -- =========================================================================
+function montarTabFAQ()
 local FAQPage = CreateTab("FAQ")
 CreateSection(FAQPage, "DUNGEON QUEST — FAQ & THINGS YOU SHOULD KNOW")
 
@@ -5342,8 +5321,11 @@ do
     setupLabel.TextWrapped = true
     setupLabel.Parent = card3
 end
+end
+montarTabFAQ()
 
 -- CONFIGS
+function montarConfigPage()
 local ConfigPage = CreateTab("Config")
 CreateSection(ConfigPage, "GERENCIADOR DE CONFIGS")
 
@@ -5556,7 +5538,7 @@ rebuildConfigList()
 CreateSection(ConfigPage, "EXPORT / IMPORT")
 
 -- Função: gera loadstring a partir do snapshot atual
-local function generateConfigLoadstring()
+function generateConfigLoadstring()
     local snap = getCurrentSnapshot()
     local encoded = HttpService:JSONEncode(snap)
     local escaped = encoded:gsub("\\", "\\\\"):gsub('"', '\\"'):gsub("\n", "\\n"):gsub("\r", "\\r")
@@ -5717,8 +5699,64 @@ do
         end)
     end)
 end
+end
+montarConfigPage()
+
+function montarInterface()
+function iniciarNameChanger()
+    local playerGui = LocalPlayer:WaitForChild("PlayerGui")
+    local function scan(root) for _, descendant in ipairs(root:GetDescendants()) do pcall(applyToTextLabel, descendant) end end
+    scan(playerGui)
+    playerGui.DescendantAdded:Connect(function(descendant) task.wait(); pcall(applyToTextLabel, descendant) end)
+    local function monitorCharacter(char) if not char then return end scan(char) char.DescendantAdded:Connect(function(descendant) task.wait(); pcall(applyToTextLabel, descendant) end) end
+    monitorCharacter(LocalPlayer.Character)
+    LocalPlayer.CharacterAdded:Connect(monitorCharacter)
+end
 
 -- =========================================================================
+-- Seguranca (Character Respawn)
+-- =========================================================================
+LocalPlayer.CharacterAdded:Connect(function(char)
+    task.wait(0.5)
+    ePressedOnStart = false
+    dungeonStarted = false
+    _npcScanCache = {}
+    _npcScanCacheTime = 0
+    _lowestYCache = {}
+    _toolRemoteCache = {}
+    _toolAnimCache = {}
+    NightHub.LimboSafePos = nil
+    if char:FindFirstChild("Humanoid") then
+        NightHub.OriginalWalkSpeed = atualizarVelocidadeBase(char.Humanoid)
+        if NightHub.VelocidadeExtra then
+            local speed = NightHub.OriginalWalkSpeed * getVelocidadeExtra()
+            char.Humanoid.WalkSpeed = speed
+        end
+    end
+    
+    if NightHub.FlyAtivo then
+        pararFly()
+        task.wait(0.3)
+        iniciarFly()
+    end
+    
+    if NightHub.FarmAtivo then
+        pararFarm()
+        task.wait(0.3)
+        iniciarFarm()
+    end
+end)
+
+-- =========================================================================
+-- PAGINAS DA UI
+-- =========================================================================
+
+-- COMBATE
+end
+
+montarInterface()
+
+-- ==================== INIT / CLEANUP / AUTO-LOAD (top-level) ====================
 -- AVATAR CHANGER
 -- =========================================================================
 function iniciarChanger()
@@ -5991,5 +6029,3 @@ task.spawn(function()
     end
 end)
 
-end
-montarInterface()
