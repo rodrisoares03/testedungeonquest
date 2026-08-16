@@ -171,18 +171,50 @@ function detectarRaridadeItem(cor)
         return nil
     end
     local tierDetectado = RarityTier[melhor] or 0
+    -- Tolerância ampla de proteção: qualquer cor razoavelmente próxima de uma
+    -- raridade MAIS ALTA é tratada como ambígua e NÃO vendida. As raridades são
+    -- bem separadas em cor, então 45 por canal não bloqueia itens legítimos de
+    -- tiers baixos, mas protege lendários que tenham um tom de dourado levemente
+    -- diferente do de referência (antes com 6 muitos eram vendidos por engano).
     for chave, corRef in pairs(AutoSellRarityCores) do
         local tier = RarityTier[chave] or 0
-        if tier > tierDetectado and coresIguais(cor, corRef, 6) then
+        if tier > tierDetectado and coresIguais(cor, corRef, 45) then
             return nil
         end
     end
     return melhor
 end
 
--- Coleta os itens da UI de venda identificando raridade pela cor do item.
--- Retorna uma lista de { tipo, indice, raridade } apenas para itens cuja cor
--- bate com uma raridade conhecida (com tolerância de ±3 por canal RGB).
+-- Mapeia o TEXTO de raridade que o jogo mostra na UI ("Legendário", "Epic",
+-- "Rare"...) para a chave interna. É a fonte mais confiável, bem melhor que
+-- inferir pela cor (que varia e causava venda de lendários por engano).
+function detectarRaridadeTexto(texto)
+    if not texto then return nil end
+    local t = string.lower(texto)
+    if string.find(t, "ultimat", 1, true) or string.find(t, "ultimo", 1, true) then return "ultimate" end
+    if string.find(t, "legend", 1, true) or string.find(t, "lend", 1, true) then return "legendary" end
+    if string.find(t, "epic", 1, true) or string.find(t, "epico", 1, true) then return "epic" end
+    if string.find(t, "rare", 1, true) or string.find(t, "raro", 1, true) then return "rare" end
+    if string.find(t, "uncommon", 1, true) or string.find(t, "incomum", 1, true) then return "uncommon" end
+    if string.find(t, "common", 1, true) or string.find(t, "comum", 1, true) then return "common" end
+    return nil
+end
+
+-- Procura o texto de raridade entre os rótulos do item. Retorna a chave da
+-- raridade, ou nil se não encontrar um rótulo reconhecível.
+function localizarRaridadePorTexto(item)
+    for _, obj in ipairs(item:GetDescendants()) do
+        if obj:IsA("TextLabel") or obj:IsA("TextButton") then
+            local r = detectarRaridadeTexto(obj.Text)
+            if r then return r end
+        end
+    end
+    return nil
+end
+
+-- Coleta os itens da UI de venda identificando raridade pelo TEXTO exibido no
+-- item (fallback para a cor quando não houver rótulo). Retorna uma lista de
+-- { tipo, indice, raridade } apenas para itens cuja raridade foi reconhecida.
 -- Itens sem correspondência ficam de fora e NUNCA são vendidos.
 function coletarItensVenda()
     local sellShop = LocalPlayer.PlayerGui:FindFirstChild("sellShop")
@@ -200,7 +232,7 @@ function coletarItensVenda()
                 local tipo = itemTypeObj.Value
                 local indice = tonumber(uniqueNum.Value)
                 if AutoSellSettings[tipo] and indice and indice > 0 then
-                    local raridade = detectarRaridadeItem(v.ImageColor3)
+                    local raridade = localizarRaridadePorTexto(v) or detectarRaridadeItem(v.ImageColor3)
                     if raridade then
                         table.insert(itens, { tipo = tipo, indice = indice, raridade = raridade })
                     end
@@ -2678,6 +2710,44 @@ function iniciarLeapingStrikeTP()
                 _lastSafeTPPos = _safeNow
             end
 
+            -- ROLLBACK DE ARENA (Abyssal Void): se o jogador ficar muito longe do
+            -- boss (ex.: ao desviar do Voidshade e escapar do mapa), volta para a
+            -- posição de ~2 segundos atrás para o dano voltar a contar.
+            if _stats.dungeon == "Abyssal Void" then
+                local _rbNow = tick()
+                local _anchor = (currentBoss and BossPositions[currentBoss] and BossPositions[currentBoss].pos)
+                    or BossPositions["The Voidborn"].pos
+                local _rdx = _safeNow.X - _anchor.X
+                local _rdz = _safeNow.Z - _anchor.Z
+                local _rDist = math.sqrt(_rdx * _rdx + _rdz * _rdz)
+                if _rDist <= ABYSSAL_ROLLBACK_RADIUS then
+                    _posHistoryIdx = _posHistoryIdx + 1
+                    if _posHistoryIdx > _posHistoryMax then _posHistoryIdx = 1 end
+                    _posHistory[_posHistoryIdx] = { t = _rbNow, pos = _safeNow }
+                elseif _posHistoryIdx > 0 then
+                    -- Só volta pra posição anterior se o jogador JÁ esteve perto do
+                    -- boss (escapou). Se nunca esteve (ainda a caminho da arena), não
+                    -- bloqueia a aproximação.
+                    local _targetT = _rbNow - 2
+                    local _bestE = nil
+                    local _bestDt = math.huge
+                    for i = 1, _posHistoryMax do
+                        local e = _posHistory[i]
+                        if e and e.pos then
+                            local dt = math.abs(e.t - _targetT)
+                            if dt < _bestDt then
+                                _bestDt = dt
+                                _bestE = e
+                            end
+                        end
+                    end
+                    if _bestE and _bestE.pos then
+                        rootPart.CFrame = CFrame.new(_bestE.pos.X, _bestE.pos.Y, _bestE.pos.Z)
+                    end
+                    return
+                end
+            end
+
             -- Ataque em área (Abyssal Void): opcional (LeapingStrikeTPDodge no menu).
             -- Desativado por padrão porque o scan de indicadores pesa no FPS e pode
             -- prender o TP do alvo se o mapa tiver decorações parecidas com AOE.
@@ -2703,6 +2773,9 @@ function iniciarLeapingStrikeTP()
             end
 
             if _stats.dungeon == "Abyssal Void" and waitingForVoidborn then
+                -- Se há AoE ativo, NÃO teleporta pra cima do Voidborn (senão puxa
+                -- o jogador de volta pra dentro do dano e ele morre).
+                if tick() < _lastDodgeDangersUntil then return end
                 tpBV.Parent = rootPart
                 tpBG.Parent = rootPart
                 tpBV.Velocity = Vector3.new(0, 0, 0)
@@ -2715,6 +2788,9 @@ function iniciarLeapingStrikeTP()
             end
 
             if _stats.dungeon == "Abyssal Void" and currentBoss == "The Voidborn" then
+                -- Igual acima: evita o repin no boss durante AoE ativo pra garantir
+                -- a esquiva 100% em vez de ficar colado levando dano.
+                if tick() < _lastDodgeDangersUntil then return end
                 tpBV.Parent = rootPart
                 tpBV.Velocity = Vector3.new(0, 0, 0)
                 local bPos = BossPositions["The Voidborn"].pos
@@ -3013,8 +3089,11 @@ function iniciarLeapingStrikeTP()
                         if isSafeTpPos(safePos) then rootPart.CFrame = CFrame.new(safePos, npcPos) end
 
                     elseif info.targetType == "Voidshade" then
-                        local dir = (-flatLook + flatRight * 0.8).Unit
-                        local safePos = baseOrigin + (dir * 15)
+                        -- TP EXATAMENTE atrás do Voidshade (oposto ao look), sem
+                        -- deslocamento lateral, pra não ficar torto. Limitado à arena
+                        -- pra não jogar o jogador pra fora do mapa.
+                        local dir = (-flatLook).Unit
+                        local safePos = clampToArena(baseOrigin + (dir * 15), baseOrigin)
                         if isSafeTpPos(safePos) then rootPart.CFrame = CFrame.new(safePos, npcPos) end
 
                     elseif info.targetType == "Gregg" then
@@ -3437,13 +3516,40 @@ local _lastDodgeTime = 0
 local DODGE_COOLDOWN = 0.25
 local PLAYER_RADIUS = 3
 local DODGE_MARGIN = 3
-local DODGE_DETECT_BUFFER = 12
+local DODGE_DETECT_BUFFER = 5
 -- Cache do scan de workspace para a esquadra de AOE: evita GetDescendants()
 -- a cada frame (causava travamentos sérios no farm voador).
 local DODGE_SCAN_INTERVAL = 0.4
 local DODGE_SCAN_RANGE = 150
 local _dodgeScanCache = {}
 local _dodgeScanCacheTime = 0
+
+-- =========================================================================
+-- SEGURANÇA DE ARENA (Abyssal Void)
+-- Ao desviar do Voidshade, o TP podia jogar o jogador para fora do mapa e o
+-- dano parava de contar. Abaixo: (1) limita o destino do TP a um raio do boss
+-- e (2) guarda um histórico de posições para voltar ~2s atrás se ele escapar.
+-- =========================================================================
+local ABYSSAL_TP_MAX_RADIUS = 60
+ABYSSAL_ROLLBACK_RADIUS = 250
+_posHistory = {}
+_posHistoryMax = 30
+_posHistoryIdx = 0
+
+-- Garante que o destino do TP fique a até ABYSSAL_TP_MAX_RADIUS do anchor
+-- (posição do boss), evitando que o desvio empurre o jogador para fora da
+-- arena do Abyssal Void.
+function clampToArena(pos, anchor)
+    if not pos or not anchor then return pos end
+    local dx = pos.X - anchor.X
+    local dz = pos.Z - anchor.Z
+    local h = math.sqrt(dx * dx + dz * dz)
+    if h > ABYSSAL_TP_MAX_RADIUS and h > 0.001 then
+        local scale = ABYSSAL_TP_MAX_RADIUS / h
+        return Vector3.new(anchor.X + dx * scale, pos.Y, anchor.Z + dz * scale)
+    end
+    return pos
+end
 
 function isAttackIndicator(obj)
     if not obj:IsA("BasePart") then return false end
@@ -3461,25 +3567,25 @@ function isAttackIndicator(obj)
     end
 
     local size = obj.Size
-    local isFlat = size.Y < 3 and (size.X > 4 or size.Z > 4)
-    local isBeam = (size.X < 2 and size.Y < 2 and size.Z > 8) or (size.X > 8 and size.Y < 2 and size.Z < 2) or (size.X < 2 and size.Y > 8 and size.Z < 2)
+    local isFlat = size.Y < 3.5 and (size.X > 4 or size.Z > 4)
+    local isBeam = (size.X < 3.5 and size.Y < 3.5 and size.Z > 8) or (size.X > 8 and size.Y < 3.5 and size.Z < 3.5) or (size.X < 3.5 and size.Y > 8 and size.Z < 3.5)
 
     local r, g, b = obj.Color.R, obj.Color.G, obj.Color.B
     local mx = math.max(r, g, b)
     local mn = math.min(r, g, b)
-    local colored = (mx - mn) > 0.2 and mx > 0.35
+    local colored = (mx - mn) > 0.18 and mx > 0.32
 
     if isFlat then
-        -- Indicador de ataque no chão é pequeno/médio (AOE do boss). Partes
-        -- enormes (poças de void, decoração do mapa) não são ataques.
+        -- Indicador de ataque no chão (AOE do boss), incluindo ultimates grandes.
+        -- Poças de void / decoração gigante seguem filtradas por cor + transparência.
         local flatRadius = math.max(size.X, size.Z) / 2
-        if flatRadius <= 30 and colored and obj.Transparency > 0.2 then
+        if flatRadius <= 45 and colored and obj.Transparency > 0.2 then
             return true, "ground"
         end
     end
 
     if isBeam then
-        if colored and obj.Transparency < 0.9 then
+        if colored and obj.Transparency < 0.95 then
             return true, "beam"
         end
     end
@@ -3587,7 +3693,7 @@ getDodgePosition = function(rootPart)
             dx = dX
             dz = dZ
         else
-            radius = 4
+            radius = 6
             local size = obj.Size
             local ax
             local axisDir
@@ -3655,7 +3761,23 @@ getDodgePosition = function(rootPart)
         local reqR = req + cand.extra
         local p = Vector3.new(best.center.X + math.cos(a) * reqR, playerPos.Y, best.center.Z + math.sin(a) * reqR)
         if not isDodgePosSafe(playerPos, p) then continue end
-        if not clearsAllDangers(dangers, p) then continue end
+        if clearsAllDangers(dangers, p) then
+            _lastDodgeTime = now
+            _lastDodgeDangers = dangers
+            _lastDodgeDangersUntil = now + 1.5
+            return p
+        end
+    end
+
+    -- Fallback: se não consegue sair de TODOS os perigos de uma vez, ao menos
+    -- foge do mais grave em vez de ficar parado tomando dano até o próximo scan.
+    for _, cand in ipairs(candidates) do
+        local a = playerAng + cand.ang
+        local reqR = req + cand.extra
+        local p = Vector3.new(best.center.X + math.cos(a) * reqR, playerPos.Y, best.center.Z + math.sin(a) * reqR)
+        if not isDodgePosSafe(playerPos, p) then continue end
+        local db = (p.X - best.center.X) * (p.X - best.center.X) + (p.Z - best.center.Z) * (p.Z - best.center.Z)
+        if math.sqrt(db) < best.radius + PLAYER_RADIUS + 1 then continue end
         _lastDodgeTime = now
         _lastDodgeDangers = dangers
         _lastDodgeDangersUntil = now + 1.5
@@ -5796,6 +5918,24 @@ if ContentPages["Combate"] then
     ContentPages["Combate"].Page.Visible = true
     ContentPages["Combate"].Button.BackgroundColor3 = Cores.TabAtiva
     ContentPages["Combate"].Button.TextColor3 = Color3.fromRGB(255, 255, 255)
+end
+
+-- =========================================================================
+-- AUTO-EXECUTE POR LINK RAW DO GITHUB (após teleport)
+-- Cola aqui o link raw do script que queres executar automaticamente
+-- quando o jogo te teleportar (ex.: mudar de servidor / reentrar).
+-- =========================================================================
+local ScriptURL = "COLAR_LINK_AUTO_EXEC_AQUI"
+
+if ScriptURL ~= "" and ScriptURL ~= "COLAR_LINK_AUTO_EXEC_AQUI" then
+    pcall(function()
+        if queue_on_teleport ~= nil then
+            queue_on_teleport('loadstring(game:HttpGet("' .. ScriptURL .. '"))()')
+            print("[NightHub] Auto-execute por link raw configurado no teleporte.")
+        else
+            print("[NightHub] queue_on_teleport indisponível — auto-execute por link raw não ativado.")
+        end
+    end)
 end
 
 -- =========================================================================
