@@ -5925,7 +5925,7 @@ end
 -- Cola aqui o link raw do script que queres executar automaticamente
 -- quando o jogo te teleportar (ex.: mudar de servidor / reentrar).
 -- =========================================================================
-local ScriptURL = "COLAR_LINK_AUTO_EXEC_AQUI"
+local ScriptURL = "https://raw.githubusercontent.com/rodrisoares03/testedungeonquest/refs/heads/main/teste"
 
 if ScriptURL ~= "" and ScriptURL ~= "COLAR_LINK_AUTO_EXEC_AQUI" then
     pcall(function()
